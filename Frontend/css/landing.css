@@ -1,78 +1,143 @@
+/* -------------------------------
+   BASE
+---------------------------------- */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    color: black;
-    height: 100%;
-    overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: white;
+  background: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+  background-size: cover;
 }
 
+/* -------------------------------
+   HEADER
+---------------------------------- */
 header {
-    background-color: #105178;
-    color: white;
-    padding: 1.5rem 10%;
-    position: relative;
-    z-index: 1;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-main {
-    padding: 2% 10% 0;
-    background-image: url(src/landing.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    animation: panBackground 60s linear infinite;
-    height: 100%;
+.logo {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #facc15;
 }
 
-@keyframes panBackground {
-    0% {
-        background-position: 0% 0%;
-    }
-    100% {
-        background-position: 100% 100%;
-    }
+nav a {
+  margin-left: 1rem;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
 }
 
-.intro {
-    margin-top: 50px;
+.btn-outline {
+  border: 2px solid white;
+  color: white;
 }
 
-.title {
-    font-size: 3.75rem;
-    font-weight: 700;
+.btn-outline:hover {
+  background-color: white;
+  color: black;
 }
 
-.bio {
-    font-size: 20px;
-    margin-top: 20px;
+.btn-primary {
+  background-color: #facc15;
+  color: black;
 }
 
-.nav-btn {
-    background-color: #f5f3e7;
-    border-radius: 5px;
-    padding: 8px;
-    color: #105178;
+.btn-primary:hover {
+  background-color: #fde047;
 }
 
-.widget-btn {
-    margin-top: 30px;
-    border: 1px solid;
-    color: white;
-    border-radius: 10px;
-    background-color: #105178;
-    padding: 10px 20px;
-    transition-duration: 0.5s;
+/* -------------------------------
+   HERO SECTION
+---------------------------------- */
+.hero-section {
+  padding: 8rem 2rem;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.4);
 }
 
-.widget-btn:hover {
-    border: 2px solid;
-    color: #105178;
-    border-color: #105178;
-    background-color: white;
-    transition-duration: 1s;
+.hero-section h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
 }
 
+.hero-section p {
+  font-size: 1.25rem;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+.hero-section a {
+  background-color: white;
+  color: #1d4ed8;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.hero-section a:hover {
+  background-color: #e0f2fe;
+}
+
+/* -------------------------------
+   FEATURES SECTION
+---------------------------------- */
+#features {
+  padding: 5rem 2rem;
+  background: rgba(0, 0, 0, 0.6);
+  text-align: center;
+}
+
+#features h2 {
+  font-size: 2rem;
+  margin-bottom: 3rem;
+}
+
+.feature-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+  max-width: 1000px;
+  margin: auto;
+}
+
+@media (min-width: 768px) {
+  .feature-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.feature-box {
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  text-decoration: none;
+  color: white;
+  transition: 0.3s ease;
+}
+
+.feature-box:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px);
+}
+
+/* -------------------------------
+   FOOTER
+---------------------------------- */
+footer {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
