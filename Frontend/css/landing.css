@@ -1,0 +1,78 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    color: black;
+    height: 100%;
+    overflow: hidden;
+}
+
+header {
+    background-color: #105178;
+    color: white;
+    padding: 1.5rem 10%;
+    position: relative;
+    z-index: 1;
+}
+
+main {
+    padding: 2% 10% 0;
+    background-image: url(src/landing.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: panBackground 60s linear infinite;
+    height: 100%;
+}
+
+@keyframes panBackground {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
+
+.intro {
+    margin-top: 50px;
+}
+
+.title {
+    font-size: 3.75rem;
+    font-weight: 700;
+}
+
+.bio {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+
+.nav-btn {
+    background-color: #f5f3e7;
+    border-radius: 5px;
+    padding: 8px;
+    color: #105178;
+}
+.widget-btn{
+    margin-top: 50px;
+    border: 1px solid ;
+    color: white;
+    border-radius: 10px;
+    background-color: #105178;
+    padding: 10px 20px 10px 20px;
+    transition-duration: 0.5s;
+}
+.widget-btn:hover{
+    border: 2px solid;
+    color: #105178;
+    border-color: #105178;
+    background-color: white;
+    transition-duration: 1s;
+}
