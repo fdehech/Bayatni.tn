@@ -59,7 +59,7 @@ main {
 }
 
 .widget-btn {
-    margin-top: 50px;
+    margin-top: 30px;
     border: 1px solid;
     color: white;
     border-radius: 10px;
@@ -76,69 +76,3 @@ main {
     transition-duration: 1s;
 }
 
-@media screen and (max-width: 768px) {
-    header {
-        padding: 1.5rem 5%;
-        text-align: center;
-    }
-
-    main {
-        padding: 2% 5% 0;
-        background-position: center;
-    }
-
-    .title {
-        font-size: 2.25rem;
-        text-align: center;
-    }
-
-    .bio {
-        font-size: 16px;
-        text-align: center;
-    }
-
-    .intro {
-        margin-top: 30px;
-    }
-
-    .nav-btn,
-    .widget-btn {
-        display: block;
-        width: 100%;
-        text-align: center;
-        padding: 12px;
-        font-size: 16px;
-        margin-top: 20px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    header {
-        padding: 1rem 5%;
-    }
-
-    .title {
-        font-size: 1.75rem;
-        text-align: center;
-    }
-
-    .bio {
-        font-size: 14px;
-    }
-
-    .widget-btn,
-    .nav-btn {
-        font-size: 14px;
-        padding: 10px;
-        width: 100%;
-    }
-
-    .intro {
-        margin-top: 20px;
-    }
-
-    main {
-        padding: 5% 5% 0;
-        height: auto;
-    }
-}
