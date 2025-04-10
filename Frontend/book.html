@@ -3,45 +3,425 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bayatni.tn</title>
+  <title>Réservation | Bayatni.tn</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    /* Specific styles for reservation page */
+    .reservation-section {
+      padding: 3rem 2rem;
+      background: rgba(0, 0, 0, 0.6);
+      min-height: 80vh;
+    }
+    
+    .filters {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: flex-end;
+    }
+    
+    .filter-group {
+      flex: 1;
+      min-width: 200px;
+    }
+    
+    .filter-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    
+    .filter-group input, .filter-group select {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      border: none;
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    .search-btn {
+      background-color: #facc15;
+      color: black;
+      border: none;
+      border-radius: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    .search-btn:hover {
+      background-color: #fde047;
+    }
+    
+    .hotel-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .hotel-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .hotel-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .hotel-image {
+      height: 200px;
+      background-position: center;
+      background-size: cover;
+    }
+    
+    .hotel-info {
+      padding: 1.5rem;
+    }
+    
+    .hotel-title {
+      font-size: 1.25rem;
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+    
+    .hotel-location {
+      color: #d4d4d4;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .hotel-location::before {
+      content: "📍";
+      margin-right: 0.5rem;
+    }
+    
+    .hotel-features {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+    
+    .hotel-feature {
+      display: flex;
+      align-items: center;
+    }
+    
+    .hotel-price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #facc15;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .reserve-btn {
+      background: linear-gradient(135deg, #facc15, #eab308);
+      color: black;
+      border: none;
+      border-radius: 0.5rem;
+      padding: 0.75rem 0;
+      width: 100%;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .reserve-btn:hover {
+      background: linear-gradient(135deg, #fde047, #facc15);
+    }
+    
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .stars {
+      color: #facc15;
+    }
+    
+    .reviews {
+      font-size: 0.8rem;
+      color: #d4d4d4;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .filters {
+        flex-direction: column;
+      }
+      
+      .filter-group {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
-    <div class="logo">Bayatni.tn</div>
+    <div class="logo"><a href="index.html">Bayatni.tn</a></div>
     <nav>
       <a href="signup.html" class="btn-outline">S'inscrire</a>
       <a href="login.html" class="btn-primary">Se connecter</a>
     </nav>
   </header>
 
-  <section class="hero-section">
-    <h1>Bienvenue sur Bayatni</h1>
-    <p>Votre plateforme de réservation d’agenda en ligne dédiée aux hôtels en Tunisie.</p>
-    <a href="book.html">Réserver maintenant</a>
-  </section>
-
-  <section id="features">
-    <h2>Fonctionnalités clés</h2>
-    <div class="feature-grid">
-      <a href="/reservation" class="feature-box">
-        <h3>Réservations automatisées</h3>
-        <p>Optimisez la gestion de votre planning avec notre système intelligent.</p>
-      </a>
-      <a href="/multi-utilisateur" class="feature-box">
-        <h3>Multi-utilisateur</h3>
-        <p>Attribuez des rôles à votre équipe pour un travail collaboratif.</p>
-      </a>
-      <a href="/support-local" class="feature-box">
-        <h3>Support local</h3>
-        <p>Une solution conçue spécialement pour les hôtels en Tunisie.</p>
-      </a>
+  <section class="reservation-section">
+    <h1>Réserver votre hôtel</h1>
+    
+    <div class="filters">
+      <div class="filter-group">
+        <label for="destination">Destination</label>
+        <select id="destination" name="destination">
+          <option value="">Toutes les destinations</option>
+          <option value="tunis">Tunis</option>
+          <option value="hammamet">Hammamet</option>
+          <option value="sousse">Sousse</option>
+          <option value="djerba">Djerba</option>
+          <option value="monastir">Monastir</option>
+        </select>
+      </div>
+      
+      <div class="filter-group">
+        <label for="check-in">Date d'arrivée</label>
+        <input type="date" id="check-in" name="check-in" min="2025-04-10">
+      </div>
+      
+      <div class="filter-group">
+        <label for="check-out">Date de départ</label>
+        <input type="date" id="check-out" name="check-out" min="2025-04-11">
+      </div>
+      
+      <div class="filter-group">
+        <label for="guests">Nombre de personnes</label>
+        <select id="guests" name="guests">
+          <option value="1">1 personne</option>
+          <option value="2" selected>2 personnes</option>
+          <option value="3">3 personnes</option>
+          <option value="4">4 personnes</option>
+          <option value="5">5 personnes</option>
+        </select>
+      </div>
+      
+      <button class="search-btn" id="search-hotels">Rechercher</button>
+    </div>
+    
+    <div class="hotel-grid">
+      <!-- Hotel Card 1 -->
+      <div class="hotel-card">
+        <div class="hotel-image" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="hotel-info">
+          <h3 class="hotel-title">Hôtel La Marsa Resort & Spa</h3>
+          <div class="hotel-location">La Marsa, Tunis</div>
+          <div class="rating">
+            <div class="stars">★★★★★</div>
+            <div class="reviews">(324 avis)</div>
+          </div>
+          <div class="hotel-features">
+            <span class="hotel-feature">🏊 Piscine</span>
+            <span class="hotel-feature">🍽️ Restaurant</span>
+            <span class="hotel-feature">🧖 Spa</span>
+          </div>
+          <div class="hotel-price">350 DT / nuit</div>
+          <button class="reserve-btn">Réserver</button>
+        </div>
+      </div>
+      
+      <!-- Hotel Card 2 -->
+      <div class="hotel-card">
+        <div class="hotel-image" style="background-image: url('https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="hotel-info">
+          <h3 class="hotel-title">Hammamet Palace</h3>
+          <div class="hotel-location">Yasmine Hammamet</div>
+          <div class="rating">
+            <div class="stars">★★★★☆</div>
+            <div class="reviews">(187 avis)</div>
+          </div>
+          <div class="hotel-features">
+            <span class="hotel-feature">🏊 Piscine</span>
+            <span class="hotel-feature">🏖️ Plage</span>
+            <span class="hotel-feature">🍽️ Restaurant</span>
+          </div>
+          <div class="hotel-price">290 DT / nuit</div>
+          <button class="reserve-btn">Réserver</button>
+        </div>
+      </div>
+      
+      <!-- Hotel Card 3 -->
+      <div class="hotel-card">
+        <div class="hotel-image" style="background-image: url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="hotel-info">
+          <h3 class="hotel-title">Sousse Marhaba Beach</h3>
+          <div class="hotel-location">Sousse</div>
+          <div class="rating">
+            <div class="stars">★★★☆☆</div>
+            <div class="reviews">(215 avis)</div>
+          </div>
+          <div class="hotel-features">
+            <span class="hotel-feature">🏊 Piscine</span>
+            <span class="hotel-feature">🏖️ Plage</span>
+          </div>
+          <div class="hotel-price">180 DT / nuit</div>
+          <button class="reserve-btn">Réserver</button>
+        </div>
+      </div>
+      
+      <!-- Hotel Card 4 -->
+      <div class="hotel-card">
+        <div class="hotel-image" style="background-image: url('https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="hotel-info">
+          <h3 class="hotel-title">Djerba Luxury Resort</h3>
+          <div class="hotel-location">Houmt Souk, Djerba</div>
+          <div class="rating">
+            <div class="stars">★★★★★</div>
+            <div class="reviews">(412 avis)</div>
+          </div>
+          <div class="hotel-features">
+            <span class="hotel-feature">🏊 Piscine</span>
+            <span class="hotel-feature">🏖️ Plage</span>
+            <span class="hotel-feature">🧖 Spa</span>
+          </div>
+          <div class="hotel-price">420 DT / nuit</div>
+          <button class="reserve-btn">Réserver</button>
+        </div>
+      </div>
+      
+      <!-- Hotel Card 5 -->
+      <div class="hotel-card">
+        <div class="hotel-image" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="hotel-info">
+          <h3 class="hotel-title">Monastir Bay</h3>
+          <div class="hotel-location">Monastir</div>
+          <div class="rating">
+            <div class="stars">★★★★☆</div>
+            <div class="reviews">(178 avis)</div>
+          </div>
+          <div class="hotel-features">
+            <span class="hotel-feature">🏊 Piscine</span>
+            <span class="hotel-feature">🏖️ Plage</span>
+            <span class="hotel-feature">🍽️ Restaurant</span>
+          </div>
+          <div class="hotel-price">270 DT / nuit</div>
+          <button class="reserve-btn">Réserver</button>
+        </div>
+      </div>
+      
+      <!-- Hotel Card 6 -->
+      <div class="hotel-card">
+        <div class="hotel-image" style="background-image: url('https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="hotel-info">
+          <h3 class="hotel-title">Sidi Bou Said Maison Bleue</h3>
+          <div class="hotel-location">Sidi Bou Said, Tunis</div>
+          <div class="rating">
+            <div class="stars">★★★★☆</div>
+            <div class="reviews">(95 avis)</div>
+          </div>
+          <div class="hotel-features">
+            <span class="hotel-feature">🍽️ Restaurant</span>
+            <span class="hotel-feature">🌅 Vue mer</span>
+          </div>
+          <div class="hotel-price">320 DT / nuit</div>
+          <button class="reserve-btn">Réserver</button>
+        </div>
+      </div>
     </div>
   </section>
 
   <footer>
     &copy; 2025 Bayatni.tn — Tous droits réservés.
   </footer>
+
+  <script>
+    // Set minimum date for check-in to today
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('check-in').min = today;
+    
+    // Default to tomorrow for checkout
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    document.getElementById('check-out').min = tomorrow.toISOString().split('T')[0];
+    
+    // Ensure check-out is always after check-in
+    document.getElementById('check-in').addEventListener('change', function() {
+      const checkInDate = new Date(this.value);
+      const nextDay = new Date(checkInDate);
+      nextDay.setDate(nextDay.getDate() + 1);
+      
+      const checkOutInput = document.getElementById('check-out');
+      checkOutInput.min = nextDay.toISOString().split('T')[0];
+      
+      // If current check-out date is before new check-in date, update it
+      if (new Date(checkOutInput.value) <= checkInDate) {
+        checkOutInput.value = nextDay.toISOString().split('T')[0];
+      }
+    });
+    
+    // Filter hotels functionality
+    document.getElementById('search-hotels').addEventListener('click', function() {
+      const destination = document.getElementById('destination').value.toLowerCase();
+      const checkIn = document.getElementById('check-in').value;
+      const checkOut = document.getElementById('check-out').value;
+      const guests = document.getElementById('guests').value;
+      
+      if (!checkIn || !checkOut) {
+        alert('Veuillez sélectionner les dates d\'arrivée et de départ.');
+        return;
+      }
+      
+      // In a real application, this would make an API call or filter the data
+      // For demo purposes, we'll just show an alert with the selected criteria
+      alert(`Recherche d'hôtels avec les critères suivants:\nDestination: ${destination || 'Toutes'}\nArrivée: ${checkIn}\nDépart: ${checkOut}\nNombre de personnes: ${guests}`);
+      
+      // If destination is selected, we would filter hotels
+      if (destination) {
+        // Simple filtering demo - just hide hotels that don't match the destination
+        const hotelCards = document.querySelectorAll('.hotel-card');
+        hotelCards.forEach(card => {
+          const location = card.querySelector('.hotel-location').textContent.toLowerCase();
+          if (location.includes(destination)) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      } else {
+        // Show all hotels
+        document.querySelectorAll('.hotel-card').forEach(card => {
+          card.style.display = 'block';
+        });
+      }
+    });
+    
+    // Simple reservation functionality
+    document.querySelectorAll('.reserve-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        const checkIn = document.getElementById('check-in').value;
+        const checkOut = document.getElementById('check-out').value;
+        
+        if (!checkIn || !checkOut) {
+          alert('Veuillez sélectionner les dates d\'arrivée et de départ avant de réserver.');
+          return;
+        }
+        
+        const hotelName = this.parentElement.querySelector('.hotel-title').textContent;
+        const price = this.parentElement.querySelector('.hotel-price').textContent;
+        
+        alert(`Réservation pour ${hotelName}\nDu ${checkIn} au ${checkOut}\nPrix: ${price}\n\nVotre réservation a été prise en compte !`);
+      });
+    });
+  </script>
 </body>
-</html>
+</html> 
