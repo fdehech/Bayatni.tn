@@ -1,47 +1,33 @@
-<!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bayatni.tn</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet" />
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Bayatni.tn</title>
+    <link rel="stylesheet" href="css/landing.css"> 
+    <script src="https://cdn.tailwindcss.com"></script> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
 </head>
 <body>
-  <header>
-    <div class="logo">Bayatni.tn</div>
-    <nav>
-      <a href="signup.html" class="btn-outline">S'inscrire</a>
-      <a href="login.html" class="btn-primary">Se connecter</a>
-    </nav>
-  </header>
+        <header class="flex justify-between items-center z-10">
+            <div class="text-2xl font-bold">Bayatni.tn</div>
+            <nav class="space-x-2">
+                <button type="button" class="btn btn-light">Sign up</button>
+                <button type="button" class="btn btn-primary">Log in</button>
 
-  <section class="hero-section">
-    <h1>Bienvenue sur Bayatni</h1>
-    <p>Votre plateforme de réservation d’agenda en ligne dédiée aux hôtels en Tunisie.</p>
-    <a href="book.html">Réserver maintenant</a>
-  </section>
+            </nav>
+        </header>
 
-  <section id="features">
-    <h2>Fonctionnalités clés</h2>
-    <div class="feature-grid">
-      <a href="/reservation" class="feature-box">
-        <h3>Réservations automatisées</h3>
-        <p>Optimisez la gestion de votre planning avec notre système intelligent.</p>
-      </a>
-      <a href="/multi-utilisateur" class="feature-box">
-        <h3>Multi-utilisateur</h3>
-        <p>Attribuez des rôles à votre équipe pour un travail collaboratif.</p>
-      </a>
-      <a href="/support-local" class="feature-box">
-        <h3>Support local</h3>
-        <p>Une solution conçue spécialement pour les hôtels en Tunisie.</p>
-      </a>
-    </div>
-  </section>
-
-  <footer>
-    &copy; 2025 Bayatni.tn — Tous droits réservés.
-  </footer>
+        <main>
+            <div class="intro">
+                <h1 class="title">Bayatni</h1>
+                <p class="bio">Bienvenue sur Bayatni.tn,</br>Votre plateforme de réservation d’agenda en ligne dédiée aux hôtels en Tunisie.</br></p>
+            </div>
+            <button class="widget-btn">Booking</button>
+        </main>
 </body>
 </html>
+
