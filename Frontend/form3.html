@@ -14,38 +14,24 @@
     html, body {
       background-color: transparent;
     }
-    .inputForm {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 1rem;
-    }
-    .input {
-      width: 100%;
-      padding: 0.5rem;
-    }
   </style>
-  <title>Registration - Nom, Prénom, Birthday</title>
 </head>
 <body>
   <form class="form">
-    <div class="flex-column">
-      <label for="nom">Nom</label>
+    <div class="flex-column"><label>Nom Complet</label></div>
+    <div class="inputForm">
+      <input type="text" class="input" placeholder="Nom Complet" required>
+    </div>
+    <div class="flex-column"><label>Adresse Email</label></div>
+    <div class="inputForm">
+      <input type="text" class="input" placeholder="Entrez votre Adresse Email" required>
+    </div>
+    <div class="flex-column"><label>Mot de passe</label></div>
+    <div class="inputForm">
+      <input type="password" class="input" name="password" placeholder="Mot de passe" required >
     </div>
     <div class="inputForm">
-      <input type="text" id="nom" name="nom" class="input" placeholder="Votre nom" required>
-    </div>
-    <div class="flex-column">
-      <label for="prenom">Prénom</label>
-    </div>
-    <div class="inputForm">
-      <input type="text" id="prenom" name="prenom" class="input" placeholder="Votre prénom" required>
-    </div>
-    <div class="flex-column">
-      <label for="birthday">Birthday</label>
-    </div>
-    <div class="inputForm">
-      <input type="date" id="birthday" name="birthday" class="input" required>
+      <input type="password" name="confirm_password" placeholder="Confirmation de Mdp" required />
     </div>
   </form>
 </body>
