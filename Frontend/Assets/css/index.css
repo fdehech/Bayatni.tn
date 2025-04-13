@@ -1,4 +1,5 @@
 body {
+    height: 100%;
     margin: 0;
     padding: 0;
     font-family: "Montserrat", sans-serif;
@@ -6,7 +7,7 @@ body {
     font-weight: 400;
     font-style: normal;
     color: black;
-    height: 100%;
+
     overflow: hidden;
 }
 
@@ -26,6 +27,9 @@ main {
     background-position: center;
     animation: panBackground 60s linear infinite;
     height: 100%;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
 }
 
 @keyframes panBackground {
@@ -49,22 +53,23 @@ main {
 .bio {
     font-size: 20px;
     margin-top: 20px;
+    margin-bottom: 25px;
 }
 
 .nav-btn {
     background-color: #f5f3e7;
     border-radius: 5px;
-    padding: 8px;
+    padding: 5px;
     color: #105178;
 }
 
 .widget-btn {
-    margin-top: 30px;
     border: 1px solid;
     color: white;
     border-radius: 10px;
     background-color: #105178;
-    padding: 10px 20px;
+    padding: 8px 15px;
+    border-color: white;
     transition-duration: 0.5s;
 }
 
@@ -75,4 +80,19 @@ main {
     background-color: white;
     transition-duration: 1s;
 }
-
+.widget-btn-inverse {
+    border: 2px solid;
+    color: #105178;
+    padding: 8px 15px;
+    border-radius: 10px;
+    border-color: white;
+    background-color: white;
+    transition-duration: 1s;
+}
+.widget-btn-inverse:hover {
+    border: 2px solid;
+    color: white;
+    border-color: white;
+    background-color: #105178;
+    transition-duration: 1s;
+}
