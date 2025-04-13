@@ -1,35 +1,41 @@
+html , body , main , header ,div {
+    font-family: "Merriweather", serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    font-variation-settings:
+      "wdth" 100;
+}
+
 body {
     height: 100%;
     margin: 0;
     padding: 0;
-    font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
     color: black;
-
     overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: panBackground 20s linear infinite;
+    height: 100%;
 }
 
 header {
-    background-color: #105178;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
     color: white;
-    padding: 1.5rem 10%;
+    padding: 1rem 10%;
     position: relative;
     z-index: 1;
 }
 
 main {
     padding: 2% 10% 0;
-    background-image: url(src/landing.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    animation: panBackground 60s linear infinite;
-    height: 100%;
     justify-content: center;
     align-items: center;
     align-self: center;
+    background-image:url('Assets/src/Bg1.jpg');
+    transition: panBackground 1s ease-in-out;
 }
 
 @keyframes panBackground {
@@ -46,46 +52,57 @@ main {
 }
 
 .title {
+    color: white;
     font-size: 3.75rem;
     font-weight: 700;
 }
 
 .bio {
+    color: white;
     font-size: 20px;
     margin-top: 20px;
     margin-bottom: 25px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .nav-btn {
     background-color: #f5f3e7;
     border-radius: 5px;
     padding: 5px;
-    color: #105178;
+    color: black;
 }
 
+
+.widget-btn , .widget-btn-inverse , .widget-btn-inverse:hover , .widget-btn:hover {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
 .widget-btn {
     border: 1px solid;
     color: white;
     border-radius: 10px;
-    background-color: #105178;
+    background-color: black;
     padding: 8px 15px;
-    border-color: white;
+    border-color: black;
     transition-duration: 0.5s;
 }
 
 .widget-btn:hover {
     border: 2px solid;
-    color: #105178;
-    border-color: #105178;
+    color: black;
+    border-color: black;
     background-color: white;
     transition-duration: 1s;
 }
 .widget-btn-inverse {
     border: 2px solid;
-    color: #105178;
+    color: black;
     padding: 8px 15px;
     border-radius: 10px;
-    border-color: white;
+    border-color: black;
     background-color: white;
     transition-duration: 1s;
 }
@@ -93,6 +110,6 @@ main {
     border: 2px solid;
     color: white;
     border-color: white;
-    background-color: #105178;
+    background-color: black;
     transition-duration: 1s;
 }

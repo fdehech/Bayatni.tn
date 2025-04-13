@@ -1,14 +1,22 @@
+html , body , main , header , div {
+  font-family: "Merriweather", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
 
 .auth-card {
   position: absolute;
   top: 55%;
   left: 50%;
+  padding-top: 25px;
   transform: translate(-50%, -50%);
   border-radius: 1rem;
-  width: max-content;
   backdrop-filter: blur(15px);
-  box-shadow: 0 8px 100px 5px rgba(0, 0, 0, 0.3);
-  color: #105178 ;
+  box-shadow: 0px 15px 100px rgba(0, 0, 0, 0.5);
+  color: #232323 ;
 }
 
 .auth-card form {
@@ -27,13 +35,16 @@
   transition: box-shadow 0.3s ease;
   background: transparent;
   width: 100%;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 .auth-card input::placeholder {
-  color: black;
+  color: white;
 
 }
 label{
-  color: #105178 !important;
+  color: white !important;
 }
 .form {
   display: flex;
@@ -43,19 +54,15 @@ label{
   padding: 30px;
   width: 450px;
   border-radius: 20px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .form button {
   align-self: flex-end;
 }
 
-.flex-column > label {
-  color: #151717;
-  font-weight: 600;
-}
 
 .inputForm {
+  border: 2px white solid;
   border-radius: 10px;
   height: 50px;
   display: flex;
@@ -66,6 +73,7 @@ label{
 }
 .inputForm:focus-within  {
   border: 2px solid black;
+  box-shadow: 0 5px 30px black ;
   transition-duration: 0.5s;
 }
 
@@ -77,45 +85,63 @@ label{
   justify-content: space-between;
 }
 
-.flex-row > div > label {
-  font-size: 14px;
-  color: black;
-  font-weight: 400;
-}
 
 .span {
   font-size: 14px;
   margin-left: 5px;
-  color: #2d79f3;
+  color: rgb(111, 111, 111);
   font-weight: 500;
   cursor: pointer;
 }
 
 .button-submit {
-  margin: 20px 0 10px 0;
+  height: 50px;
+  width: 50%;
+  border: none;
+  border-radius: 10px;
+  margin: 10px 25% 10px 0;
   background-color: transparent;
   backdrop-filter:blur(1px);
-  border: none;
-  color: black;
-  font-size: 15px;
-  font-weight: 500;
-  border-radius: 10px;
-  height: 50px;
-  width: 100%;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
   cursor: pointer;
   transition-duration: 1s;  
 }
-
 .button-submit:hover {
-  border: 3px solid black;
-  transition-duration: 1s;
+  box-shadow: 0 5px 30px rgb(245, 244, 244) ;
+  transition-duration: 0.5s;
 }
 
 .p {
   text-align: center;
-  color: black;
+  color: white;
   font-size: 14px;
   margin: 5px 0;
 }
 
-    
+.remember-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.remember-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap; 
+}
+
+.forgot-password {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  text-decoration: none;
+  color: rgb(111, 111, 111);
+  cursor: pointer;
+  text-decoration: underline;
+}
