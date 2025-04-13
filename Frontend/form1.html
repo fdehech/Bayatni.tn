@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="Assets/css/index.css">
-  <link rel="stylesheet" href="Assets/css/signin.css">
   <link rel="stylesheet" href="Assets/css/signup.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
@@ -14,18 +13,7 @@
     html, body {
       background-color: transparent;
     }
-    .inputForm {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 1rem;
-    }
-    .input {
-      width: 100%;
-      padding: 0.5rem;
-    }
   </style>
-  <title>Registration - Nom, Prénom, Birthday</title>
 </head>
 <body>
   <form class="form">
@@ -47,6 +35,12 @@
     <div class="inputForm">
       <input type="date" id="birthday" name="birthday" class="input" required>
     </div>
+    <button type="submit" onclick="myFunction()" class="button-submit">Next</button>
   </form>
+  <script>
+    function myFunction() {
+        window.location.href = 'form2.html';
+    }
+</script>
 </body>
 </html>

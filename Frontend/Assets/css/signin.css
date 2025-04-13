@@ -1,19 +1,15 @@
 
 .auth-card {
-
   position: absolute;
   top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
-
   border-radius: 1rem;
   width: max-content;
   backdrop-filter: blur(15px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-
+  box-shadow: 0 8px 100px 5px rgba(0, 0, 0, 0.3);
   color: #105178 ;
 }
-
 
 .auth-card form {
   display: flex;
