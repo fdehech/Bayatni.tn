@@ -113,3 +113,11 @@ main {
     background-color: black;
     transition-duration: 1s;
 }
+#map { 
+    position: absolute;
+    left: 60%;
+    top: 30%;
+    height: 1000px;
+    width: 1000px;
+    border-radius: 500px;
+}

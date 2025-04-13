@@ -1,3 +1,4 @@
+
 const backgrounds = [
     'Assets/src/Bg1.jpg',
     'Assets/src/Bg2.jpg',
@@ -8,13 +9,42 @@ const backgrounds = [
 ];
 
 const main = document.querySelector('main');
-let current = 0;
 
-current = (current + 1) % backgrounds.length;
-document.body.style.backgroundImage = `url(${backgrounds[current]})`;
+function getRandomIndex(excludeIndex) {
+    let index;
+    do {
+        index = Math.floor(Math.random() * backgrounds.length);
+    } while (index === excludeIndex);
+    return index;
+}
+
+let current = -1;
+function setRandomBackground() {
+    current = getRandomIndex(current);
+    document.body.style.backgroundImage = `url(${backgrounds[current]})`;
+}
+
+setRandomBackground();
 
 setInterval(() => {
-    console.log("Hey");
-    current = (current + 1) % backgrounds.length;
-    document.body.style.backgroundImage = `url(${backgrounds[current]})`;
-    }, 15000);
+    console.log("Changing background");
+    setRandomBackground();
+}, 10000);
+
+
+if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+
+        console.log("Latitude:", lat, "Longitude:", lon);
+
+        var map = L.map('map').setView([lat , lon], 9);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 19,attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}).addTo(map);
+
+      }
+    )
+};
+
+

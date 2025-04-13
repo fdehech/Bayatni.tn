@@ -54,7 +54,7 @@ html , body , main , header, div {
 }
 
 .inputForm {
-  border: 2px white solid;
+  border: 1px white solid;
   color: white;
   border-radius: 10px;
   height: 50px;
@@ -101,30 +101,35 @@ input:focus {
 }
 
 .button-submit {
-
+  position: relative;
   height: 50px;
   width: 40%;
-  position: relative;
-  left: 25%;
-  margin-top: 15px;
-  background-color: transparent;
+  transform: translate(75%, 25%);
+
+
   backdrop-filter:blur(1px);
-  border: 2px solid white;
+  background-color: transparent;
+
+  border-radius: 10px;
+  border: 1px solid white;
+ 
   color: white;
   font-size: 15px;
   font-weight: 500;
-  border-radius: 10px;
+
   cursor: pointer;
   transition-duration: 1s;  
+
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  
 }
 
 .button-submit:hover {
-  box-shadow: 0 5px 30px rgb(245, 244, 244) ;
+  box-shadow: 0 5px 50px rgb(245, 244, 244) ;
   transition-duration: 0.5s;
 }
-.inputSubmit{
-  width: 100%;
-  display: flex;
-  align-items: center;
-  margin: -10px 20px;
+#cardName ,#cardNumber , #cvv , #expiryDate{
+  border-radius: 5px !important;
 }

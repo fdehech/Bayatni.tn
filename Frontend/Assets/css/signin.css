@@ -134,6 +134,9 @@ label{
   align-items: center;
   gap: 10px;
   white-space: nowrap; 
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .forgot-password {
