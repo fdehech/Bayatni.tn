@@ -7,16 +7,20 @@ html , body , main , header , div {
     "wdth" 100;
 }
 
+main{
+  position: relative;
+  width: max-content;
+  justify-self: center;
+  transform: translate(0,20%);
+  transition-duration: 1s;
+
+}
+
 .auth-card {
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  padding-top: 25px;
-  transform: translate(-50%, -50%);
   border-radius: 1rem;
   backdrop-filter: blur(15px);
   box-shadow: 0px 15px 100px rgba(0, 0, 0, 0.5);
-  color: #232323 ;
+  color: white ;
 }
 
 .auth-card form {
@@ -31,7 +35,7 @@ html , body , main , header , div {
   border-radius: 0.5rem;
   font-size: 1rem;
   outline: none;
-  color: #111;
+  color: white;
   transition: box-shadow 0.3s ease;
   background: transparent;
   width: 100%;
@@ -39,41 +43,46 @@ html , body , main , header , div {
   font-weight: 400;
   font-style: normal;
 }
-.auth-card input::placeholder {
-  color: white;
 
-}
+
 label{
   color: white !important;
 }
+
 .form {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  background-color:transparent;
+  align-items: center;
+  flex-direction:column;
   padding: 30px;
-  width: 450px;
   border-radius: 20px;
 }
 
+.form .inputForm {
+  margin-bottom: 1rem;
+}
+
+.form #countries, .form #gender{
+  margin-bottom: 1rem;
+}
 .form button {
   align-self: flex-end;
 }
 
 
 .inputForm {
-  border: 1px white solid;
+  border: 0.5px white solid;
   border-radius: 10px;
   height: 50px;
   display: flex;
   align-items: center;
-  padding-left: 10px;
   transition: 0.2s ease-in-out;
   transition-duration: 0.5s;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: normal;
   color: white;
+  width: 300px;
+  gap: 10px;
 }
 
 .inputForm:focus-within  {
@@ -97,6 +106,7 @@ input {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: normal;
+  gap: 10px;
 }
   
 input::placeholder {
@@ -132,21 +142,20 @@ input:focus {
   display: flex;
   justify-content: center;
   align-items: center; 
-  margin-top: 50px;
 }
 
 .button-submit {
   height: 50px;
-  width: 40%;
+  width: max-content;
+  padding-left: 25px;
+  padding-right: 25px;
   border: none;
   border-radius: 10px;
-  background-color: transparent;
   backdrop-filter:blur(10px);
   color: white;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: normal;
-  cursor: pointer;
   transition-duration: 1s;
 }
 
@@ -184,6 +193,7 @@ input:focus {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: normal;
+  margin-left: 50px;
   text-decoration: none;
   color: rgb(238, 234, 234);
   cursor: pointer;
@@ -195,6 +205,9 @@ input:focus {
 }
 
 #countries, #gender , select , option{
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
   background-color: transparent;
   transition-duration: 1s;
 }
@@ -202,6 +215,9 @@ input:focus {
 #gender:active, #gender:focus, #countries:active ,#countries:focus  {
   scale: 1.1;
   border: 2px solid black;
-  box-shadow: 0 5px 30px black ;
+  box-shadow: 2px 5px 30px black ;
   transition-duration: 0.5s;
+}
+#CC{
+  margin-bottom: 20px;
 }
