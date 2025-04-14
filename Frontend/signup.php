@@ -15,9 +15,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $card_expire = $_POST['expiryDate'];
     $card_cvc = $_POST['card_cvc'];
 
-    
-
-
     $errors = [];
 
     if (!preg_match("/^[a-zA-ZÀ-ÿ\s\-]{2,}$/", $prenom)) {
