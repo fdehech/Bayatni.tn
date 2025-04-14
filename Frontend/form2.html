@@ -21,6 +21,7 @@
   </style>
 </head>
 <body>
+<<<<<<< HEAD
   <form class="form">
     <div class="inputForm">
       <input type="text" id="email" placeholder="Entrez votre Adresse Email" required>
@@ -57,6 +58,23 @@
         emailError.textContent = "";
         styleInput(emailInput, true);
         return true;
+=======
+    <form class="form" method="post" action="signup.php">
+      <div class="inputForm">
+        <input type="text" name="email" placeholder="Entrez votre Adresse Email" required>
+      </div>  
+      <div class="inputForm">
+        <input type="password" name="password" placeholder="Mot de passe" required >
+      </div>
+      <div class="inputForm">
+        <input type="password" name="confirm_password" placeholder="Confirmation de Mdp" required />
+      </div>
+      <button type="submit" onclick="myFunction()" class="button-submit" style="transform: translate(-75%, 10%);">Suivant</button>
+    </form>
+    <script>
+      function myFunction() {
+          window.location.href = 'form3.html';
+>>>>>>> 377f5bd5b56a7bcb10f1acd3f9c648f3c8e494e3
       }
     }
   
