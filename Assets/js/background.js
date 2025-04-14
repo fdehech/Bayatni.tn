@@ -35,7 +35,7 @@ setInterval(() => {
   outgoing.classList.remove('visible');
 
   showingBg1 = !showingBg1;
-}, 5000);
+}, 15000);
 
 
 
