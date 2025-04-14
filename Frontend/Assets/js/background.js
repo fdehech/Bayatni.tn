@@ -2,6 +2,12 @@ const images = [
   'Assets/src/Bg1.jpg',
   'Assets/src/Bg2.jpg',
   'Assets/src/Bg3.jpg',
+  'Assets/src/Bg4.jpg',
+  'Assets/src/Bg5.jpg',
+  'Assets/src/Bg6.jpg',
+  'Assets/src/Bg7.jpg',
+  'Assets/src/Bg8.jpg',
+  'Assets/src/Bg9.jpg'
 ];
 
 let current = 0;

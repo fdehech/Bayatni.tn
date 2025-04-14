@@ -33,7 +33,7 @@ html , body , main , header, div {
 }
 
 .inputForm {
-  border: 2px white solid;
+  border: 1px white solid;
   border-radius: 10px;
   height: 50px;
   display: flex;
@@ -116,4 +116,7 @@ input:focus {
 }
 #CC{
   margin-top: 30px ;
+}
+#countries, #gender{
+  background-color: transparent;
 }
