@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
-
   const formSteps = document.querySelectorAll('.form');
-  const nextButtons = document.querySelectorAll('.button-submit');
+  const signupForm = document.getElementById('signupForm');
+  const nextButtons = document.querySelectorAll('.button-submit[type="button"]');
 
   let currentStep = 0;
 
@@ -18,163 +18,129 @@ document.addEventListener('DOMContentLoaded', function () {
   const expiryDate = document.getElementById("expiryDate");
   const cvv = document.getElementById("cvv");
 
-  const emailError = document.getElementById("error-email");
-  const passwordError = document.getElementById("error-password");
-  const confirmError = document.getElementById("error-confirm");
-
   const nameError = document.getElementById("error-nom");
   const prenomError = document.getElementById("error-prenom");
   const birthdayError = document.getElementById("error-birthday");
 
+
   function showStep(stepIndex) {
-      formSteps.forEach((form, index) => {
-          form.style.display = index === stepIndex ? 'block' : 'none';
-      });
+    formSteps.forEach((form, index) => {
+      form.style.display = index === stepIndex ? 'block' : 'none';
+    });
   }
 
-  function validateNameField(fieldElement, errorElement) {
-    const value = fieldElement.value.trim();
-    const parentBox = fieldElement.parentElement;
+  function styleInput(input, isValid) {
+    const el = input.parentElement || input;
+    el.style.border = isValid ? "1px solid black" : "1px solid red";
+    el.style.boxShadow = isValid ? "0 10px 30px black" : "0 5px 30px red";
+  }
 
-    let isValid = true;
-    const allowedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÀ-ÖØ-öø-ÿ ";
-
-    for (let i = 0; i < value.length; i++) {
-      if (!allowedChars.includes(value[i])) {
-        isValid = false;
-        break;
-      }
-    }
-
-    isValid = isValid && value.length > 0;
-
-    parentBox.style.border = isValid ? "1px solid black" : "1px solid red";
-    parentBox.style.boxShadow = isValid ? "0 10px 30px black" : "0 5px 30px red";
-
+  function validateNameField(input, error) {
+    const value = input.value.trim();
+    const allowed = /^[A-Za-zÀ-ÖØ-öø-ÿ ]+$/;
+    const isValid = allowed.test(value) && value.length > 0;
+    styleInput(input, isValid);
     return isValid;
   }
 
   function validateBirthday() {
     const birthday = bd.value;
-    const parentBox = bd.parentElement;
-
     if (!birthday) {
-      parentBox.style.border = "1px solid red";
-      parentBox.style.boxShadow = "0 5px 30px red";
       birthdayError.textContent = "Please select a date";
+      styleInput(bd, false);
       return false;
     }
 
     const birthDate = new Date(birthday);
     const today = new Date();
     let age = today.getFullYear() - birthDate.getFullYear();
-    const monthDiff = today.getMonth() - birthDate.getMonth();
-    
-    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+    if (
+      today.getMonth() < birthDate.getMonth() ||
+      (today.getMonth() === birthDate.getMonth() && today.getDate() < birthDate.getDate())
+    ) {
       age--;
     }
 
     const isValid = age >= 18;
-
-    parentBox.style.border = isValid ? "1px solid black" : "1px solid red";
-    parentBox.style.boxShadow = isValid ? "0 10px 30px black" : "0 5px 30px red";
-    
+    styleInput(bd, isValid);
     return isValid;
   }
 
   function validateEmail() {
     const email = emailInput.value.trim();
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    
-    if (!emailRegex.test(email)) {
-      styleInputParent(emailInput, false);
-
-
-    } else {
-      styleInputParent(emailInput, true);
-      emailError.textContent = "";
-      return true;
-    }
+    const isValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
+    styleInput(emailInput, isValid);
+    return isValid;
   }
 
   function validatePassword() {
-    const password = passwordInput.value;
-    if (password.length < 6) {
-      styleInputParent(passwordInput, false);
-      return false;
-    } else {
-      styleInputParent(passwordInput, true);
-      return true;
-    }
+    const isValid = passwordInput.value.length >= 6;
+    styleInput(passwordInput, isValid);
+    return isValid;
   }
 
   function validateConfirmPassword() {
-    const password = passwordInput.value;
-    const confirmPassword = confirmInput.value;
-    if (password !== confirmPassword) {
-      styleInputParent(confirmInput, false);
-      return false;
-    } else {
-      styleInputParent(confirmInput, true);
-      confirmError.textContent = "";
-      return true;
-    }
+    const isValid = passwordInput.value === confirmInput.value;
+    styleInput(confirmInput, isValid);
+    return isValid;
   }
 
   function validateCardName() {
-    const name = cardName.value.trim();
-    if (name.length === 0) {
-      styleInputSelf(cardName, false);
-      return false;
-    }
-    styleInputSelf(cardName, true);
-    return true;
+    const isValid = cardName.value.trim().length > 0;
+    styleInput(cardName, isValid);
+    return isValid;
   }
 
   function validateCardNumber() {
-    const number = cardNumber.value.replace(/\s+/g, '');
-    const isValid = /^\d{16}$/.test(number);
-    styleInputSelf(cardNumber, isValid);
+    const isValid = /^\d{16}$/.test(cardNumber.value.replace(/\s+/g, ''));
+    styleInput(cardNumber, isValid);
     return isValid;
   }
 
   function validateExpiryDate() {
-    const date = expiryDate.value.trim();
-    const match = date.match(/^(0[1-9]|1[0-2])\/\d{2}$/);
-    styleInputSelf(expiryDate, !!match);
-    return !!match;
-  }
-
-  function validateCVV() {
-    const value = cvv.value.trim();
-    const isValid = /^\d{3}$/.test(value);
-    styleInputSelf(cvv, isValid);
+    const isValid = /^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryDate.value.trim());
+    styleInput(expiryDate, isValid);
     return isValid;
   }
 
-  function styleInputParent(inputElement, isValid) {
-      const wrapper = inputElement.parentElement;
-      wrapper.style.border = isValid ? "1px solid black" : "1px solid red";
-      wrapper.style.boxShadow = isValid ? "0 10px 30px black" : "0 5px 30px red";
+  function validateCVV() {
+    const isValid = /^\d{3}$/.test(cvv.value.trim());
+    styleInput(cvv, isValid);
+    return isValid;
   }
-  function styleInputSelf(inputElement, isValid) {
-    const wrapper = inputElement;
-    wrapper.style.border = isValid ? "1px solid black" : "1px solid red";
-    wrapper.style.boxShadow = isValid ? "0 10px 30px black" : "0 5px 30px red";
-}
 
-  function validateStep(stepIndex) {
-      switch (stepIndex) {
-          case 0:
-              return validateNameField(nom, nameError) && validateNameField(prenom, prenomError) && validateBirthday();
-          case 1:
-              return validateEmail() && validatePassword() && validateConfirmPassword();
-          case 2:
-              return validateCardName() && validateCardNumber() && validateExpiryDate() && validateCVV();
-          default:
-              return false;
-      }
+  function validateStep(step) {
+    switch (step) {
+      case 0:
+        return validateNameField(nom, nameError) &&
+               validateNameField(prenom, prenomError) &&
+               validateBirthday();
+      case 1:
+        return validateEmail() &&
+               validatePassword() &&
+               validateConfirmPassword();
+      case 2:
+        return validateCardName() &&
+               validateCardNumber() &&
+               validateExpiryDate() &&
+               validateCVV();
+      default:
+        return false;
+    }
   }
+
+  // Event Listeners
+  nextButtons.forEach((button) => {
+    button.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (validateStep(currentStep)) {
+        currentStep++;
+        showStep(currentStep);
+      } else {
+        alert("Please fix the errors before proceeding.");
+      }
+    });
+  });
 
   nom.addEventListener("input", () => validateNameField(nom, nameError));
   prenom.addEventListener("input", () => validateNameField(prenom, prenomError));
@@ -191,20 +157,6 @@ document.addEventListener('DOMContentLoaded', function () {
   cardNumber.addEventListener('input', validateCardNumber);
   expiryDate.addEventListener('input', validateExpiryDate);
   cvv.addEventListener('input', validateCVV);
-
-  nextButtons.forEach((button, index) => {
-      button.addEventListener('click', function (e) {
-          e.preventDefault();
-          if (validateStep(currentStep)) {
-              currentStep++;
-              if (currentStep >= formSteps.length) {
-                  window.location.href = "confirmation.html"; 
-              } else {
-                  showStep(currentStep);
-              }
-          }
-      });
-  });
 
   showStep(currentStep);
 });

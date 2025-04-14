@@ -1,8 +1,9 @@
 <?php
 session_start();
 require_once 'config.php';
-
+echo("Hey");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    echo("Works");
     $prenom = htmlspecialchars(trim($_POST['prenom']));
     $nom = htmlspecialchars(trim($_POST['nom']));
     $fullname = $prenom . ' ' . $nom;
@@ -14,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $card_name = htmlspecialchars(trim($_POST['cardName']));
     $card_expire = $_POST['expiryDate'];
     $card_cvc = $_POST['card_cvc'];
-
+    echo(" Data Extraction Done");
     $errors = [];
 
     if (!preg_match("/^[a-zA-ZÀ-ÿ\s\-]{2,}$/", $prenom)) {
@@ -37,7 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors[] = "Les mots de passe ne correspondent pas.";
     }
 
-    // Vérification date de naissance (âge minimum 13 ans)
     if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $birthday)) {
         $errors[] = "La date de naissance doit être au format AAAA-MM-JJ.";
     } else {
