@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="Assets/css/signup.css">
+  <link rel="stylesheet" href="Assets/css/forms.css"> 
   <script src="https://cdn.tailwindcss.com"></script> 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous"> 
@@ -18,10 +18,13 @@
       color: red;
       font-size: 0.8rem;
     }
+    .form{
+      position: absolute;
+      top: 15%;
+    }
   </style>
 </head>
 <body>
-<<<<<<< HEAD
   <form class="form">
     <div class="inputForm">
       <input type="text" id="email" placeholder="Entrez votre Adresse Email" required>
@@ -35,7 +38,9 @@
       <input type="password" id="confirm_password" placeholder="Confirmation de Mdp" required>
       <div id="error-confirm" class="error"></div>
     </div>
-    <button type="submit" class="button-submit" style="transform: translate(-75%, 10%);">Suivant</button>
+    <div class="inputSubmit">
+      <button type="submit" class="button-submit">Suivant</button>
+    </div>
   </form>
 
   <script>
@@ -58,23 +63,6 @@
         emailError.textContent = "";
         styleInput(emailInput, true);
         return true;
-=======
-    <form class="form" method="post" action="signup.php">
-      <div class="inputForm">
-        <input type="text" name="email" placeholder="Entrez votre Adresse Email" required>
-      </div>  
-      <div class="inputForm">
-        <input type="password" name="password" placeholder="Mot de passe" required >
-      </div>
-      <div class="inputForm">
-        <input type="password" name="confirm_password" placeholder="Confirmation de Mdp" required />
-      </div>
-      <button type="submit" onclick="myFunction()" class="button-submit" style="transform: translate(-75%, 10%);">Suivant</button>
-    </form>
-    <script>
-      function myFunction() {
-          window.location.href = 'form3.html';
->>>>>>> 377f5bd5b56a7bcb10f1acd3f9c648f3c8e494e3
       }
     }
   

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Assets/css/signin.css">
-    <link rel="stylesheet" href="Assets/css/signup.css">
+    <link rel="stylesheet" href="Assets/css/index.css">
+    <link rel="stylesheet" href="Assets/css/forms.css"> 
     <!-- TAILWIND CDN -->
     <script src="https://cdn.tailwindcss.com"></script> 
     <!-- Bootstrap CDN -->
@@ -27,8 +27,11 @@
           font-weight: 400;
           font-style: normal;
         }
+        
         form{
-          margin-top: 15px;
+          position: absolute;
+          top: 15%;
+          left: 15%;
         }
       </style>
 </head>
@@ -49,7 +52,9 @@
           </div>
       </div>
     </div>
-    <button type="submit" onclick="myFunction()" class="button-submit" id="FF">Finaliser</button>
+    <div class="inputSubmit">
+      <button type="submit" class="button-submit">Confirmer</button>
+    </div>
   </form>
   <script>
     const cardName = document.getElementById('cardName');

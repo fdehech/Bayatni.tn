@@ -62,7 +62,7 @@ label{
 
 
 .inputForm {
-  border: 2px white solid;
+  border: 1px white solid;
   border-radius: 10px;
   height: 50px;
   display: flex;
@@ -70,11 +70,47 @@ label{
   padding-left: 10px;
   transition: 0.2s ease-in-out;
   transition-duration: 0.5s;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: white;
 }
+
 .inputForm:focus-within  {
+  scale: 1.1;
   border: 2px solid black;
   box-shadow: 0 5px 30px black ;
   transition-duration: 0.5s;
+}
+
+
+input {
+  height: 50px;
+  width: 100%;
+  padding-right: 10px;
+  padding-left: 10px;
+  background-color: transparent;
+  border-radius: 10px;
+  box-sizing: border-box;
+  transition-duration: 1s;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+  
+input::placeholder {
+  font-size: 14px;
+  color: white !important;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+  
+input:focus {
+  outline: none;
+  background-color: transparent;
+  transition-duration: 1s;
 }
 
 .flex-row {
@@ -85,7 +121,6 @@ label{
   justify-content: space-between;
 }
 
-
 .span {
   font-size: 14px;
   margin-left: 5px;
@@ -93,22 +128,28 @@ label{
   font-weight: 500;
   cursor: pointer;
 }
+.inputSubmit{
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  margin-top: 50px;
+}
 
 .button-submit {
   height: 50px;
-  width: 50%;
+  width: 40%;
   border: none;
   border-radius: 10px;
-  margin: 10px 25% 10px 0;
   background-color: transparent;
-  backdrop-filter:blur(1px);
+  backdrop-filter:blur(10px);
   color: white;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: normal;
   cursor: pointer;
-  transition-duration: 1s;  
+  transition-duration: 1s;
 }
+
 .button-submit:hover {
   box-shadow: 0px 10px 30px 5px rgb(245, 244, 244) ;
   transition-duration: 0.5s;
@@ -147,4 +188,20 @@ label{
   color: rgb(238, 234, 234);
   cursor: pointer;
   text-decoration: underline;
+}
+
+#cardName ,#cardNumber , #cvv , #expiryDate{
+  border-radius: 5px !important;
+}
+
+#countries, #gender , select , option{
+  background-color: transparent;
+  transition-duration: 1s;
+}
+
+#gender:active, #gender:focus, #countries:active ,#countries:focus  {
+  scale: 1.1;
+  border: 2px solid black;
+  box-shadow: 0 5px 30px black ;
+  transition-duration: 0.5s;
 }
