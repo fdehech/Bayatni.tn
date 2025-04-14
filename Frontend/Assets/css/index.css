@@ -16,9 +16,49 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    animation: panBackground 20s linear infinite;
+    animation: panBackground 30s linear infinite;
     height: 100%;
 }
+
+
+#background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+}
+
+.bg-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-size: 120%; /* allow space to pan */
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.bg-layer.visible {
+    opacity: 1;
+    animation: panBackground 60s linear infinite;
+}
+
+@keyframes panBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 0%;
+    }
+}
+
+
+
 
 header {
     background-color: transparent;
@@ -115,8 +155,8 @@ main {
 }
 #map { 
     position: absolute;
-    left: 27.5%;
-    top: 15%;
+    left: 28%;
+    top: 14%;
     height: 140px ;
     width: 140px;
     border-radius: 500px;

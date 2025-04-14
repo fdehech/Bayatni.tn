@@ -7,7 +7,6 @@ html , body , main , header, div {
     "wdth" 100;
 }
 
-
 .auth-card {
   position: absolute;
   top: 55%;
@@ -22,11 +21,10 @@ html , body , main , header, div {
 .form {
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 20px;
   background-color:transparent;
-  padding-top: 50px;
-  padding-left: 20%;
-  width: 80%;
+  padding: 30px;
+  width: 450px;
   border-radius: 20px;
 }
 
@@ -35,26 +33,26 @@ html , body , main , header, div {
 }
 
 .inputForm {
-  border: 1px white solid;
-  color: white;
+  border: 2px white solid;
   border-radius: 10px;
   height: 50px;
-  width: 100%;
   display: flex;
   align-items: center;
-  margin-bottom: 0px;
-  padding-left: 15px;
+  padding-left: 10px;
   transition: 0.2s ease-in-out;
   transition-duration: 0.5s;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: normal;
+  color: white;
 }
-.inputForm:focus-within,.inputForm:hover    {
+
+.inputForm:focus-within  {
   border: 2px solid black;
   box-shadow: 0 5px 30px black ;
   transition-duration: 0.5s;
 }
+
 input {
   height: 50px;
   width: 100%;
@@ -73,6 +71,9 @@ input {
 input::placeholder {
   font-size: 14px;
   color: white !important;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
   
 input:focus {
@@ -83,7 +84,7 @@ input:focus {
 
 .button-submit {
   position: relative;
-  height: 40px;
+  height: 50px;
   width: 40%;
   transform: translate(75%, 25%);
 
@@ -114,5 +115,5 @@ input:focus {
   border-radius: 5px !important;
 }
 #CC{
-  margin-top: 15%;
+  margin-top: 30px ;
 }

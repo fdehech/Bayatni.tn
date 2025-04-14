@@ -1,35 +1,36 @@
-
-const backgrounds = [
-    'Assets/src/Bg1.jpg',
-    'Assets/src/Bg2.jpg',
-    'Assets/src/Bg3.jpg',
-    'Assets/src/Bg4.jpg',
-    'Assets/src/Bg5.jpg',
-    'Assets/src/Bg6.jpg'
+const images = [
+  'Assets/src/Bg1.jpg',
+  'Assets/src/Bg2.jpg',
+  'Assets/src/Bg3.jpg',
 ];
 
-const main = document.querySelector('main');
+let current = 0;
+let showingBg1 = true;
 
-function getRandomIndex(excludeIndex) {
-    let index;
-    do {
-        index = Math.floor(Math.random() * backgrounds.length);
-    } while (index === excludeIndex);
-    return index;
-}
+const bg1 = document.getElementById('bg1');
+const bg2 = document.getElementById('bg2');
 
-let current = -1;
-function setRandomBackground() {
-    current = getRandomIndex(current);
-    document.body.style.backgroundImage = `url(${backgrounds[current]})`;
-}
-
-setRandomBackground();
+bg1.style.backgroundImage = `url(${images[current]})`;
+bg1.classList.add('visible');
 
 setInterval(() => {
-    console.log("Changing background");
-    setRandomBackground();
-}, 10000);
+  current = (current + 1) % images.length;
+  const nextImage = images[current];
+
+  const incoming = showingBg1 ? bg2 : bg1;
+  const outgoing = showingBg1 ? bg1 : bg2;
+
+  incoming.style.backgroundImage = `url(${nextImage})`;
+  
+  incoming.classList.remove('visible');
+  void incoming.offsetWidth; 
+  incoming.classList.add('visible');
+  
+  outgoing.classList.remove('visible');
+
+  showingBg1 = !showingBg1;
+}, 5000);
+
 
 
 document.addEventListener("DOMContentLoaded", () => {
