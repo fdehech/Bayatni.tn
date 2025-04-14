@@ -13,7 +13,11 @@
     <!-- Google Fonts CDN -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">    <style>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+     <!-- Leaflet Maps CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="crossorigin=""></script> 
+    <style>
         html, body {
           background-color: transparent;
         }
@@ -32,20 +36,84 @@
   <form>
     <div id="CC" class="flex flex-col justify-around bg-transparent p-4 border border-white border-opacity-30 rounded-lg shadow-md max-w-xs mx-auto">
       <div class="flex flex-row items-center justify-between mb-3">
-        <input class="w-full h-10 border-b border-white text-sm bg-transparent text-white placeholder-white caret-orange-500 pl-2 focus:outline-none focus:border-blue-500 focus:shadow-[0_2px_10px_#fff] transition" type="text" name="cardName" id="cardName" placeholder="Full Name" />
+        <input class="w-full h-10 border-b border-white text-sm bg-transparent text-white placeholder-white caret-orange-500 pl-2 focus:outline-none focus:border-blue-500 focus:shadow-[0_2px_10px_#fff] transition" type="text" name="cardName" id="cardName" placeholder="Full Name" required/>
           <div class="flex items-center justify-center relative w-14 h-9 border border-white border-opacity-20 rounded-md ml-2">
             <svg class="text-white fill-current" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 48 48"><path fill="#ff9800" d="M32 10A14 14 0 1 0 32 38A14 14 0 1 0 32 10Z"></path><path fill="#d50000" d="M16 10A14 14 0 1 0 16 38A14 14 0 1 0 16 10Z"></path><path fill="#ff3d00" d="M18,24c0,4.755,2.376,8.95,6,11.48c3.624-2.53,6-6.725,6-11.48s-2.376-8.95-6-11.48C20.376,15.05,18,19.245,18,24z"></path></svg>
           </div>
           </div>
           <div class="flex flex-col space-y-3">
-            <input class="w-full h-10 border-b border-white text-sm bg-transparent text-white placeholder-white caret-orange-500 pl-2 focus:outline-none focus:border-blue-500 focus:shadow-[0_2px_10px_#fff] transition" type="text" name="cardNumber" id="cardNumber" placeholder="0000 0000 0000 0000" />
+            <input class="w-full h-10 border-b border-white text-sm bg-transparent text-white placeholder-white caret-orange-500 pl-2 focus:outline-none focus:border-blue-500 focus:shadow-[0_2px_10px_#fff] transition" type="text" name="cardNumber" id="cardNumber" placeholder="0000 0000 0000 0000" required />
             <div class="flex flex-row space-x-2">
-              <input class="w-full h-10 border-b border-white text-sm bg-transparent text-white placeholder-white caret-orange-500 pl-2 focus:outline-none focus:border-blue-500 focus:shadow-[0_2px_10px_#fff] transition" type="text" name="expiryDate" id="expiryDate" placeholder="MM/AA" />
-              <input class="w-full h-10 border-b border-white text-sm bg-transparent text-white placeholder-white caret-orange-500 pl-2 focus:outline-none focus:border-blue-500 focus:shadow-[0_2px_10px_#fff] transition" type="text" name="cvv" id="cvv" placeholder="CVV" />
+              <input class="w-full h-10 border-b border-white text-sm bg-transparent text-white placeholder-white caret-orange-500 pl-2 focus:outline-none focus:border-blue-500 focus:shadow-[0_2px_10px_#fff] transition" type="text" name="expiryDate" id="expiryDate" placeholder="MM/AA" required />
+              <input class="w-full h-10 border-b border-white text-sm bg-transparent text-white placeholder-white caret-orange-500 pl-2 focus:outline-none focus:border-blue-500 focus:shadow-[0_2px_10px_#fff] transition" type="text" name="cvv" id="cvv" placeholder="CVV" required />
           </div>
       </div>
     </div>
     <button type="submit" onclick="myFunction()" class="button-submit" id="CC">Finaliser</button>
   </form>
+  <script>
+    const cardName = document.getElementById('cardName');
+    const cardNumber = document.getElementById('cardNumber');
+    const expiryDate = document.getElementById('expiryDate');
+    const cvv = document.getElementById('cvv');
+  
+    function validateName() {
+      const name = cardName.value.trim();
+      if (name.length === 0) {
+        styleInput(cardName, false);
+        return false;
+      }
+      styleInput(cardName, true);
+      return true;
+    }
+  
+    function validateCardNumber() {
+      const number = cardNumber.value.replace(/\s+/g, '');
+      const isValid = /^\d{16}$/.test(number);
+      styleInput(cardNumber, isValid);
+      return isValid;
+    }
+  
+    function validateExpiryDate() {
+      const date = expiryDate.value.trim();
+      const match = date.match(/^(0[1-9]|1[0-2])\/\d{2}$/);
+      styleInput(expiryDate, !!match);
+      return !!match;
+    }
+  
+    function validateCVV() {
+      const value = cvv.value.trim();
+      const isValid = /^\d{3}$/.test(value);
+      styleInput(cvv, isValid);
+      return isValid;
+    }
+  
+    function styleInput(input, isValid) {
+      const parent = input;
+      parent.style.border = isValid ? '1px solid green' : '1px solid red';
+      parent.style.boxShadow = isValid ? '0 5px 30px green' : '0 5px 30px red';
+    }
+  
+    cardName.addEventListener('input', validateName);
+    cardNumber.addEventListener('input', validateCardNumber);
+    expiryDate.addEventListener('input', validateExpiryDate);
+    cvv.addEventListener('input', validateCVV);
+  
+    document.querySelector('form').addEventListener('submit', function (event) {
+      event.preventDefault();
+  
+      const isValid =
+        validateName() &&
+        validateCardNumber() &&
+        validateExpiryDate() &&
+        validateCVV();
+  
+      if (isValid) {
+        window.location.href = 'confirmation.html';
+      }
+    });
+  </script>
+  
+  
 </body>
 </html>
