@@ -180,7 +180,6 @@ function generateHotelCards(hotels) {
                     }).join('')}
                 </div>
                 <div class="hotel-price">${hotel.price} DT / nuit</div>
-                <button class="btn btn-primary w-100 reserve-btn">Réserver</button>
             </div>
         `;
         

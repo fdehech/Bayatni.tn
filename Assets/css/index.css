@@ -86,33 +86,6 @@ main {
     }
 }
 
-.intro {
-    margin-top: 50px;
-}
-
-.title {
-    color: white;
-    font-size: 3.75rem;
-    font-weight: 700;
-}
-
-.bio {
-    color: white;
-    font-size: 20px;
-    margin-top: 20px;
-    margin-bottom: 25px;
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.nav-btn {
-    background-color: #f5f3e7;
-    border-radius: 5px;
-    padding: 5px;
-    color: black;
-}
-
 
 .widget-btn , .widget-btn-inverse , .widget-btn-inverse:hover , .widget-btn:hover {
     font-family: "Poppins", sans-serif;
@@ -152,6 +125,35 @@ main {
     background-color: black;
     transition-duration: 1s;
 }
+
+
+.intro {
+    margin-top: 50px;
+}
+
+.title {
+    color: white;
+    font-size: 3.75rem;
+    font-weight: 700;
+}
+
+.bio {
+    color: white;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.nav-btn {
+    background-color: #f5f3e7;
+    border-radius: 5px;
+    padding: 5px;
+    color: black;
+}
+
 #map { 
     position: absolute;
     left: 28%;
