@@ -60,15 +60,18 @@ body {
 
 
 header {
+    position:fixed;
+    top: 0;
+    width: 100%;
     background-color: transparent;
     backdrop-filter: blur(10px);
     color: white;
     padding: 1rem 10%;
-    position: relative;
     z-index: 1;
 }
 
 main {
+    margin-top: 10vh;
     padding: 2% 10% 0;
     justify-content: center;
     align-items: center;
