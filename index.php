@@ -1,3 +1,10 @@
+<?php
+session_start();
+$isLoggedIn = isset($_SESSION['user_name']);
+?>
+
+
+
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
@@ -29,10 +36,22 @@
 
     <header class="flex justify-between items-center">
         <a href="index.html"><div class="text-2xl font-bold">Bayatni.tn</div></a>
-        <nav class="space-x-2">
-            <a href="signup.php"><button type="button" class="widget-btn-inverse">S'inscrire</button></a>
-            <a href="signin.html"><button type="button" class="widget-btn">S'identifier</button></a>
-        </nav>
+        
+            <?php if (isset($_SESSION['user_name'])): ?>
+                <span style="font-family: 'Poppins', sans-serif; font-weight: 400; font-style: normal; font-size: 20px;">
+                    Bonjour, <?= htmlspecialchars($_SESSION['user_name']) ?> !
+                </span>
+                <nav class="space-x-2">
+                    <a href="logout.php"><button type="button" class="widget-btn-inverse">Se déconnecter</button></a>
+                </nav>
+            <?php else: ?>
+                <nav class="space-x-2">
+                    <a href="signup.php"><button type="button" class="widget-btn-inverse">S'inscrire</button></a>
+                    <a href="signin.php"><button type="button" class="widget-btn">S'identifier</button></a>
+                </nav>
+            <?php endif; ?>
+
+
     </header>
 
     <main>
@@ -44,8 +63,8 @@
         
     </main>
     <div id="map"></div>
-    <script src="Assets/js/background.js"></script>
-    <script src="Assets/js/locate.js"></script>
+    <script src="Assets/js/bg.js"></script>
+    <script src="Assets/js/map.js"></script>
 </body>
 </html>
 

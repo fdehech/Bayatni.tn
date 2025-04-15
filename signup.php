@@ -134,7 +134,7 @@ $conn->close();
   <header class="flex justify-between items-center z-10">
     <a href="index.html"><div class="text-2xl font-bold">Bayatni.tn</div></a>
       <nav class="space-x-2">
-        <a href="signin.html"><button type="button" class="widget-btn">S'identifier</button></a>
+        <a href="signin.php"><button type="button" class="widget-btn">S'identifier</button></a>
       </nav>
   </header>
 
@@ -211,7 +211,7 @@ $conn->close();
       </form>
     </div>
   </main>
-  <script src="Assets/js/background.js"></script>  
+  <script src="Assets/js/bg.js"></script>  
   <script src="Assets/js/signup.js"></script>
 </body>
 </html>
