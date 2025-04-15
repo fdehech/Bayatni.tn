@@ -11,12 +11,12 @@ main{
   position: relative;
   width: max-content;
   justify-self: center;
-  transform: translate(0,20%);
   transition-duration: 1s;
-
+  height: 500px;
 }
 
 .auth-card {
+  margin-top: 100px;
   border-radius: 1rem;
   backdrop-filter: blur(15px);
   box-shadow: 0px 15px 100px rgba(0, 0, 0, 0.5);
@@ -59,6 +59,7 @@ label{
   padding-bottom: 30px;
   border-radius: 20px;
 }
+
 
 .form .inputForm {
   margin-bottom: 1rem;
@@ -163,7 +164,7 @@ input:focus {
 }
 
 .button-submit:hover {
-  box-shadow: 0px 10px 30px 5px rgb(245, 244, 244) ;
+  box-shadow: 0px 10px 30px rgb(245, 244, 244) ;
   transition-duration: 0.5s;
 }
 
