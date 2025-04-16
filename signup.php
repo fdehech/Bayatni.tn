@@ -160,7 +160,7 @@ $conn->close();
           </div>               
           <div style="font-weight:400; padding-left: 5px; margin-bottom:10px;">Nationalité</div>
           <select id="countries" class="inputForm options">
-          <option value="Afghanistan">Afghanistan</option>
+                <option value="Afghanistan">Afghanistan</option>
                 <option value="Åland Islands">Åland Islands</option>
                 <option value="Albania">Albania</option>
                 <option value="Algeria">Algeria</option>
@@ -266,7 +266,6 @@ $conn->close();
                 <option value="Iraq">Iraq</option>
                 <option value="Ireland">Ireland</option>
                 <option value="Isle of Man">Isle of Man</option>
-                <option value="Israel">Israel</option>
                 <option value="Italy">Italy</option>
                 <option value="Jamaica">Jamaica</option>
                 <option value="Japan">Japan</option>
@@ -328,7 +327,7 @@ $conn->close();
                 <option value="Oman">Oman</option>
                 <option value="Pakistan">Pakistan</option>
                 <option value="Palau">Palau</option>
-                <option value="Palestinian Territory, Occupied">Palestinian Territory, Occupied</option>
+                <option value="Palestinian">Palestinian</option>
                 <option value="Panama">Panama</option>
                 <option value="Papua New Guinea">Papua New Guinea</option>
                 <option value="Paraguay">Paraguay</option>

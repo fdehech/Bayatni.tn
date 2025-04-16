@@ -107,16 +107,16 @@ $conn->close();
                     <?php endforeach; ?>
                   <?php endif; ?>
                 </div>  
+                <div class="inputSubmit">
+                  <button class="button-submit">Sign In</button>
+                </div>  
                 <div class="remember-container">
                   <div class="remember-left">
                     <input type="checkbox" id="remember">
                     <label for="remember">Remember me</label>
                   </div>
                   <a href="forgotpwd.php"><span class="forgot-password">Forgot password?</span></a>
-                </div>
-                <div class="inputSubmit">
-                  <button class="button-submit">Sign In</button>
-                </div>            
+                </div>          
               
                 <p class="p">Don't have an account? <a href="signup.php"><span class="span">Sign Up</span></p></a>
             </form>

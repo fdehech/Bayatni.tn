@@ -29,7 +29,6 @@ main{
 .auth-card form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 }
 
 .auth-card input {
@@ -52,7 +51,7 @@ label{
   color: white !important;
 }
 
-.form {
+.form { 
   align-items: center;
   padding-top: 50px;
   padding-left: 30px;
@@ -72,7 +71,6 @@ label{
 .inputForm {
   border: 0.5px white solid;
   border-radius: 10px;
-  padding-left:15px;
   height: 50px;
   display: flex;
   align-items: center;
@@ -84,6 +82,7 @@ label{
   color: white;
   width: 300px;
   gap: 10px;
+  margin-bottom: 15px;
 }
 
 .inputForm:focus-within  {
@@ -235,5 +234,5 @@ select , select option {
 
 }
 .fma{
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
