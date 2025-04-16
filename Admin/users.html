@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users Management - Hotel Booking Admin</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="additional-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>StayAdmin</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="bookings.html"><i class="fas fa-calendar-check"></i> Bookings</a></li>
+                    <li><a href="hotels.html"><i class="fas fa-hotel"></i> Hotels</a></li>
+                    <li class="active"><a href="users.html"><i class="fas fa-users"></i> Users</a></li>
+                    <li><a href="reviews.html"><i class="fas fa-star"></i> Reviews</a></li>
+                    <li><a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a></li>
+                    <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search users...">
+                </div>
+                <div class="header-actions">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </button>
+                    <div class="user-profile">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Admin User">
+                        <div class="user-info">
+                            <h4>John Doe</h4>
+                            <p>Administrator</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Users Content -->
+            <div class="dashboard-content" id="users">
+                <div class="page-header">
+                    <h1>Users Management</h1>
+                    <button class="primary-btn">
+                        <i class="fas fa-plus"></i> Add New User
+                    </button>
+                </div>
+
+                <!-- User Stats -->
+                <div class="user-stats">
+                    <div class="user-stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Total Users</h3>
+                            <h2>5,248</h2>
+                            <p class="stat-change positive"><i class="fas fa-arrow-up"></i> 12% from last month</p>
+                        </div>
+                    </div>
+                    <div class="user-stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>New Users</h3>
+                            <h2>245</h2>
+                            <p class="stat-change positive"><i class="fas fa-arrow-up"></i> 8% from last month</p>
+                        </div>
+                    </div>
+                    <div class="user-stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Active Users</h3>
+                            <h2>3,782</h2>
+                            <p class="stat-change positive"><i class="fas fa-arrow-up"></i> 5% from last month</p>
+                        </div>
+                    </div>
+                    <div class="user-stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-clock"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Inactive Users</h3>
+                            <h2>1,466</h2>
+                            <p class="stat-change negative"><i class="fas fa-arrow-up"></i> 3% from last month</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter Section -->
+                <div class="filter-section">
+                    <div class="filter-group">
+                        <label for="role-filter">Role</label>
+                        <select id="role-filter">
+                            <option value="">All Roles</option>
+                            <option value="guest">Guest</option>
+                            <option value="hotel-owner">Hotel Owner</option>
+                            <option value="admin">Administrator</option>
+                            <option value="manager">Manager</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="status-filter">Status</label>
+                        <select id="status-filter">
+                            <option value="">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                            <option value="pending">Pending</option>
+                            <option value="blocked">Blocked</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="date-joined">Date Joined</label>
+                        <select id="date-joined">
+                            <option value="">All Time</option>
+                            <option value="today">Today</option>
+                            <option value="week">This Week</option>
+                            <option value="month">This Month</option>
+                            <option value="year">This Year</option>
+                        </select>
+                    </div>
+                    <button class="filter-btn">
+                        <i class="fas fa-filter"></i> Apply Filters
+                    </button>
+                </div>
+
+                <!-- Users Table -->
+                <div class="table-card">
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <input type="checkbox" id="select-all">
+                                    </th>
+                                    <th>User ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Role</th>
+                                    <th>Status</th>
+                                    <th>Joined Date</th>
+                                    <th>Last Login</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="checkbox" class="user-select"></td>
+                                    <td>#USR-1024</td>
+                                    <td>
+                                        <div class="user-info-cell">
+                                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User">
+                                            <span>Sarah Johnson</span>
+                                        </div>
+                                    </td>
+                                    <td>sarah.johnson@example.com</td>
+                                    <td>+1 (555) 123-4567</td>
+                                    <td><span class="role-badge guest">Guest</span></td>
+                                    <td><span class="status-badge active">Active</span></td>
+                                    <td>Aug 15, 2023</td>
+                                    <td>Aug 20, 2023</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="user-select"></td>
+                                    <td>#USR-1023</td>
+                                    <td>
+                                        <div class="user-info-cell">
+                                            <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="User">
+                                            <span>Michael Brown</span>
+                                        </div>
+                                    </td>
+                                    <td>michael.brown@example.com</td>
+                                    <td>+1 (555) 987-6543</td>
+                                    <td><span class="role-badge hotel-owner">Hotel Owner</span></td>
+                                    <td><span class="status-badge active">Active</span></td>
+                                    <td>Jul 22, 2023</td>
+                                    <td>Aug 18, 2023</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="user-select"></td>
+                                    <td>#USR-1022</td>
+                                    <td>
+                                        <div class="user-info-cell">
+                                            <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="User">
+                                            <span>Emily Wilson</span>
+                                        </div>
+                                    </td>
+                                    <td>emily.wilson@example.com</td>
+                                    <td>+1 (555) 234-5678</td>
+                                    <td><span class="role-badge guest">Guest</span></td>
+                                    <td><span class="status-badge inactive">Inactive</span></td>
+                                    <td>Jun 10, 2023</td>
+                                    <td>Jul 05, 2023</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="user-select"></td>
+                                    <td>#USR-1021</td>
+                                    <td>
+                                        <div class="user-info-cell">
+                                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+                                            <span>Robert Davis</span>
+                                        </div>
+                                    </td>
+                                    <td>robert.davis@example.com</td>
+                                    <td>+1 (555) 876-5432</td>
+                                    <td><span class="role-badge admin">Administrator</span></td>
+                                    <td><span class="status-badge active">Active</span></td>
+                                    <td>May 15, 2023</td>
+                                    <td>Aug 21, 2023</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="user-select"></td>
+                                    <td>#USR-1020</td>
+                                    <td>
+                                        <div class="user-info-cell">
+                                            <img src="https://randomuser.me/api/portraits/women/56.jpg" alt="User">
+                                            <span>Jennifer Smith</span>
+                                        </div>
+                                    </td>
+                                    <td>jennifer.smith@example.com</td>
+                                    <td>+1 (555) 345-6789</td>
+                                    <td><span class="role-badge manager">Manager</span></td>
+                                    <td><span class="status-badge active">Active</span></td>
+                                    <td>Apr 28, 2023</td>
+                                    <td>Aug 19, 2023</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="user-select"></td>
+                                    <td>#USR-1019</td>
+                                    <td>
+                                        <div class="user-info-cell">
+                                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="User">
+                                            <span>David Thompson</span>
+                                        </div>
+                                    </td>
+                                    <td>david.thompson@example.com</td>
+                                    <td>+1 (555) 456-7890</td>
+                                    <td><span class="role-badge guest">Guest</span></td>
+                                    <td><span class="status-badge blocked">Blocked</span></td>
+                                    <td>Mar 12, 2023</td>
+                                    <td>Jun 30, 2023</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Bulk Actions -->
+                <div class="bulk-actions">
+                    <select id="bulk-action">
+                        <option value="">Bulk Actions</option>
+                        <option value="activate">Activate Selected</option>
+                        <option value="deactivate">Deactivate Selected</option>
+                        <option value="delete">Delete Selected</option>
+                        <option value="export">Export Selected</option>
+                    </select>
+                    <button class="apply-btn">Apply</button>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="pagination-btn prev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="pagination-btn active">1</button>
+                    <button class="pagination-btn">2</button>
+                    <button class="pagination-btn">3</button>
+                    <span class="pagination-ellipsis">...</span>
+                    <button class="pagination-btn">25</button>
+                    <button class="pagination-btn next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="users.js"></script>
+</body>
+</html>

@@ -1,22 +1,25 @@
 html , body , main , header , div {
-  font-family: "Merriweather", serif;
-  font-optical-sizing: auto;
+  font-family: 'Poppins', sans-serif;
   font-weight: 700;
+  font-style: normal;
   font-style: normal;
   font-variation-settings:
     "wdth" 100;
 }
 
+#domain{
+  font-family: 'Poppins', sans-serif; font-weight: 700; font-style: normal;
+}
 main{
   position: relative;
   width: max-content;
   justify-self: center;
-  transform: translate(0,20%);
   transition-duration: 1s;
-
+  height: 500px;
 }
 
 .auth-card {
+  margin-top: 100px;
   border-radius: 1rem;
   backdrop-filter: blur(15px);
   box-shadow: 0px 15px 100px rgba(0, 0, 0, 0.5);
@@ -26,7 +29,6 @@ main{
 .auth-card form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 }
 
 .auth-card input {
@@ -49,10 +51,8 @@ label{
   color: white !important;
 }
 
-.form {
-  display: flex;
+.form { 
   align-items: center;
-  flex-direction:column;
   padding-top: 50px;
   padding-left: 30px;
   padding-right: 30px;
@@ -60,17 +60,13 @@ label{
   border-radius: 20px;
 }
 
-.form .inputForm {
-  margin-bottom: 1rem;
-}
-
 .form #countries, .form #gender{
   margin-bottom: 1rem;
 }
+
 .form button {
   align-self: flex-end;
 }
-
 
 .inputForm {
   border: 0.5px white solid;
@@ -86,6 +82,7 @@ label{
   color: white;
   width: 300px;
   gap: 10px;
+  margin-bottom: 15px;
 }
 
 .inputForm:focus-within  {
@@ -163,13 +160,13 @@ input:focus {
 }
 
 .button-submit:hover {
-  box-shadow: 0px 10px 30px 5px rgb(245, 244, 244) ;
+  box-shadow: 0px 10px 30px rgb(245, 244, 244) ;
   transition-duration: 0.5s;
 }
 
 .p {
   text-align: center;
-  color: white;
+  color: #c1bdbd;
   font-size: 14px;
   margin: 5px 0;
 }
@@ -213,7 +210,9 @@ input:focus {
   font-style: normal;
   background-color: transparent;
   transition-duration: 1s;
+  
 }
+
 
 #gender:active, #gender:focus, #countries:active ,#countries:focus  {
   scale: 1.1;
@@ -222,5 +221,18 @@ input:focus {
   transition-duration: 0.5s;
 }
 #CC{
+  margin-bottom: 20px;
+}
+.options{
+  padding-right: 10px;
+  padding-left: 10px;
+}
+select , select option {
+  background-color: #fff;
+  color: #000;
+  font-weight: 400;
+
+}
+.fma{
   margin-bottom: 20px;
 }

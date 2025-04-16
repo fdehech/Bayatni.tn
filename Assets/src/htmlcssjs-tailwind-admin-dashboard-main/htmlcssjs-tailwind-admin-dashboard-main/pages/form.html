@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../asset/libs/datatables.min.css" />
+    <link rel="stylesheet" href="../asset/css/style.css" />
+  </head>
+  <body>
+    <div class="main_container">
+      <div class="aside select-none" id="aside">
+        <div class="sidebar_header flex justify-between items-center px-4">
+          <div class="logo">
+            <div class="full-logo">
+              <img src="" alt="" class="expent_logo" />
+              <span class="text-nowrap">GR Admin</span>
+            </div>
+            <div class="small-logo hidden">
+              <img src="" alt="" class="small_logo" />
+              <span>YTR</span>
+            </div>
+          </div>
+          <div class="toggler">
+            <i class="fa-regular fa-circle-dot" id="toggler"></i>
+          </div>
+        </div>
+        <div class="sidebar_body">
+          <ul class="sidebar_wrapper">
+            <li class="sidevar_item_wrapper">
+              <div class="sidebar_item flex justify-between items-center">
+                <p class="sidebar_logo flex items-center">
+                  <i class="fa-solid fa-gauge"></i>
+                  <span class="title">Dashboard</span>
+                </p>
+              </div>
+              <div class="sidebar_link_item hidden">
+                <ul class="link_item_wrapper">
+                  <li class="link_item">
+                    <a href="" class="flex items-center">
+                      <i class="fa-regular fa-circle link_item_icon"></i>
+                      Admin Dashboard
+                    </a>
+                  </li>
+                  <li class="link_item flex items-center">
+                    <a href="" class="flex items-center">
+                      <i class="fa-regular fa-circle link_item_icon"></i>
+                      Ecommerce Dashboard
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="sidevar_item_wrapper">
+              <div class="sidebar_item flex justify-between">
+                <p class="sidebar_logo flex items-center">
+                  <i class="fa-solid fa-user"></i>
+                  <span class="title">User</span>
+                </p>
+              </div>
+              <div class="sidebar_link_item hidden">
+                <ul class="link_item_wrapper">
+                  <li class="link_item">
+                    <a href="" class="flex items-center">
+                      <i class="fa-regular fa-circle link_item_icon"></i>
+                      Employee
+                    </a>
+                  </li>
+                  <li class="link_item flex items-center">
+                    <a href="" class="flex items-center">
+                      <i class="fa-regular fa-circle link_item_icon"></i>
+                      Customer
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="sidevar_item_wrapper">
+              <div class="sidebar_item flex justify-between">
+                <p class="sidebar_logo flex items-center">
+                  <i class="fa-solid fa-user-shield"></i>
+                  <span class="title">Role & Permission</span>
+                </p>
+              </div>
+              <div class="sidebar_link_item hidden">
+                <ul class="link_item_wrapper">
+                  <li class="link_item">
+                    <a href="" class="flex items-center">
+                      <i class="fa-regular fa-circle link_item_icon"></i>
+                      Admin Dashboard
+                    </a>
+                  </li>
+                  <li class="link_item flex items-center">
+                    <a href="" class="flex items-center">
+                      <i class="fa-regular fa-circle link_item_icon"></i>
+                      Ecommerce Dashboard
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="sidevar_item_wrapper">
+              <div class="sidebar_item flex justify-between">
+                <p class="sidebar_logo flex items-center">
+                  <i class="fa-solid fa-chart-bar"></i>
+                  <span class="title">Category</span>
+                </p>
+              </div>
+              <div class="sidebar_link_item hidden">
+                <ul class="link_item_wrapper">
+                  <li class="link_item">
+                    <a href="" class="flex items-center">
+                      <i class="fa-regular fa-circle link_item_icon"></i>
+                      Admin Dashboard
+                    </a>
+                  </li>
+                  <li class="link_item flex items-center">
+                    <a href="" class="flex items-center">
+                      <i class="fa-regular fa-circle link_item_icon"></i>
+                      Ecommerce Dashboard
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="contant">
+        <div class="header flex justify-between items-center">
+          <div class="header-left">
+            <div class="mobile_toggler text-2xl cursor-pointer md:hidden">
+              <i class="fa-solid fa-bars"></i>
+            </div>
+          </div>
+          <div class="header-right flex items-center gap-6">
+            <div class="search-box hidden md:block">
+              <input type="text" name="search" class="input-search" />
+            </div>
+            <div class="theme-toggler">
+              <i
+                class="fa-regular fa-sun text-2xl cursor-pointer"
+                id="theme-toggler"
+              ></i>
+            </div>
+            <div class="user-profile pr-2 cursor-pointer">
+              <div class="nav-profile-img-container">
+                <img src="../asset/image/user.jpg" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contant_area">
+          <div class="grid grid-cols-1 gap-6">
+            <div class="contant-header">
+              <div
+                class="breadcrumb-wrapper flex justify-start items-center pb-1"
+              >
+                <ul class="breadcrumb flex justify-between items-center">
+                  <li class="text-sm breadcrumb-link pr-2">
+                    <a href="#">Dashboard</a>
+                  </li>
+                  <li class="text-sm breadcrumb-link pr-2">
+                    <a href="employee.html">Employee</a>
+                  </li>
+                  <li class="text-sm breadcrumb-link pr-2">
+                    <a href="#">Create</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="bg-[var(--content-color)] px-4 py-2 rounded">
+                <div class="left">
+                  <div class="title">
+                    <span class="contant-title text-lg">
+                      <i class="fa-solid fa-folder-plus"></i>
+                      Create Employee
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="contant-body">
+              <div class="formwrapper">
+                <div class="form-group flex py-2">
+                  <label for="name" class="form-label">Full Name</label>
+                  <input type="text" class="form-input" id="name" />
+                </div>
+                <div class="form-group flex py-2">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-input" id="email" />
+                </div>
+                <div class="form-group flex py-2">
+                  <label for="phone" class="form-label">Phone No.</label>
+                  <input type="phone" class="form-input" id="phone" />
+                </div>
+                <div class="form-group flex py-2">
+                  <label for="city" class="form-label">City</label>
+                  <select name="city" id="city" class="form-input">
+                    <option value="yangon">Yangon</option>
+                    <option value="mandalay">Mandalay</option>
+                    <option value="naypyitaw">Nay Pyi Taw</option>
+                    <option value="pyinoolwin">Pyin Oo Lwin</option>
+                    <option value="lashio">Lashio</option>
+                  </select>
+                </div>
+                <div class="form-action flex justify-end gap-4 pt-4">
+                  <button class="ytr-btn" type="submit">
+                    <i class="fa-solid fa-rotate-left pr-2"></i>Cancle
+                  </button>
+                  <button class="ytr-btn fill" type="submit">
+                    <i class="fa-solid fa-floppy-disk pr-2"></i>Save
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="../asset/libs/datatables.min.js"></script>
+  <script src="../asset/js/index.js"></script>
+</html>

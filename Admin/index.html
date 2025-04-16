@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="additional-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard">
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>StayAdmin</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active"><a href="#dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="bookings.html"><i class="fas fa-calendar-check"></i> Bookings</a></li>
+                    <li><a href="hotels.html"><i class="fas fa-hotel"></i> Hotels</a></li>
+                    <li><a href="users.html"><i class="fas fa-users"></i> Users</a></li>
+                    <li><a href="reviews.html"><i class="fas fa-star"></i> Reviews</a></li>
+                    <li><a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a></li>
+                    <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </aside>
+
+
+        <main class="main-content">
+
+            <header class="top-header">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="header-actions">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </button>
+                    <div class="user-profile">
+                        <div class="user-info">
+                            <h4>Bayatni Admin</h4>
+                            <p>Administrator</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content" id="dashboard">
+                <div class="page-header">
+                    <h1>Dashboard</h1>
+                    <div class="date-filter">
+                        <select id="date-range">
+                            <option value="today">Today</option>
+                            <option value="week" selected>This Week</option>
+                            <option value="month">This Month</option>
+                            <option value="year">This Year</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="stats-cards">
+                    <div class="stat-card">
+                        <div class="stat-card-content">
+
+
+                            <h3>Total Bookings</h3>
+                            <h2>1,248</h2>
+                            <p class="stat-change positive"><i class="fas fa-arrow-up"></i> 12.5% from last week</p>
+                        </div>
+                        <div class="stat-card-icon bookings">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-content">
+                            <h3>Revenue</h3>
+                            <h2>$48,295</h2>
+                            <p class="stat-change positive"><i class="fas fa-arrow-up"></i> 8.2% from last week</p>
+                        </div>
+                        <div class="stat-card-icon revenue">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-content">
+                            <h3>New Users</h3>
+                            <h2>245</h2>
+                            <p class="stat-change positive"><i class="fas fa-arrow-up"></i> 5.3% from last week</p>
+                        </div>
+                        <div class="stat-card-icon users">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-content">
+                            <h3>Occupancy Rate</h3>
+                            <h2>78%</h2>
+                            <p class="stat-change negative"><i class="fas fa-arrow-down"></i> 2.1% from last week</p>
+                        </div>
+                        <div class="stat-card-icon occupancy">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="charts-container">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Booking Statistics</h3>
+                            <div class="chart-actions">
+                                <button class="chart-action active">Weekly</button>
+                                <button class="chart-action">Monthly</button>
+                            </div>
+                        </div>
+                        <div class="chart" id="booking-chart"></div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Revenue Overview</h3>
+                            <div class="chart-actions">
+                                <button class="chart-action active">Weekly</button>
+                                <button class="chart-action">Monthly</button>
+                            </div>
+                        </div>
+                        <div class="chart" id="revenue-chart"></div>
+                    </div>
+                </div>
+
+
+                <div class="table-card">
+                    <div class="table-header">
+                        <h3>Recent Bookings</h3>
+                        <a href="#bookings" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Booking ID</th>
+                                    <th>Guest</th>
+                                    <th>Hotel</th>
+                                    <th>Check In</th>
+                                    <th>Check Out</th>
+                                    <th>Status</th>
+                                    <th>Amount</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#BK-1024</td>
+                                    <td>
+                                        <div class="user-info-cell">
+                                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Guest">
+                                            <span>Sarah Johnson</span>
+                                        </div>
+                                    </td>
+                                    <td>Grand Plaza Hotel</td>
+                                    <td>Aug 15, 2023</td>
+                                    <td>Aug 20, 2023</td>
+                                    <td><span class="status-badge confirmed">Confirmed</span></td>
+                                    <td>$1,250</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#BK-1023</td>
+                                    <td>
+                                        <div class="user-info-cell">
+                                            <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Guest">
+                                            <span>Michael Brown</span>
+                                        </div>
+                                    </td>
+                                    <td>Seaside Resort</td>
+                                    <td>Aug 12, 2023</td>
+                                    <td>Aug 15, 2023</td>
+                                    <td><span class="status-badge completed">Completed</span></td>
+                                    <td>$780</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#BK-1022</td>
+                                    <td>
+                                        <div class="user-info-cell">
+                                            <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="Guest">
+                                            <span>Emily Wilson</span>
+                                        </div>
+                                    </td>
+                                    <td>Mountain View Lodge</td>
+                                    <td>Aug 10, 2023</td>
+                                    <td>Aug 17, 2023</td>
+                                    <td><span class="status-badge pending">Pending</span></td>
+                                    <td>$1,540</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#BK-1021</td>
+                                    <td>
+                                        <div class="user-info-cell">
+                                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Guest">
+                                            <span>Robert Davis</span>
+                                        </div>
+                                    </td>
+                                    <td>City Center Hotel</td>
+                                    <td>Aug 8, 2023</td>
+                                    <td>Aug 10, 2023</td>
+                                    <td><span class="status-badge cancelled">Cancelled</span></td>
+                                    <td>$450</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#BK-1020</td>
+                                    <td>
+                                        <div class="user-info-cell">
+                                            <img src="https://randomuser.me/api/portraits/women/56.jpg" alt="Guest">
+                                            <span>Jennifer Smith</span>
+                                        </div>
+                                    </td>
+                                    <td>Luxury Suites</td>
+                                    <td>Aug 5, 2023</td>
+                                    <td>Aug 12, 2023</td>
+                                    <td><span class="status-badge confirmed">Confirmed</span></td>
+                                    <td>$2,100</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+                <div class="popular-hotels">
+                    <div class="section-header">
+                        <h3>Popular Hotels</h3>
+                        <a href="#hotels" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="hotel-cards">
+                        <div class="hotel-card">
+                            <div class="hotel-card-image">
+                                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aG90ZWx8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" alt="Grand Plaza Hotel">
+                                <div class="hotel-rating">
+                                    <i class="fas fa-star"></i> 4.8
+                                </div>
+                            </div>
+                            <div class="hotel-card-content">
+                                <h4>Grand Plaza Hotel</h4>
+                                <p class="hotel-location"><i class="fas fa-map-marker-alt"></i> New York, USA</p>
+                                <div class="hotel-stats">
+                                    <div class="hotel-stat">
+                                        <span class="stat-value">92%</span>
+                                        <span class="stat-label">Occupancy</span>
+                                    </div>
+                                    <div class="hotel-stat">
+                                        <span class="stat-value">$210</span>
+                                        <span class="stat-label">Avg. Price</span>
+                                    </div>
+                                    <div class="hotel-stat">
+                                        <span class="stat-value">124</span>
+                                        <span class="stat-label">Bookings</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hotel-card">
+                            <div class="hotel-card-image">
+                                <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8aG90ZWx8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" alt="Seaside Resort">
+                                <div class="hotel-rating">
+                                    <i class="fas fa-star"></i> 4.6
+                                </div>
+                            </div>
+                            <div class="hotel-card-content">
+                                <h4>Seaside Resort</h4>
+                                <p class="hotel-location"><i class="fas fa-map-marker-alt"></i> Miami, USA</p>
+                                <div class="hotel-stats">
+                                    <div class="hotel-stat">
+                                        <span class="stat-value">85%</span>
+                                        <span class="stat-label">Occupancy</span>
+                                    </div>
+                                    <div class="hotel-stat">
+                                        <span class="stat-value">$180</span>
+                                        <span class="stat-label">Avg. Price</span>
+                                    </div>
+                                    <div class="hotel-stat">
+                                        <span class="stat-value">98</span>
+                                        <span class="stat-label">Bookings</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hotel-card">
+                            <div class="hotel-card-image">
+                                <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG90ZWx8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" alt="Mountain View Lodge">
+                                <div class="hotel-rating">
+                                    <i class="fas fa-star"></i> 4.9
+                                </div>
+                            </div>
+                            <div class="hotel-card-content">
+                                <h4>Mountain View Lodge</h4>
+                                <p class="hotel-location"><i class="fas fa-map-marker-alt"></i> Denver, USA</p>
+                                <div class="hotel-stats">
+                                    <div class="hotel-stat">
+                                        <span class="stat-value">78%</span>
+                                        <span class="stat-label">Occupancy</span>
+                                    </div>
+                                    <div class="hotel-stat">
+                                        <span class="stat-value">$250</span>
+                                        <span class="stat-label">Avg. Price</span>
+                                    </div>
+                                    <div class="hotel-stat">
+                                        <span class="stat-value">86</span>
+                                        <span class="stat-label">Bookings</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hotel-card">
+                            <div class="hotel-card-image">
+                                <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGhvdGVsfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="City Center Hotel">
+                                <div class="hotel-rating">
+                                    <i class="fas fa-star"></i> 4.5
+                                </div>
+                            </div>
+                            <div class="hotel-card-content">
+                                <h4>City Center Hotel</h4>
+                                <p class="hotel-location"><i class="fas fa-map-marker-alt"></i> Chicago, USA</p>
+                                <div class="hotel-stats">
+                                    <div class="hotel-stat">
+                                        <span class="stat-value">88%</span>
+                                        <span class="stat-label">Occupancy</span>
+                                    </div>
+                                    <div class="hotel-stat">
+                                        <span class="stat-value">$195</span>
+                                        <span class="stat-label">Avg. Price</span>
+                                    </div>
+                                    <div class="hotel-stat">
+                                        <span class="stat-value">102</span>
+                                        <span class="stat-label">Bookings</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-reviews">
+                    <div class="section-header">
+                        <h3>Recent Reviews</h3>
+                        <a href="#reviews" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="reviews-container">
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Reviewer">
+                                    <div>
+                                        <h4>Amanda Parker</h4>
+                                        <p>Grand Plaza Hotel</p>
+                                    </div>
+                                </div>
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>5.0</span>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <p>"Exceptional service and beautiful rooms. The staff went above and beyond to make our stay memorable. Will definitely return!"</p>
+                            </div>
+                            <div class="review-footer">
+                                <span class="review-date">Aug 18, 2023</span>
+                                <div class="review-actions">
+                                    <button class="review-action"><i class="fas fa-reply"></i> Reply</button>
+                                    <button class="review-action"><i class="fas fa-flag"></i> Report</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Reviewer">
+                                    <div>
+                                        <h4>David Thompson</h4>
+                                        <p>Seaside Resort</p>
+                                    </div>
+                                </div>
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>4.0</span>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <p>"Great location and amenities. The beach access was perfect. Room was clean but a bit small. Overall a good experience."</p>
+                            </div>
+                            <div class="review-footer">
+                                <span class="review-date">Aug 15, 2023</span>
+                                <div class="review-actions">
+                                    <button class="review-action"><i class="fas fa-reply"></i> Reply</button>
+                                    <button class="review-action"><i class="fas fa-flag"></i> Report</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <img src="https://randomuser.me/api/portraits/women/67.jpg" alt="Reviewer">
+                                    <div>
+                                        <h4>Jessica Miller</h4>
+                                        <p>Mountain View Lodge</p>
+                                    </div>
+                                </div>
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <span>4.5</span>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <p>"Breathtaking views and cozy accommodations. The fireplace in the room was a nice touch. Breakfast could have more options."</p>
+                            </div>
+                            <div class="review-footer">
+                                <span class="review-date">Aug 12, 2023</span>
+                                <div class="review-actions">
+                                    <button class="review-action"><i class="fas fa-reply"></i> Reply</button>
+                                    <button class="review-action"><i class="fas fa-flag"></i> Report</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

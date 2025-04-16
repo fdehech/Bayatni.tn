@@ -1,0 +1,25 @@
+.tabs {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  border-bottom: 1px solid var(--secondry-color);
+}
+.tabs li {
+  display: inline-block;
+  cursor: pointer;
+  padding: 5px 15px;
+}
+
+.tabs li:hover {
+  border-bottom: 2px solid var(--secondry-color);
+}
+.tabs li.current {
+  border-bottom: 2px solid var(--primary-color);
+}
+.tab-content {
+  display: none;
+  padding: 10px 0px;
+}
+.tab-content.current {
+  display: inherit;
+}
