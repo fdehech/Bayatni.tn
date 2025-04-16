@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($errors)) {
         try {
-            $stmt = $conn->prepare("SELECT id, fullname, password FROM users WHERE email = ?");
+            $stmt = $conn->prepare("SELECT id, fullname, firstname , password FROM users WHERE email = ?");
             $stmt->bind_param("s", $email);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $user = $result->fetch_assoc();
                 if (password_verify($password, $user['password'])) {
                     $_SESSION['user_id'] = $user['id'];
-                    $_SESSION['user_name'] = $user['fullname'];
+                    $_SESSION['user_name'] = $user['firstname'];
                     $_SESSION['loggedin'] = true;
                     header("Location: index.php");
                     exit();
@@ -75,7 +75,7 @@ $conn->close();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"></head>
-<body>
+<body style="overflow: hidden;">
 
 
   <div id="background-container">
@@ -84,9 +84,9 @@ $conn->close();
 </div>
 
   <header class="flex justify-between items-center z-10">
-    <a href="index.php"><div class="text-2xl font-bold">Bayatni.tn</div></a>
+    <a href="index.php"><div id="domain">Bayatni.tn</div></a>
     <nav class="space-x-2">
-        <a href="signup.php"><button type="button" class="widget-btn-inverse">S'inscrire</button></a>
+        <a href="signup.php"><button type="button" class="nav-btn-inverse">S'inscrire</button></a>
     </nav>
   </header>
         <main>
@@ -112,13 +112,13 @@ $conn->close();
                     <input type="checkbox" id="remember">
                     <label for="remember">Remember me</label>
                   </div>
-                  <span class="forgot-password">Forgot password?</span>
+                  <a href="forgotpwd.php"><span class="forgot-password">Forgot password?</span></a>
                 </div>
                 <div class="inputSubmit">
                   <button class="button-submit">Sign In</button>
                 </div>            
               
-                <p class="p">Don't have an account? <a href="signup.html"><span class="span">Sign Up</span></p></a>
+                <p class="p">Don't have an account? <a href="signup.php"><span class="span">Sign Up</span></p></a>
             </form>
           </section>
         </main>

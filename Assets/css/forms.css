@@ -1,12 +1,15 @@
 html , body , main , header , div {
-  font-family: "Merriweather", serif;
-  font-optical-sizing: auto;
+  font-family: 'Poppins', sans-serif;
   font-weight: 700;
+  font-style: normal;
   font-style: normal;
   font-variation-settings:
     "wdth" 100;
 }
 
+#domain{
+  font-family: 'Poppins', sans-serif; font-weight: 700; font-style: normal;
+}
 main{
   position: relative;
   width: max-content;
@@ -50,9 +53,7 @@ label{
 }
 
 .form {
-  display: flex;
   align-items: center;
-  flex-direction:column;
   padding-top: 50px;
   padding-left: 30px;
   padding-right: 30px;
@@ -60,22 +61,18 @@ label{
   border-radius: 20px;
 }
 
-
-.form .inputForm {
-  margin-bottom: 1rem;
-}
-
 .form #countries, .form #gender{
   margin-bottom: 1rem;
 }
+
 .form button {
   align-self: flex-end;
 }
 
-
 .inputForm {
   border: 0.5px white solid;
   border-radius: 10px;
+  padding-left:15px;
   height: 50px;
   display: flex;
   align-items: center;
@@ -170,7 +167,7 @@ input:focus {
 
 .p {
   text-align: center;
-  color: white;
+  color: #c1bdbd;
   font-size: 14px;
   margin: 5px 0;
 }
@@ -214,7 +211,9 @@ input:focus {
   font-style: normal;
   background-color: transparent;
   transition-duration: 1s;
+  
 }
+
 
 #gender:active, #gender:focus, #countries:active ,#countries:focus  {
   scale: 1.1;
@@ -224,4 +223,17 @@ input:focus {
 }
 #CC{
   margin-bottom: 20px;
+}
+.options{
+  padding-right: 10px;
+  padding-left: 10px;
+}
+select , select option {
+  background-color: #fff;
+  color: #000;
+  font-weight: 400;
+
+}
+.fma{
+  margin-bottom: 10px;
 }

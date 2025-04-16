@@ -1,13 +1,4 @@
-
-html, body, main, header {
-    font-family: "Poppins", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-    font-variation-settings: "wdth" 100;
-}
-
-
-body {
+html, body {
     margin: 0;
     padding: 0;
     height: 100%;
@@ -16,12 +7,16 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     animation: panBackgroundBody 30s linear infinite;
+    overflow: hidden;
 }
 
-#domain{
-    font-size: 20px;
-    font-weight: 700;
+html , body , main , header {
+    font-family: "Poppins", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
 }
+
 
 #background-container {
     position: fixed;
@@ -30,6 +25,11 @@ body {
     height: 100%;
     width: 100%;
     z-index: -1;
+}
+
+#domain{
+    font-size: 20px;
+    font-weight: 700;
 }
 
 .bg-layer {
@@ -49,7 +49,6 @@ body {
     opacity: 1;
     animation: panBackgroundLayer 60s linear infinite;
 }
-
 
 @keyframes panBackgroundBody {
     0% { background-position: 0% 50%; }
@@ -72,7 +71,6 @@ header {
     padding: 1rem 10%;
     z-index: 1;
 }
-
 
 main {
     margin-top: 10vh;
@@ -104,9 +102,9 @@ main {
 .nav-btn-inverse {
     border: 2px solid black;
     color: black;
-    background-color: white;
     padding: 8px 15px;
     border-radius: 10px;
+    background-color: white;
     transition-duration: 1s;
 }
 
@@ -117,44 +115,64 @@ main {
     transition-duration: 1s;
 }
 
-.main-btn {
-    border: 1px solid black;
-    color: white;
-    border-radius: 10px;
-    background-color: black;
-    padding: 8px 15px;
-    transition-duration: 0.5s;
-    position: absolute;
-    bottom: 15vh;
-    left: 48%;
-}
-
-.main-btn:hover {
-    border: 2px solid black;
-    color: black;
-    background-color: white;
-    transition-duration: 1s;
-}
 
 .intro {
     margin-top: 50px;
 }
 
-.dropdown-wrapper {
-    position: relative;
-  }
-  
-  .dropdown {
+.title {
     position: absolute;
-    top: 100%;
-    left: 0;
-    background: white;
-    border: 1px solid #ccc;
-    padding: 10px;
-    z-index: 1000;
-  }
-  
-  .hidden {
-    display: none;
-  }
-  
+    top: 30%;
+    left: 40%;
+    color: white;
+    font-size: 5rem;
+    font-weight: 700;
+}
+
+.bio {
+    position: absolute;
+    top: 45%;
+    left: 15%;
+    color: white;
+    font-size: 20px;
+    font-weight: 300;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+}
+
+
+.main-btn {
+    position: absolute;
+    top: 65%;
+    left: 41.5%;
+    border: 1px solid black;
+    color: white;
+    border-radius: 25px;
+    background-color: black;
+    padding: 20px 35px;
+    transition-duration: 0.5s;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.main-btn:hover {
+    border: 2px solid white;
+    color: black;
+    background-color: white;
+    scale: 1.1;
+    transition-duration: 1s;
+}
+
+
+#map {
+    position: absolute;
+    bottom: -13%;
+    right: -14%;
+    height: 500px;
+    width: 500px;
+    border-radius: 500px;
+    border: 3px solid white;
+}
