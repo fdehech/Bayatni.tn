@@ -259,7 +259,7 @@ if ($locationsResult) {
                                 </div>
                                 <div class="info-item">
                                     <i class="fas fa-dollar-sign"></i>
-                                    <span>$<?php echo number_format($hotel['price'], 2); ?>/night</span>
+                                    <span><?php echo number_format($hotel['price'], 2); ?> TND /Night</span>
                                 </div>
                             </div>
                             <div class="hotel-actions">

@@ -33,15 +33,13 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (this.classList.contains('view-btn')) {
                 console.log(`Viewing hotel: ${hotelName}`);
-                alert(`Viewing details for ${hotelName}`);
             } else if (this.classList.contains('edit-btn')) {
                 console.log(`Editing hotel: ${hotelName}`);
-                alert(`Editing ${hotelName}`);
             } else if (this.classList.contains('delete-btn')) {
                 console.log(`Deleting hotel: ${hotelName}`);
                 if (confirm(`Are you sure you want to delete ${hotelName}?`)) {
 
-                    alert(`${hotelName} has been deleted.`);
+                    console.log(`${hotelName} has been deleted.`);
                 }
             }
         });

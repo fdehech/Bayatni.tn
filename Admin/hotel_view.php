@@ -2,7 +2,6 @@
 require_once 'config.php';
 requireLogin();
 
-// Check if ID is provided
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     header('Location: hotels.php');
     exit;
@@ -10,7 +9,6 @@ if (!isset($_GET['id']) || empty($_GET['id'])) {
 
 $id = intval($_GET['id']);
 
-// Get hotel data
 $query = "SELECT * FROM hotels WHERE id = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $id);
@@ -25,7 +23,6 @@ if ($result->num_rows === 0) {
 $hotel = $result->fetch_assoc();
 $hotelFeatures = explode(',', $hotel['features']);
 
-// Get booking statistics
 $bookingStatsQuery = "
     SELECT 
         COUNT(*) as total_bookings,
@@ -39,7 +36,6 @@ $stmt->bind_param("i", $id);
 $stmt->execute();
 $bookingStats = $stmt->get_result()->fetch_assoc();
 
-// Get recent bookings
 $recentBookingsQuery = "
     SELECT b.id, b.check_in, b.check_out, b.guests, b.total_price, b.status,
            u.fullname as guest_name
@@ -54,7 +50,6 @@ $stmt->bind_param("i", $id);
 $stmt->execute();
 $recentBookings = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
-// Get reviews
 $reviewsQuery = "
     SELECT r.id, r.rating, r.comment, r.review_date,
            u.fullname as reviewer_name
@@ -109,7 +104,7 @@ $reviews = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                             </div>
 
                             <div class="hotel-price">
-                                <i class="fas fa-dollar-sign"></i> <?php echo number_format($hotel['price'], 2); ?> per night
+                                <i class="fas fa-dollar-sign"></i> <?php echo number_format($hotel['price'], 2); ?> TND /Night
                             </div>
                             <div class="hotel-region">
                                 <i class="fas fa-globe"></i> Region: <?php echo ucfirst(htmlspecialchars($hotel['region'])); ?>
@@ -236,7 +231,6 @@ $reviews = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                                             <td>#BK-<?php echo $booking['id']; ?></td>
                                             <td>
                                                 <div class="user-info-cell">
-                                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Guest">
                                                     <span><?php echo htmlspecialchars($booking['guest_name']); ?></span>
                                                 </div>
                                             </td>

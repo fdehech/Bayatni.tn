@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
         applyBtn.addEventListener('click', function() {
             const selectedAction = bulkActionSelect.value;
             if (!selectedAction) {
-                alert('Please select an action to apply.');
+                console.log('Please select an action to apply.');
                 return;
             }
             
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 .map(cb => cb.closest('tr').querySelector('td:nth-child(2)').textContent);
             
             if (selectedBookings.length === 0) {
-                alert('Please select at least one booking.');
+                console.log('Please select at least one booking.');
                 return;
             }
             
@@ -50,20 +50,20 @@ document.addEventListener('DOMContentLoaded', function() {
             
             switch (selectedAction) {
                 case 'confirm':
-                    alert(`Confirming ${selectedBookings.length} bookings.`);
+                    console.log(`Confirming ${selectedBookings.length} bookings.`);
                     break;
                 case 'cancel':
                     if (confirm(`Are you sure you want to cancel ${selectedBookings.length} bookings?`)) {
-                        alert(`Cancelled ${selectedBookings.length} bookings.`);
+                        console.log(`Cancelled ${selectedBookings.length} bookings.`);
                     }
                     break;
                 case 'delete':
                     if (confirm(`Are you sure you want to delete ${selectedBookings.length} bookings? This action cannot be undone.`)) {
-                        alert(`Deleted ${selectedBookings.length} bookings.`);
+                        console.log(`Deleted ${selectedBookings.length} bookings.`);
                     }
                     break;
                 case 'export':
-                    alert(`Exporting ${selectedBookings.length} bookings.`);
+                    console.log(`Exporting ${selectedBookings.length} bookings.`);
                     break;
             }
         });
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
             filterBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Applying...';
             setTimeout(() => {
                 filterBtn.innerHTML = '<i class="fas fa-filter"></i> Apply Filters';
-                alert('Filters applied successfully!');
+                console.log('Filters applied successfully!');
             }, 1000);
         });
     }
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else if (this.classList.contains('delete-btn')) {
                 console.log(`Deleting booking: ${bookingId}`);
                 if (confirm(`Are you sure you want to delete booking ${bookingId}?`)) {
-                    alert(`Booking ${bookingId} has been deleted.`);
+                    console.log(`Booking ${bookingId} has been deleted.`);
                 }
             }
         });

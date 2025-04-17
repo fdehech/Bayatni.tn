@@ -6,7 +6,6 @@ $errors = [];
 $success = false;
 $booking = null;
 
-// Check if ID is provided
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     header('Location: bookings.php');
     exit;
@@ -14,7 +13,6 @@ if (!isset($_GET['id']) || empty($_GET['id'])) {
 
 $id = intval($_GET['id']);
 
-// Get booking data
 $query = "SELECT b.*, u.fullname as guest_name, h.title as hotel_name, h.price as hotel_price
           FROM active_bookings b
           JOIN users u ON b.user_id = u.id
@@ -32,7 +30,6 @@ if ($result->num_rows === 0) {
 
 $booking = $result->fetch_assoc();
 
-// Get users for dropdown
 $usersQuery = "SELECT id, fullname FROM users ORDER BY fullname";
 $usersResult = $conn->query($usersQuery);
 $users = [];
@@ -43,7 +40,6 @@ if ($usersResult) {
     }
 }
 
-// Get hotels for dropdown
 $hotelsQuery = "SELECT id, title, price FROM hotels ORDER BY title";
 $hotelsResult = $conn->query($hotelsQuery);
 $hotels = [];
@@ -54,9 +50,8 @@ if ($hotelsResult) {
     }
 }
 
-// Process form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Validate inputs
+
     $user_id = intval($_POST['user_id'] ?? 0);
     $hotel_id = intval($_POST['hotel_id'] ?? 0);
     $check_in = $_POST['check_in'] ?? '';
@@ -67,7 +62,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $payment_method = $_POST['payment_method'] ?? '';
     $special_requests = trim($_POST['special_requests'] ?? '');
     
-    // Get hotel price
     $hotelPrice = 0;
     foreach ($hotels as $hotel) {
         if ($hotel['id'] == $hotel_id) {
@@ -76,14 +70,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
     
-    // Calculate total price
     $checkInDate = new DateTime($check_in);
     $checkOutDate = new DateTime($check_out);
     $interval = $checkInDate->diff($checkOutDate);
     $nights = $interval->days;
-    
-    // Apply room type multiplier
     $roomMultiplier = 1;
+
     switch ($room_type) {
         case 'standard':
             $roomMultiplier = 1;
@@ -104,7 +96,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     $total_price = $hotelPrice * $nights * $roomMultiplier;
     
-    // Validation
     if ($user_id <= 0) {
         $errors[] = "Please select a user";
     }
@@ -137,7 +128,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = "Payment method is required";
     }
     
-    // If no errors, update database
     if (empty($errors)) {
         $query = "UPDATE active_bookings SET 
                   user_id = ?, 
@@ -148,17 +138,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   room_type = ?, 
                   status = ?, 
                   payment_method = ?, 
-                  special_requests = ?, 
                   total_price = ? 
                   WHERE id = ?";
         
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("iissississdi", $user_id, $hotel_id, $check_in, $check_out, $guests, $room_type, $status, $payment_method, $special_requests, $total_price, $id);
+        $stmt->bind_param("iississsdi", $user_id, $hotel_id, $check_in, $check_out, $guests, $room_type, $status, $payment_method, $total_price, $id);
         
         if ($stmt->execute()) {
             $success = true;
             
-            // Refresh booking data
             $query = "SELECT b.*, u.fullname as guest_name, h.title as hotel_name, h.price as hotel_price
                       FROM active_bookings b
                       JOIN users u ON b.user_id = u.id
@@ -219,7 +207,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="card-body">
                         <form action="booking_edit.php?id=<?php echo $id; ?>" method="POST" class="form">
                             <div class="form-section">
-                                <h3>Guest & Hotel Information</h3>
+                                <h3 style="margin-bottom:20px;">Guest & Hotel Information</h3>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="user_id">Guest</label>
@@ -247,15 +235,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
 
                             <div class="form-section">
-                                <h3>Booking Details</h3>
+                                <h3 style="margin-top:20px; margin-bottom:20px;">Booking Details</h3>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="check_in">Check-in Date</label>
-                                        <input type="date" id="check_in" name="check_in" class="form-control" value="<?php echo htmlspecialchars($booking['check_in']); ?>" required>
+                                        <input type="date" id="check_in" name="check_in" class="form-control" style="padding: 10px 18px; border-radius:5px; border:2px gray;" value="<?php echo htmlspecialchars($booking['check_in']); ?>" required>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="check_out">Check-out Date</label>
-                                        <input type="date" id="check_out" name="check_out" class="form-control" value="<?php echo htmlspecialchars($booking['check_out']); ?>" required>
+                                        <input type="date" id="check_out" name="check_out" class="form-control" style="padding: 10px 18px; border-radius:5px; border:2px gray;" value="<?php echo htmlspecialchars($booking['check_out']); ?>" required>
                                     </div>
                                 </div>
 
@@ -279,7 +267,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
 
                             <div class="form-section">
-                                <h3>Payment & Status</h3>
+                                <h3 style="margin-top:20px; margin-bottom:20px;">Payment & Status</h3>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="payment_method">Payment Method</label>
@@ -304,15 +292,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
 
                             <div class="form-section">
-                                <h3>Additional Information</h3>
-                                <div class="form-group">
-                                    <label for="special_requests">Special Requests</label>
-                                    <textarea id="special_requests" name="special_requests" rows="3" class="form-control"><?php echo htmlspecialchars($booking['special_requests']); ?></textarea>
-                                </div>
-                            </div>
-
-                            <div class="form-section">
-                                <h3>Price Calculation</h3>
+                                <h3 style="margin-top:20px; margin-bottom:20px;">Price Calculation</h3>
                                 <div class="price-calculator">
                                     <div class="price-row">
                                         <span>Base Price:</span>
@@ -348,9 +328,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
 
                             <div class="form-actions">
-                                <button type="submit" class="primary-btn">
-                                    <i class="fas fa-save"></i> Update Booking
-                                </button>
+                                <button type="submit" class="primary-btn">Update Booking</button>
                                 <a href="bookings.php" class="secondary-btn">Cancel</a>
                             </div>
                         </form>

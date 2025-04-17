@@ -46,7 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
             filterBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Applying...';
             setTimeout(() => {
                 filterBtn.innerHTML = '<i class="fas fa-filter"></i> Apply Filters';
-                alert('Filters applied successfully!');
             }, 1000);
         });
     }

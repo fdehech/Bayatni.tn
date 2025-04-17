@@ -148,7 +148,7 @@ $totalRevenue = $result->fetch_assoc()['total'] ?? 0;
                             <i class="fas fa-calendar-check"></i>
                         </div>
                         <div class="stat-details">
-                            <h3>Total Bookings</h3>
+                            <h3 style="width:max-content;">Total Bookings</h3>
                             <h2><?php echo number_format($totalBookings); ?></h2>
                         </div>
                     </div>
@@ -185,7 +185,7 @@ $totalRevenue = $result->fetch_assoc()['total'] ?? 0;
                         </div>
                         <div class="stat-details">
                             <h3>Total Revenue</h3>
-                            <h2>$<?php echo number_format($totalRevenue, 0); ?></h2>
+                            <h2><?php echo number_format($totalRevenue, 0); ?>TND</h2>
                         </div>
                     </div>
                 </div>
@@ -265,7 +265,7 @@ $totalRevenue = $result->fetch_assoc()['total'] ?? 0;
                                     <td><?php echo date('M d, Y', strtotime($booking['check_out'])); ?></td>
                                     <td><?php echo $booking['guests']; ?></td>
                                     <td><span class="status-badge <?php echo strtolower($booking['status']); ?>"><?php echo ucfirst($booking['status']); ?></span></td>
-                                    <td>$<?php echo number_format($booking['total_price'], 2); ?></td>
+                                    <td style="width:max-content;"><?php echo number_format($booking['total_price'], 2); ?>TND</td>
                                     <td><?php echo date('M d, Y', strtotime($booking['booking_date'])); ?></td>
                                     <td>
                                         <div class="action-buttons">

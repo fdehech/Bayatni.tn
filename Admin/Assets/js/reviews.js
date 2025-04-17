@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
             filterBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Applying...';
             setTimeout(() => {
                 filterBtn.innerHTML = '<i class="fas fa-filter"></i> Apply Filters';
-                alert('Filters applied successfully!');
             }, 1000);
         });
     }
@@ -34,16 +33,13 @@ document.addEventListener('DOMContentLoaded', function() {
             if (this.textContent.includes('Reply')) {
                 console.log(`Replying to review by ${reviewer} for ${hotel}`);
                 const replyText = prompt(`Enter your reply to ${reviewer}'s review:`);
-                if (replyText) {
-                    alert(`Reply sent to ${reviewer}`);
-                }
+
             } else if (this.textContent.includes('Flag')) {
                 console.log(`Flagging review by ${reviewer} for ${hotel}`);
                 const reason = prompt('Enter reason for flagging this review:');
                 if (reason) {
                     reviewItem.querySelector('.review-status').textContent = 'Flagged';
                     reviewItem.querySelector('.review-status').className = 'review-status flagged';
-                    alert(`Review by ${reviewer} has been flagged.`);
                 }
             } else if (this.textContent.includes('Delete')) {
                 console.log(`Deleting review by ${reviewer} for ${hotel}`);
@@ -53,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     setTimeout(() => {
                         reviewItem.remove();
                     }, 500);
-                    alert(`Review by ${reviewer} has been deleted.`);
+
                 }
             } else if (this.textContent.includes('Approve')) {
                 console.log(`Approving review by ${reviewer} for ${hotel}`);
@@ -74,7 +70,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     newAction.addEventListener('click', arguments.callee);
                 });
                 
-                alert(`Review by ${reviewer} has been approved and published.`);
             }
         });
     });

@@ -5,7 +5,6 @@ requireLogin();
 $errors = [];
 $success = false;
 
-// Get users for dropdown
 $usersQuery = "SELECT id, fullname FROM users ORDER BY fullname";
 $usersResult = $conn->query($usersQuery);
 $users = [];
@@ -16,7 +15,6 @@ if ($usersResult) {
     }
 }
 
-// Get hotels for dropdown
 $hotelsQuery = "SELECT id, title, price FROM hotels ORDER BY title";
 $hotelsResult = $conn->query($hotelsQuery);
 $hotels = [];
@@ -27,9 +25,8 @@ if ($hotelsResult) {
     }
 }
 
-// Process form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Validate inputs
+
     $user_id = intval($_POST['user_id'] ?? 0);
     $hotel_id = intval($_POST['hotel_id'] ?? 0);
     $check_in = $_POST['check_in'] ?? '';
@@ -39,7 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $status = $_POST['status'] ?? 'pending';
     $payment_method = $_POST['payment_method'] ?? '';
     
-    // Get hotel price
     $hotelPrice = 0;
     foreach ($hotels as $hotel) {
         if ($hotel['id'] == $hotel_id) {
@@ -48,13 +44,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
     
-    // Calculate total price
     $checkInDate = new DateTime($check_in);
     $checkOutDate = new DateTime($check_out);
     $interval = $checkInDate->diff($checkOutDate);
     $nights = $interval->days;
     
-    // Apply room type multiplier
     $roomMultiplier = 1;
     switch ($room_type) {
         case 'standard':
@@ -75,8 +69,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     
     $total_price = $hotelPrice * $nights * $roomMultiplier;
-    
-    // Validation
+
+
     if ($user_id <= 0) {
         $errors[] = "Please select a user";
     }
@@ -109,7 +103,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = "Payment method is required";
     }
     
-    // If no errors, insert into database
     if (empty($errors)) {
         $query = "INSERT INTO active_bookings (user_id, hotel_id, check_in, check_out, guests, room_type, status, payment_method, total_price, booking_date) 
                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
@@ -203,11 +196,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="check_in">Check-in Date</label>
-                                        <input type="date" id="check_in" style="padding: 5px 18px; border-radius:5px; border:2px gray;" name="check_in" class="form-control" value="<?php echo isset($_POST['check_in']) ? htmlspecialchars($_POST['check_in']) : ''; ?>" required>
+                                        <input type="date" id="check_in" style="padding: 10px 18px; border-radius:5px; border:2px gray;" name="check_in" class="form-control" value="<?php echo isset($_POST['check_in']) ? htmlspecialchars($_POST['check_in']) : ''; ?>" required>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="check_out">Check-out Date</label>
-                                        <input type="date" id="check_out" style="padding: 5px 18px; border-radius:5px; border:2px gray;" name="check_out" class="form-control" value="<?php echo isset($_POST['check_out']) ? htmlspecialchars($_POST['check_out']) : ''; ?>" required>
+                                        <input type="date" id="check_out" style="padding: 10px 18px; border-radius:5px; border:2px gray;" name="check_out" class="form-control" value="<?php echo isset($_POST['check_out']) ? htmlspecialchars($_POST['check_out']) : ''; ?>" required>
                                     </div>
                                 </div>
 
@@ -305,13 +298,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             const roomAdjustmentElement = document.getElementById('room-adjustment');
             const totalPriceElement = document.getElementById('total-price');
             
-            // Function to calculate and update price
             function updatePriceCalculation() {
-                // Get hotel price
                 const selectedHotel = hotelSelect.options[hotelSelect.selectedIndex];
                 const basePrice = selectedHotel ? parseFloat(selectedHotel.dataset.price) : 0;
                 
-                // Calculate nights
                 let nights = 0;
                 if (checkInInput.value && checkOutInput.value) {
                     const checkIn = new Date(checkInInput.value);
@@ -321,7 +311,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     if (nights < 0) nights = 0;
                 }
                 
-                // Get room type multiplier
                 let roomMultiplier = 1;
                 switch (roomTypeSelect.value) {
                     case 'deluxe':
@@ -335,23 +324,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         break;
                 }
                 
-                // Calculate total
                 const totalPrice = basePrice * nights * roomMultiplier;
                 
-                // Update display
                 basePriceElement.textContent = '$' + basePrice.toFixed(2);
                 nightsCountElement.textContent = nights;
                 roomAdjustmentElement.textContent = 'x' + roomMultiplier.toFixed(1);
                 totalPriceElement.textContent = '$' + totalPrice.toFixed(2);
             }
             
-            // Add event listeners
             hotelSelect.addEventListener('change', updatePriceCalculation);
             checkInInput.addEventListener('change', updatePriceCalculation);
             checkOutInput.addEventListener('change', updatePriceCalculation);
             roomTypeSelect.addEventListener('change', updatePriceCalculation);
             
-            // Initialize calculation
             updatePriceCalculation();
         });
     </script>

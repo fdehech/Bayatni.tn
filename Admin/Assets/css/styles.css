@@ -234,6 +234,13 @@ button {
     gap: 10px;
 }
 
+.form-actions{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 20px;
+}
+
 .dashboard-content {
     padding: 1.5rem;
 }
@@ -468,7 +475,9 @@ button {
 
 .status-badge {
     display: inline-block;
-    padding: 0.25rem 0.75rem;
+    width: max-content;
+    height: max-content;
+    padding: 8px 15px ;
     border-radius: 50px;
     font-size: 0.75rem;
     font-weight: 500;
@@ -494,10 +503,6 @@ button {
     color: var(--danger-color);
 }
 
-.action-buttons {
-    display: flex;
-}
-
 .action-btn {
     width: 28px;
     height: 28px;
@@ -521,6 +526,7 @@ button {
 }
 
 .delete-btn {
+    padding: 10px 10px;
     background-color: rgba(220, 53, 69, 0.1);
     color: var(--danger-color);
 }
@@ -1106,7 +1112,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0.5rem;
+    padding: 10px 20px;
     font-size: 0.85rem;
     color: var(--text-color);
     transition: var(--transition);
@@ -1999,6 +2005,35 @@ button {
     background-color: var(--primary-light);
     color: var(--primary-color);
 }
+
+.booking-header{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    margin-bottom: 20px;
+}
+
+.booking-actions{
+
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    margin-bottom: 20px;
+
+}
+.status-select{
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 0 ;
+    outline: 0;
+}
+.action-buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
+}
+
+
 
 
 @media (max-width: 1200px) {

@@ -102,14 +102,6 @@ if ($result) {
             <div class="dashboard-content" id="dashboard">
                 <div class="page-header">
                     <h1>Dashboard</h1>
-                    <div class="date-filter">
-                        <select id="date-range">
-                            <option value="today">Today</option>
-                            <option value="week" selected>This Week</option>
-                            <option value="month">This Month</option>
-                            <option value="year">This Year</option>
-                        </select>
-                    </div>
                 </div>
 
                 <div class="stats-cards">
@@ -125,7 +117,7 @@ if ($result) {
                     <div class="stat-card">
                         <div class="stat-card-content">
                             <h3>Revenue</h3>
-                            <h2><?php echo number_format($stats['revenue']); ?>TND</h2>
+                            <h2><?php echo number_format($stats['revenue']); ?> TND</h2>
                         </div>
                         <div class="stat-card-icon revenue">
                             <i class="fas fa-dollar-sign"></i>
@@ -175,7 +167,7 @@ if ($result) {
                                     <td><?php echo date('M d, Y', strtotime($booking['check_in'])); ?></td>
                                     <td><?php echo date('M d, Y', strtotime($booking['check_out'])); ?></td>
                                     <td><span class="status-badge <?php echo strtolower($booking['status']); ?>"><?php echo ucfirst($booking['status']); ?></span></td>
-                                    <td><?php echo number_format($booking['total_price'], 2); ?>TND</td>
+                                    <td><?php echo number_format($booking['total_price'], 2); ?> TND</td>
                                     <td>
                                         <div class="action-buttons">
                                             <a href="booking_view.php?id=<?php echo $booking['id']; ?>" class="action-btn view-btn"><i class="fas fa-eye"></i></a>

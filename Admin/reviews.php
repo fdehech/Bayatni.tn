@@ -90,8 +90,21 @@ $reviewStats = $result->fetch_assoc();
 $positiveReviewsQuery = "SELECT COUNT(*) as total FROM reviews WHERE rating >= 4";
 $result = $conn->query($positiveReviewsQuery);
 $positiveReviews = $result->fetch_assoc()['total'];
-
 $positivePercentage = ($reviewStats['total'] > 0) ? round(($positiveReviews / $reviewStats['total']) * 100) : 0;
+
+
+$neutralReviewsQuery = "SELECT COUNT(*) as total FROM reviews WHERE rating like 3";
+$result = $conn->query($neutralReviewsQuery);
+$neutralReviews = $result->fetch_assoc()['total'];
+$neutralPercentage = ($reviewStats['total'] > 0) ? round(($neutralReviews / $reviewStats['total']) * 100) : 0;
+
+
+
+$negativeReviewsQuery = "SELECT COUNT(*) as total FROM reviews WHERE rating < 3";
+$result = $conn->query($negativeReviewsQuery);
+$negativeReviews = $result->fetch_assoc()['total'];
+$negativePercentage = ($reviewStats['total'] > 0) ? round(($negativeReviews / $reviewStats['total']) * 100) : 0;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -141,6 +154,14 @@ $positivePercentage = ($reviewStats['total'] > 0) ? round(($positiveReviews / $r
                     <div class="review-stat">
                         <span class="stat-value"><?php echo $positivePercentage; ?>%</span>
                         <span class="stat-label">Positive Reviews</span>
+                    </div>
+                    <div class="review-stat">
+                        <span class="stat-value"><?php echo $neutralPercentage; ?>%</span>
+                        <span class="stat-label">Neutral Reviews</span>
+                    </div>
+                    <div class="review-stat">
+                        <span class="stat-value"><?php echo $negativePercentage; ?>%</span>
+                        <span class="stat-label">Negative Reviews</span>
                     </div>
                 </div>
 
@@ -203,7 +224,6 @@ $positivePercentage = ($reviewStats['total'] > 0) ? round(($positiveReviews / $r
                     <div class="review-item">
                         <div class="review-header">
                             <div class="reviewer-info">
-                                <img src="https://randomuser.me/api/portraits/<?php echo $index % 2 == 0 ? 'women' : 'men'; ?>/<?php echo ($index * 11) % 99; ?>.jpg" alt="Reviewer">
                                 <div>
                                     <h4><?php echo htmlspecialchars($review['reviewer_name']); ?></h4>
                                     <p><?php echo htmlspecialchars($review['hotel_name']); ?></p>
@@ -227,17 +247,7 @@ $positivePercentage = ($reviewStats['total'] > 0) ? round(($positiveReviews / $r
                             <p>"<?php echo htmlspecialchars($review['comment']); ?>"</p>
                         </div>
                         <div class="review-footer">
-                            <div class="review-status <?php echo $status; ?>"><?php echo ucfirst($status); ?></div>
                             <div class="review-actions">
-                                <?php if ($status == 'pending'): ?>
-                                <a href="review_approve.php?id=<?php echo $review['id']; ?>" class="review-action"><i class="fas fa-check"></i> Approve</a>
-                                <?php else: ?>
-                                <a href="review_reply.php?id=<?php echo $review['id']; ?>" class="review-action"><i class="fas fa-reply"></i> Reply</a>
-                                <?php endif; ?>
-                                <?php if ($status != 'flagged'): ?>
-                                <a href="review_flag.php?id=<?php echo $review['id']; ?>" class="review-action"><i class="fas fa-flag"></i> Flag</a>
-                                <?php endif; ?>
-                                <a href="review_edit.php?id=<?php echo $review['id']; ?>" class="review-action"><i class="fas fa-edit"></i> Edit</a>
                                 <a href="reviews.php?action=delete&id=<?php echo $review['id']; ?>" class="review-action" onclick="return confirm('Are you sure you want to delete this review?');"><i class="fas fa-trash"></i> Delete</a>
                             </div>
                         </div>
