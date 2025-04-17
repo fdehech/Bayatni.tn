@@ -73,15 +73,11 @@ $isLoggedIn = isset($_SESSION['user_name']);
         <?php endif; ?>
     </main>
 
-<<<<<<< HEAD
     <div id=map> 
         <div class="loader">
             <span></span>
         </div>
     </div>
-=======
-    <div id=map></div>
->>>>>>> fa29760d0b7b4b87ccf5a0fa421123e7a3e261a4
     <script src="Assets/js/bg.js"></script>
     <script src="Assets/js/map.js"></script>
 </body>

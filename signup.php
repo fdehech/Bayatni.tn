@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-                $stmt = $conn->prepare("INSERT INTO users (fullname, lastname, firstname, birthday, email, password, card_number, card_name, card_expire, card_cvc) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                $stmt = $conn->prepare("INSERT INTO users (fullname, firstname, lastname, birthday, email, password, card_number, card_name, card_expire, card_cvc) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                 $stmt->bind_param("ssssssssss", $fullname, $prenom, $nom, $birthday, $email, $hashed_password, $card_number, $card_name, $card_expire, $card_cvc);
 
                 if ($stmt->execute()) {
@@ -141,7 +141,7 @@ $conn->close();
 
   <main class="flex-grow flex items-center justify-center">
     <div class="auth-card">
-      <form id="signupForm" action="signup.php" method="POST">
+      <form id="signupForm" action="" method="POST">
         <div class="form">
           <div class="inputForm" id="nom-box">
             <input type="text" id="nom" name="nom" placeholder="Nom" required>
@@ -380,7 +380,7 @@ $conn->close();
                 <option value="Tokelau">Tokelau</option>
                 <option value="Tonga">Tonga</option>
                 <option value="Trinidad and Tobago">Trinidad and Tobago</option>
-                <option value="Tunisia">Tunisia</option>
+                <option value="Tunisia" selected>Tunisia</option>
                 <option value="Turkey">Turkey</option>
                 <option value="Turkmenistan">Turkmenistan</option>
                 <option value="Turks and Caicos Islands">Turks and Caicos Islands</option>
@@ -434,10 +434,10 @@ $conn->close();
               </div>
             </div>
             <div class="flex flex-col space-y-3">
-              <input class="w-full h-10 border-b border-white text-sm bg-transparent text-white placeholder-white caret-orange-500 pl-2 focus:outline-none focus:border-blue-500 focus:shadow-[0_2px_10px_#fff] transition" type="text" name="cardNumber" id="cardNumber" placeholder="0000 0000 0000 0000" required />
+              <input class="w-full h-10 border-b border-white text-sm bg-transparent text-white placeholder-white caret-orange-500 pl-2 focus:outline-none focus:border-blue-500 focus:shadow-[0_2px_10px_#fff] transition" type="text" name="cardNumber" id="cardNumber" placeholder="0000 0000 0000 0000" required/>
               <div class="flex flex-row space-x-2">
-                <input class="w-full h-10 border-b border-white text-sm bg-transparent text-white placeholder-white caret-orange-500 pl-2 focus:outline-none focus:border-blue-500 focus:shadow-[0_2px_10px_#fff] transition" type="text" name="expiryDate" id="expiryDate" placeholder="MM/AA" required />
-                <input class="w-full h-10 border-b border-white text-sm bg-transparent text-white placeholder-white caret-orange-500 pl-2 focus:outline-none focus:border-blue-500 focus:shadow-[0_2px_10px_#fff] transition" type="text" name="cvv" id="cvv" placeholder="CVV" required />
+                <input class="w-full h-10 border-b border-white text-sm bg-transparent text-white placeholder-white caret-orange-500 pl-2 focus:outline-none focus:border-blue-500 focus:shadow-[0_2px_10px_#fff] transition" type="text" name="expiryDate" id="expiryDate" placeholder="MM/AA" required/>
+                <input class="w-full h-10 border-b border-white text-sm bg-transparent text-white placeholder-white caret-orange-500 pl-2 focus:outline-none focus:border-blue-500 focus:shadow-[0_2px_10px_#fff] transition" type="text" name="cvv" id="cvv" placeholder="CVV" required/>
               </div>
             </div>
           </div>
