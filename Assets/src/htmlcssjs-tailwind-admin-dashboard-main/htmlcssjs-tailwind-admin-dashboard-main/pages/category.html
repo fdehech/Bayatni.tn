@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../asset/libs/datatables.min.css" />
+    <link rel="stylesheet" href="../asset/css/style.css" />
+  </head>
+  <body>
+    <div class="main_container w-full h-full flex">
+      <div class="sidebar">
+        <div class="sidebar_wrapper" id="sidebar_wrapper">
+          <div class="sidebar_logo flex justify-between items-center">
+            <div class="text-2xl font-semibold sidebar_logo_title">
+              YTRAdmin
+            </div>
+            <div class="sidebar_toggler_button">
+              <i class="fa-regular fa-circle-dot" id="toggle_button"></i>
+            </div>
+          </div>
+          <div class="sidbar_link_wrapper">
+            <ul class="sidebar_link pb-4">
+              <li class="sidebar_link_item flex" id="dropdown_collapse">
+                <div>
+                  <span class="sidebar_link_title"
+                    ><i class="fa-solid fa-house-crack sidebar_link_icon"></i
+                    >Dashboard</span
+                  >
+                </div>
+
+                <div class="dropdown_collapse_contant pl-8">
+                  <ul>
+                    <li class="py-2">Analytic Dashboard</li>
+                    <li class="py-2">Ecommerce Dashboard</li>
+                    <li class="py-2">Admin Dashboard</li>
+                    <li class="py-2">Customer Dashboard</li>
+                  </ul>
+                </div>
+              </li>
+              <li class="sidebar_link_item flex flex-col">
+                <a href="#" class="flex items-center">
+                  <i class="fa-solid fa-arrow-up-a-z sidebar_link_icon"></i
+                  ><span class="sidebar_link_title">Order</span></a
+                >
+              </li>
+              <li class="sidebar_link_item flex flex-col">
+                <a href="#" class="flex items-center">
+                  <i class="fa-solid fa-user sidebar_link_icon"></i
+                  ><span class="sidebar_link_title">User</span></a
+                >
+              </li>
+              <li class="sidebar_link_item flex flex-col">
+                <a href="#" class="flex items-center">
+                  <i class="fa-solid fa-cart-shopping sidebar_link_icon"></i
+                  ><span class="sidebar_link_title">Purchase</span></a
+                >
+              </li>
+              <li class="sidebar_link_item flex flex-col">
+                <a href="#" class="flex items-center">
+                  <i class="fa-brands fa-product-hunt sidebar_link_icon"></i
+                  ><span class="sidebar_link_title">Product</span></a
+                >
+              </li>
+              <li class="sidebar_link_item flex flex-col">
+                <a href="#" class="flex items-center">
+                  <i class="fa-brands fa-bandcamp sidebar_link_icon"></i
+                  ><span class="sidebar_link_title">Brand</span></a
+                >
+              </li>
+              <li class="sidebar_link_item flex flex-col">
+                <a href="#" class="flex items-center">
+                  <i class="fa-solid fa-list-check sidebar_link_icon"></i
+                  ><span class="sidebar_link_title">Category</span></a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="section w-full">
+        <div
+          class="nav bg-gray-100 h-[56px] flex justify-between items-center px-6"
+        >
+          <div class="right">
+            <i class="fa-solid fa-magnifying-glass header-icon"></i>
+            <span>Search</span>
+          </div>
+          <div class="left flex">
+            <div class="lang px-2">
+              <i class="fa-solid fa-language header-icon"></i>
+            </div>
+            <div class="theme px-2">
+              <i class="fa-regular fa-sun header-icon"></i>
+            </div>
+            <div class="noti px-2">
+              <i class="fa-solid fa-bell header-icon"></i>
+            </div>
+            <div class="user_profile px-2">
+              <i class="fa-solid fa-user-tie header-icon"></i>
+            </div>
+          </div>
+        </div>
+        <div class="contant_area p-4 bg-slate-200"></div>
+      </div>
+    </div>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="../asset/libs/datatables.min.js"></script>
+  <script src="../asset/js/index.js"></script>
+</html>

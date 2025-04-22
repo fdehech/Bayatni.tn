@@ -129,7 +129,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // Event Listeners
   nextButtons.forEach((button) => {
     button.addEventListener('click', function (e) {
       e.preventDefault();
