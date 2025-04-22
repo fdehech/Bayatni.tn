@@ -1,11 +1,11 @@
 <?php
-require_once 'config.php';
+require_once __DIR__ .'/config.php';
 requireLogin();
 
 if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id'])) {
     $id = intval($_GET['id']);
     
-    $checkBookingsQuery = "SELECT COUNT(*) as count FROM active_bookings WHERE hotel_id = ?";
+    $checkBookingsQuery = "SELECT COUNT(*) as count FROM bookings WHERE hotel_id = ?";
     $stmt = $conn->prepare($checkBookingsQuery);
     $stmt->bind_param("i", $id);
     $stmt->execute();
@@ -98,7 +98,7 @@ if ($locationsResult) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotels Management - Hotel Booking Admin</title>
-    <link rel="stylesheet" href="Assets/css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
 
@@ -149,10 +149,10 @@ if ($locationsResult) {
 </head>
 <body>
     <div class="dashboard">
-        <?php include 'sidebar.php'; ?>
+        <?php include __DIR__ .'/sidebar.php'; ?>
 
         <main class="main-content">
-            <?php include 'header.php'; ?>
+            <?php include __DIR__ .'/header.php'; ?>
 
             <div class="dashboard-content" id="hotels">
                 <div class="page-header">

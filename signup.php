@@ -81,8 +81,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->bind_param("ssssssssss", $fullname, $prenom, $nom, $birthday, $email, $hashed_password, $card_number, $card_name, $card_expire, $card_cvc);
 
                 if ($stmt->execute()) {
-                    $_SESSION['success_message'] = "Inscription réussie ! Vous pouvez maintenant vous connecter.";
-                    header("Location: index.php");
+                    $_SESSION['success_message'] = "Inscription réussite ! Vous pouvez maintenant vous connecter.";
+                    header("Location: index.php?signup=success");
                     exit();
                 } else {
                     $errors[] = "Une erreur est survenue lors de l'enregistrement.";
@@ -100,10 +100,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($errors)) {
         $_SESSION['errors'] = $errors;
         $_SESSION['form_data'] = $_POST;
-        header("Location: signup.php");
+        header("Location: signup.php?error=true");
         exit();
     }
-}
+
+    include('header.php');
+
+
+  }
 
 $conn->close();
 ?>
@@ -115,7 +119,7 @@ $conn->close();
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>Bayatni.tn</title>
   <link rel="stylesheet" href="Assets/css/index.css">
-  <link rel="stylesheet" href="Assets/css/forms.css"> 
+  <link rel="stylesheet" href="Assets/css/signup.css"> 
     <!-- TAILWIND CDN -->
   <script src="https://cdn.tailwindcss.com"></script> 
     <!-- Bootstrap CDN -->
@@ -126,22 +130,20 @@ $conn->close();
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
+<?php include('header.php'); ?>
 <body style="overflow: hidden;">
   <div id="background-container">
     <div class="bg-layer" id="bg1"></div>
     <div class="bg-layer" id="bg2"></div>
   </div>
-
-  <header class="flex justify-between items-center z-10">
-  <a href="index.php"><div id="domain">Bayatni.tn</div></a>
-      <nav class="space-x-2">
-        <a href="signin.php"><button type="button" class="nav-btn">S'identifier</button></a>
-      </nav>
-  </header>
-
   <main class="flex-grow flex items-center justify-center">
     <div class="auth-card">
-      <form id="signupForm" action="" method="POST">
+    <?php if (isset($_GET['signup']) && $_GET['signup'] === 'error'): ?>
+      <div class="p-2.5 mt-10 text-sm text-red-700 bg-red-100 rounded-lg" style="max-width:500px; display:flex; justify-self:center;" role="alert">
+      Sign up Error !
+      </div>
+    <?php endif; ?>
+      <form class="signupForm" method="POST" action="">
         <div class="form">
           <div class="inputForm" id="nom-box">
             <input type="text" id="nom" name="nom" placeholder="Nom" required>

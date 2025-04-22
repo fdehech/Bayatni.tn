@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php';
+require_once __DIR__ .'/config.php';
 requireLogin();
 
 if (!isset($_GET['id']) || empty($_GET['id'])) {
@@ -26,7 +26,7 @@ $user = $result->fetch_assoc();
 $activeBookingsQuery = "
     SELECT b.id, b.check_in, b.check_out, b.guests, b.total_price, b.status,
            h.title as hotel_name
-    FROM active_bookings b
+    FROM bookings b
     JOIN hotels h ON b.hotel_id = h.id
     WHERE b.user_id = ?
     ORDER BY b.booking_date DESC
@@ -40,7 +40,7 @@ $activeBookings = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 $previousBookingsQuery = "
     SELECT b.id, b.check_in, b.check_out, b.guests, b.total_price, b.status,
            h.title as hotel_name
-    FROM previous_bookings b
+    FROM bookings b
     JOIN hotels h ON b.hotel_id = h.id
     WHERE b.user_id = ?
     ORDER BY b.booking_date DESC
@@ -74,15 +74,15 @@ $status = $statuses[$id % count($statuses)];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Details - Hotel Booking Admin</title>
-    <link rel="stylesheet" href="Assets/css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="dashboard">
-        <?php include 'sidebar.php'; ?>
+        <?php include __DIR__ .'/sidebar.php'; ?>
 
         <main class="main-content">
-            <?php include 'header.php'; ?>
+            <?php include __DIR__ .'/header.php'; ?>
 
             <div class="dashboard-content">
                 <div class="page-header">

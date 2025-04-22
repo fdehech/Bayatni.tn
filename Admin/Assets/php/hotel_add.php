@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php';
+require_once __DIR__ .'/config.php';
 requireLogin();
 
 $errors = [];
@@ -13,6 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $rating = intval($_POST['rating'] ?? 0);
     $region = trim($_POST['region'] ?? '');
     $image_url = trim($_POST['image_url'] ?? '');
+    $gps_x = trim($_POST['gps_x'] ?? '');
+    $gps_y = trim($_POST['gps_y'] ?? '');
     $features = isset($_POST['features']) ? implode(',', $_POST['features']) : '';
     
 
@@ -39,6 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($image_url)) {
         $errors[] = "Image URL is required";
     }
+
+    if (empty($gps_x) or empty($gps_y)) {
+        $errors[] = "Coordinates are required";
+    }
     
 
     if (empty($errors)) {
@@ -50,9 +56,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         if ($stmt->execute()) {
             $success = true;
+
+            $hotel_id = $conn->insert_id;
+            $query_gps = "INSERT INTO hotels_coordinates (id, x, y) VALUES (?, ?, ?)";
+            $stmt_gps = $conn->prepare($query_gps);
+            $stmt_gps->bind_param("idd", $hotel_id, $gps_x, $gps_y);
+    
+            if ($stmt_gps->execute()) {
+                $success = true;
+            } else {
+                $errors[] = "Error adding GPS coordinates: " . $stmt_gps->error;
+            }
+
         } else {
             $errors[] = "Error adding hotel: " . $conn->error;
         }
+
+
+
+
     }
 }
 ?>
@@ -62,15 +84,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add New Hotel - Hotel Booking Admin</title>
-    <link rel="stylesheet" href="Assets/css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="dashboard">
-        <?php include 'sidebar.php'; ?>
+        <?php include __DIR__ .'/sidebar.php'; ?>
 
         <main class="main-content">
-            <?php include 'header.php'; ?>
+            <?php include __DIR__ .'/header.php'; ?>
 
             <div class="dashboard-content">
                 <div class="page-header">
@@ -105,8 +127,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
 
                             <div class="form-group">
+                                <label for="region">Region</label>
+                                <select id="region" name="region" class="form-control" required>
+                                    <option value="">Select Region</option>
+                                    <option value="tunis" <?php echo (isset($_POST['region']) && $_POST['region'] == 'tunis') ? 'selected' : ''; ?>>Tunis</option>
+                                    <option value="hammamet" <?php echo (isset($_POST['region']) && $_POST['region'] == 'hammamet') ? 'selected' : ''; ?>>Hammamet</option>
+                                    <option value="sousse" <?php echo (isset($_POST['region']) && $_POST['region'] == 'sousse') ? 'selected' : ''; ?>>Sousse</option>
+                                    <option value="djerba" <?php echo (isset($_POST['region']) && $_POST['region'] == 'djerba') ? 'selected' : ''; ?>>Djerba</option>
+                                    <option value="tabarka" <?php echo (isset($_POST['region']) && $_POST['region'] == 'tabarka') ? 'selected' : ''; ?>>Tabarka</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="location">Location</label>
                                 <input type="text" id="location" name="location" class="form-control" value="<?php echo isset($_POST['location']) ? htmlspecialchars($_POST['location']) : ''; ?>" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="hotel_gps"> Hotel Coordinates </label>
+                                <input type="text" id="hotel_x" name="gps_x" class="form-control" placeholder="X =" value="<?php echo isset($_POST['gps_x']) ? htmlspecialchars($_POST['gps_x']) : ''; ?>" required>
+                                <input type="text" id="hotel_y" name="gps_y" class="form-control" placeholder="Y =" value="<?php echo isset($_POST['gps_y']) ? htmlspecialchars($_POST['gps_y']) : ''; ?>" required>
                             </div>
 
                             <div class="form-row">
@@ -132,21 +172,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
 
                             <div class="form-group">
-                                <label for="region">Region</label>
-                                <select id="region" name="region" class="form-control" required>
-                                    <option value="">Select Region</option>
-                                    <option value="tunis" <?php echo (isset($_POST['region']) && $_POST['region'] == 'tunis') ? 'selected' : ''; ?>>Tunis</option>
-                                    <option value="hammamet" <?php echo (isset($_POST['region']) && $_POST['region'] == 'hammamet') ? 'selected' : ''; ?>>Hammamet</option>
-                                    <option value="sousse" <?php echo (isset($_POST['region']) && $_POST['region'] == 'sousse') ? 'selected' : ''; ?>>Sousse</option>
-                                    <option value="djerba" <?php echo (isset($_POST['region']) && $_POST['region'] == 'djerba') ? 'selected' : ''; ?>>Djerba</option>
-                                    <option value="tabarka" <?php echo (isset($_POST['region']) && $_POST['region'] == 'tabarka') ? 'selected' : ''; ?>>Tabarka</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
                                 <label for="image_url">Image URL</label>
-                                <input type="url" id="image_url" name="image_url" class="form-control" value="<?php echo isset($_POST['image_url']) ? htmlspecialchars($_POST['image_url']) : ''; ?>" required>
-                                <small class="form-text text-muted">Enter a URL for the hotel image</small>
+                                <input type="url" id="image_url" name="image_url" class="form-control" placeholder="Enter a URL for the hotel image" value="<?php echo isset($_POST['image_url']) ? htmlspecialchars($_POST['image_url']) : ''; ?>" required>
                             </div>
 
                             <div class="form-group">

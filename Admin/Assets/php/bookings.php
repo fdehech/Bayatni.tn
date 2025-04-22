@@ -1,11 +1,11 @@
 <?php
-require_once 'config.php';
+require_once __DIR__ .'/config.php';
 requireLogin();
 
 if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id'])) {
     $id = intval($_GET['id']);
     
-    $deleteQuery = "DELETE FROM active_bookings WHERE id = ?";
+    $deleteQuery = "DELETE FROM bookings WHERE id = ?";
     $stmt = $conn->prepare($deleteQuery);
     $stmt->bind_param("i", $id);
     
@@ -24,7 +24,7 @@ $dateRange = isset($_GET['date_range']) ? $_GET['date_range'] : '';
 $query = "SELECT b.id, b.check_in, b.check_out, b.guests, b.total_price, b.status, b.booking_date,
                  u.fullname as guest_name, h.title as hotel_name,
                  u.id as user_id, h.id as hotel_id
-          FROM active_bookings b
+          FROM bookings b
           JOIN users u ON b.user_id = u.id
           JOIN hotels h ON b.hotel_id = h.id
           WHERE 1=1";
@@ -86,23 +86,23 @@ if ($hotelsResult) {
     }
 }
 
-$totalBookingsQuery = "SELECT COUNT(*) as total FROM active_bookings";
+$totalBookingsQuery = "SELECT COUNT(*) as total FROM bookings";
 $result = $conn->query($totalBookingsQuery);
 $totalBookings = $result->fetch_assoc()['total'];
 
-$pendingBookingsQuery = "SELECT COUNT(*) as total FROM active_bookings WHERE status = 'pending'";
+$pendingBookingsQuery = "SELECT COUNT(*) as total FROM bookings WHERE status = 'pending'";
 $result = $conn->query($pendingBookingsQuery);
 $pendingBookings = $result->fetch_assoc()['total'];
 
-$confirmedBookingsQuery = "SELECT COUNT(*) as total FROM active_bookings WHERE status = 'confirmed'";
+$confirmedBookingsQuery = "SELECT COUNT(*) as total FROM bookings WHERE status = 'confirmed'";
 $result = $conn->query($confirmedBookingsQuery);
 $confirmedBookings = $result->fetch_assoc()['total'];
 
-$cancelledBookingsQuery = "SELECT COUNT(*) as total FROM active_bookings WHERE status = 'cancelled'";
+$cancelledBookingsQuery = "SELECT COUNT(*) as total FROM bookings WHERE status = 'cancelled'";
 $result = $conn->query($cancelledBookingsQuery);
 $cancelledBookings = $result->fetch_assoc()['total'];
 
-$totalRevenueQuery = "SELECT SUM(total_price) as total FROM active_bookings";
+$totalRevenueQuery = "SELECT SUM(total_price) as total FROM bookings";
 $result = $conn->query($totalRevenueQuery);
 $totalRevenue = $result->fetch_assoc()['total'] ?? 0;
 ?>
@@ -112,15 +112,15 @@ $totalRevenue = $result->fetch_assoc()['total'] ?? 0;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bookings Management - Hotel Booking Admin</title>
-    <link rel="stylesheet" href="Assets/css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="dashboard">
-        <?php include 'sidebar.php'; ?>
+        <?php include __DIR__ .'/sidebar.php'; ?>
 
         <main class="main-content">
-            <?php include 'header.php'; ?>
+            <?php include __DIR__ .'/header.php'; ?>
 
             <div class="dashboard-content" id="bookings">
                 <div class="page-header">

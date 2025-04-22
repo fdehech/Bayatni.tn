@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php';
+require_once __DIR__ .'/Assets/php/config.php';
 requireLogin();
 
 $stats = [
@@ -9,13 +9,13 @@ $stats = [
     'occupancy_rate' => 0
 ];
 
-$bookingQuery = "SELECT COUNT(*) as total FROM active_bookings";
+$bookingQuery = "SELECT COUNT(*) as total FROM bookings";
 $result = $conn->query($bookingQuery);
 if ($result && $row = $result->fetch_assoc()) {
     $stats['total_bookings'] = $row['total'];
 }
 
-$revenueQuery = "SELECT SUM(total_price) as total FROM active_bookings";
+$revenueQuery = "SELECT SUM(total_price) as total FROM bookings";
 $result = $conn->query($revenueQuery);
 if ($result && $row = $result->fetch_assoc()) {
     $stats['revenue'] = $row['total'] ?? 0;
@@ -32,7 +32,7 @@ $stats['occupancy_rate'] = 78;
 $recentBookingsQuery = "
     SELECT b.id, b.check_in, b.check_out, b.total_price, b.status, 
            u.fullname as guest_name, h.title as hotel_name
-    FROM active_bookings b
+    FROM bookings b
     JOIN users u ON b.user_id = u.id
     JOIN hotels h ON b.hotel_id = h.id
     ORDER BY b.booking_date DESC
@@ -50,7 +50,7 @@ $popularHotelsQuery = "
     SELECT h.id, h.title, h.location, h.price, h.rating, h.image_url,
            COUNT(b.id) as booking_count
     FROM hotels h
-    LEFT JOIN active_bookings b ON h.id = b.hotel_id
+    LEFT JOIN bookings b ON h.id = b.hotel_id
     GROUP BY h.id
     ORDER BY booking_count DESC
     LIMIT 4
@@ -92,12 +92,12 @@ if ($result) {
 </head>
 <body>
     <div class="dashboard">
-        
-        <?php include 'sidebar.php'; ?>
 
-        <main class="main-content">
+        <?php include __DIR__ .'/Assets/php/sidebar.php'; ?>
 
-            <?php include 'header.php'; ?>
+        <main class="main-content"> 
+
+            <?php include __DIR__ .'/Assets/php/header.php'; ?>
 
             <div class="dashboard-content" id="dashboard">
                 <div class="page-header">
@@ -138,7 +138,7 @@ if ($result) {
                 <div class="table-card">
                     <div class="table-header">
                         <h3>Recent Bookings</h3>
-                        <a href="bookings.php" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                        <a href="/Assets/php/bookings.php" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="table-responsive">
                         <table class="data-table">
@@ -170,9 +170,9 @@ if ($result) {
                                     <td><?php echo number_format($booking['total_price'], 2); ?> TND</td>
                                     <td>
                                         <div class="action-buttons">
-                                            <a href="booking_view.php?id=<?php echo $booking['id']; ?>" class="action-btn view-btn"><i class="fas fa-eye"></i></a>
-                                            <a href="booking_edit.php?id=<?php echo $booking['id']; ?>" class="action-btn edit-btn"><i class="fas fa-edit"></i></a>
-                                            <a href="booking_delete.php?id=<?php echo $booking['id']; ?>" class="action-btn delete-btn" onclick="return confirm('Are you sure you want to delete this booking?');"><i class="fas fa-trash"></i></a>
+                                            <a href="Assets/php/booking_view.php?id=<?php echo $booking['id']; ?>" class="action-btn view-btn"><i class="fas fa-eye"></i></a>
+                                            <a href="Assets/php/booking_edit.php?id=<?php echo $booking['id']; ?>" class="action-btn edit-btn"><i class="fas fa-edit"></i></a>
+                                            <a href="Assets/php/booking_delete.php?id=<?php echo $booking['id']; ?>" class="action-btn delete-btn" onclick="return confirm('Are you sure you want to delete this booking?');"><i class="fas fa-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>
@@ -190,7 +190,7 @@ if ($result) {
                 <div class="recent-reviews">
                     <div class="section-header">
                         <h3>Recent Reviews</h3>
-                        <a href="reviews.php" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                        <a href="Assets/php/reviews.php" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="reviews-container">
                         <?php foreach ($recentReviews as $review): ?>

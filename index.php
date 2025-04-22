@@ -1,16 +1,40 @@
 <?php
-session_start();
-$isLoggedIn = isset($_SESSION['user_name']);
+    session_start();
+    require_once 'config.php';
+    $isLoggedIn = isset($_SESSION['user_name']);
+    
+    $query = "
+    SELECT hotels.id, hotels.title, hotels_coordinates.x, hotels_coordinates.y
+    FROM hotels
+    JOIN hotels_coordinates ON hotels.id = hotels_coordinates.id";
+
+    $result = $conn->query($query);
+
+    $hotels = [];
+
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $hotels[] = $row;
+        }
+
+        $jsonData = json_encode($hotels, JSON_PRETTY_PRINT);
+
+        if ($jsonData === false) {
+            die('JSON encoding failed: ' . json_last_error_msg());
+        }
+
+        file_put_contents('hotels_data.json', $jsonData);
+    }
+    include('header.php');
 ?>
 
 <html lang="en">
 <head>
-
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Bayatni.tn</title>
 
-    <link rel="stylesheet" href="<?= $isLoggedIn ? 'Assets/css/index_user.css' : 'Assets/css/index_guest.css' ?>">
+    <link rel="stylesheet" href="<?= $isLoggedIn ? 'Assets/css/home_user.css' : 'Assets/css/index.css' ?>">
 
     <!-- TAILWIND CDN -->
     <script src="https://cdn.tailwindcss.com"></script> 
@@ -27,57 +51,48 @@ $isLoggedIn = isset($_SESSION['user_name']);
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
 </head>
-<body>
+
+<body style="margin-top:0 !important; overflow : visible; ">
+
     <div id="background-container">
         <div class="bg-layer" id="bg1"></div>
         <div class="bg-layer" id="bg2"></div>
     </div>
 
-    <header class="flex justify-between items-center relative z-50">
-        <a href="index.php"><div id="domain">Bayatni.tn</div></a>
-        
-        <?php if ($isLoggedIn): ?>
-        <nav class="nav">
-            <div class="dropdown">
-                <button class="btn dropdown-toggle d-flex align-items-center gap-1 text-white fw-semibold border-0 bg-transparent shadow-none" type="button" id="menuButton" data-bs-toggle="dropdown" aria-expanded="false" style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; text-transform: capitalize;">
-                    <?= htmlspecialchars($_SESSION['user_name']) ?>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end" style="position: absolute; z-index: 9999;">
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
-                    <li><a class="dropdown-item" href="#">Settings</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="logout.php">Logout</a></li>
-                </ul>
-            </div>
-        </nav>
-        <?php else: ?>
-            <nav class="space-x-2">
-                <a href="signup.php"><button type="button" class="nav-btn-inverse">S'inscrire</button></a>
-                <a href="signin.php"><button type="button" class="nav-btn">S'identifier</button></a>
-            </nav>
-        <?php endif; ?>
-    </header>
 
-    <main>
-        <div class="intro">
-            <?php if ($isLoggedIn): ?>
-
-                
-            <?php endif; ?>
+    <?php if (isset($_GET['signup']) && $_GET['signup'] === 'success'): ?>
+        <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg" style="max-width:500px; display:flex; justify-self:center;" role="alert">
+        You have signed up successfully! Please log in to continue.
         </div>
+    <?php endif; ?>
 
-        <?php if (!$isLoggedIn): ?>
-            <h1 class="title">Bayatni</h1>
-            <p class="bio">Bayatni.tn est une plateforme tunisienne dédiée à la réservation d’hôtels.</br> Nous facilitons vos démarches en ligne pour vous offrir une expérience simple, rapide et adaptée à vos besoins,</br> où que vous soyez en Tunisie ou en dehors !</br></p>
-            <a href="booking.html"><button class="main-btn">Réserver Maintenant</button></a>
-        <?php endif; ?>
-    </main>
-
+    <?php if (!$isLoggedIn): ?>
+        <h1 class="title">Bayatni</h1>
+        <p class="bio">Bayatni.tn est une plateforme tunisienne dédiée à la réservation d'hôtels.</br> Nous facilitons vos démarches en ligne pour vous offrir </br>une expérience simple, rapide et adaptée à vos besoins,</br> où que vous soyez en Tunisie ou en dehors !</br></p>
+        
+        <a href="booking.php"><button class="main-btn">Réserver Maintenant</button></a>
+    <?php elseif ($isLoggedIn):
+            $userName = $_SESSION['user_name'];
+            echo "<h1 class='mt-20 mb-10' style='color: white; font-size: 5rem; font-weight: 700; margin-left:10%;'>Bienvenue, $userName</h1>";
+            
+            echo '<div class="search-container" style="justify-self:center; width:80%;">
+                <form action="booking.php" method="GET" class="flex">
+                    <input type="text" name="search" placeholder="Rechercher un hôtel ou une destination..." 
+                           class="flex-grow p-3 rounded-l-lg bg-white/20 backdrop-blur-sm border border-white/30 focus:outline-none text-white placeholder-white/70">
+                    <button type="submit" class="p-3 bg-primary-600 hover:bg-primary-700 text-white rounded-r-lg transition">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>';
+        ?>
+    <?php endif; ?>
+    
     <div id=map> 
         <div class="loader">
             <span></span>
         </div>
     </div>
+
     <script src="Assets/js/bg.js"></script>
     <script src="Assets/js/map.js"></script>
 </body>

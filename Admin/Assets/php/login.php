@@ -1,9 +1,9 @@
 <?php
-require_once 'config.php';
+require_once __DIR__ .'/config.php';
 
 
 if (isLoggedIn()) {
-    header("Location: index.php");
+    header("Location: /../../index.php");
     exit();
 }
 
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_name'] = 'Bayatni Admin';
             $_SESSION['user_role'] = 'admin';
             
-            header("Location: index.php");
+            header("Location: /../../index.php");
             exit();
         } else {
             $error = "Invalid email or password";
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Hotel Booking Admin</title>
-    <link rel="stylesheet" href="Assets/css/styles.css">
+    <link rel="stylesheet" href="/../css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {

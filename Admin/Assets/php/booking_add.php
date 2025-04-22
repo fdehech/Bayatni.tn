@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php';
+require_once __DIR__ . '/config.php';
 requireLogin();
 
 $errors = [];
@@ -48,8 +48,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $checkOutDate = new DateTime($check_out);
     $interval = $checkInDate->diff($checkOutDate);
     $nights = $interval->days;
-    
     $roomMultiplier = 1;
+
+
     switch ($room_type) {
         case 'standard':
             $roomMultiplier = 1;
@@ -104,18 +105,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     
     if (empty($errors)) {
-        $query = "INSERT INTO active_bookings (user_id, hotel_id, check_in, check_out, guests, room_type, status, payment_method, total_price, booking_date) 
-                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
-        
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("iississsd", $user_id, $hotel_id, $check_in, $check_out, $guests, $room_type, $status, $payment_method, $total_price);
-        
-        if ($stmt->execute()) {
-            $success = true;
+
+        $statusCheckQuery = "SELECT status FROM users WHERE id = ?";
+        $statusStmt = $conn->prepare($statusCheckQuery);
+        $statusStmt->bind_param("i", $user_id);
+        $statusStmt->execute();
+        $statusResult = $statusStmt->get_result();
+    
+        if ($statusResult && $statusResult->num_rows > 0) {
+            $userStatusRow = $statusResult->fetch_assoc();
+            $userStatus = $userStatusRow['status'];
+    
+            if ($userStatus !== 'active') {
+                $errors[] = "This user is currently suspended and cannot make a booking.";
+            }
         } else {
-            $errors[] = "Error adding booking: " . $conn->error;
+            $errors[] = "User not found.";
+        }
+    
+        if (empty($errors)) {
+            $query = "INSERT INTO bookings (user_id, hotel_id, check_in, check_out, guests, room_type, status, payment_method, total_price, booking_date) 
+                      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
+            
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("iississsd", $user_id, $hotel_id, $check_in, $check_out, $guests, $room_type, $status, $payment_method, $total_price);
+            
+            if ($stmt->execute()) {
+                $success = true;
+            } else {
+                $errors[] = "Error adding booking: " . $conn->error;
+            }
         }
     }
+    
 }
 ?>
 <!DOCTYPE html>
@@ -124,15 +146,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add New Booking - Hotel Booking Admin</title>
-    <link rel="stylesheet" href="Assets/css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="dashboard">
-        <?php include 'sidebar.php'; ?>
+        <?php include __DIR__ . '/sidebar.php'; ?>
 
         <main class="main-content">
-            <?php include 'header.php'; ?>
+            <?php include __DIR__ . '/header.php'; ?>
 
             <div class="dashboard-content">
                 <div class="page-header">
@@ -181,7 +203,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             <option value="">Select Hotel</option>
                                             <?php foreach ($hotels as $hotel): ?>
                                             <option value="<?php echo $hotel['id']; ?>" data-price="<?php echo $hotel['price']; ?>" <?php echo (isset($_POST['hotel_id']) && $_POST['hotel_id'] == $hotel['id']) ? 'selected' : ''; ?>>
-                                                <?php echo htmlspecialchars($hotel['title']); ?> - $<?php echo number_format($hotel['price'], 2); ?>/night
+                                                <?php echo htmlspecialchars($hotel['title']); ?> -<?php echo number_format($hotel['price'], 2); ?>TND /Night
                                             </option>
                                             <?php endforeach; ?>
                                         </select>

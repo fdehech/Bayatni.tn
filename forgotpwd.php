@@ -2,6 +2,8 @@
 session_start();
 require_once 'config.php';
 
+include('header.php');
+
 $conn->close();
 ?>
 
@@ -12,7 +14,7 @@ $conn->close();
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Bayatni.tn</title>
     <link rel="stylesheet" href="Assets/css/index.css">
-    <link rel="stylesheet" href="Assets/css/forms.css"> 
+    <link rel="stylesheet" href="Assets/css/pwd.css"> 
     <!-- TAILWIND CDN -->
     <script src="https://cdn.tailwindcss.com"></script> 
     <!-- Bootstrap CDN -->
@@ -30,12 +32,6 @@ $conn->close();
     <div class="bg-layer" id="bg2"></div>
   </div>
 
-  <header class="flex justify-between items-center z-10">
-    <a href="index.php"><div id="domain">Bayatni.tn</div></a>
-    <nav class="space-x-2">
-        <a href="signup.php"><button type="button" class="nav-btn-inverse">S'inscrire</button></a>
-    </nav>
-  </header>
   <main>
     <section class="auth-card">
       <form class="form" method="POST" action="">

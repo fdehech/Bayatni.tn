@@ -1,0 +1,14 @@
+header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 1rem 10%;
+    z-index: 1;
+    font-family: "Poppins", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}

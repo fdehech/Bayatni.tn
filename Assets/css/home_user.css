@@ -1,4 +1,4 @@
-html , body , main , header {
+html , body , main {
     font-family: "Poppins", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
@@ -17,15 +17,17 @@ body {
     overflow: hidden;
 }
 
-#domain{
-    font-size: 20px;
-    font-weight: 700;
+.dropdown-wrapper {
+    position: relative;
 }
 
-.dropdown-menu {
-    color: white;
-    position: absolute !important;
-    z-index: 5 !important;
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    padding: 10px;
 }
 
 
@@ -65,23 +67,10 @@ body {
     }
 }
 
-header {
-    top: 0;
-    width: 100%;
-    background-color: transparent;
-    backdrop-filter: blur(10px);
-    color: white;
-    padding: 1rem 10%;
-    overflow: visible;
-}
-
 main {
-    margin-top: 10vh;
-    padding: 2% 10% 0;
     justify-content: center;
     align-items: center;
     align-self: center;
-    background-image:url('Assets/src/Bg1.jpg');
     transition: panBackground 1s ease-in-out;
 }
 
@@ -101,36 +90,33 @@ main {
     font-style: normal;
 }
 .nav-btn {
-    border: 1px solid;
+    border: 1px solid black;
     color: white;
     border-radius: 10px;
     background-color: black;
     padding: 8px 15px;
-    border-color: black;
     transition-duration: 0.5s;
-    
 }
 
 .nav-btn:hover {
-    border: 2px solid;
+    border: 2px solid black;
     color: black;
-    border-color: black;
     background-color: white;
     transition-duration: 1s;
 }
+
 .nav-btn-inverse {
-    border: 2px solid;
+    border: 2px solid black;
     color: black;
+    background-color: white;
     padding: 8px 15px;
     border-radius: 10px;
-    border-color: black;
-    background-color: white;
     transition-duration: 1s;
 }
+
 .nav-btn-inverse:hover {
-    border: 2px solid;
+    border: 2px solid white;
     color: white;
-    border-color: white;
     background-color: black;
     transition-duration: 1s;
 }
@@ -140,14 +126,6 @@ main {
     margin-top: 50px;
 }
 
-.title {
-    position: absolute;
-    top: 30%;
-    left: 40%;
-    color: white;
-    font-size: 5rem;
-    font-weight: 700;
-}
 .bio {
     position: absolute;
     color: white;
@@ -185,13 +163,6 @@ main {
     transition-duration: 1s;
 }
 
-.nav-btn {
-    background-color: #f5f3e7;
-    border-radius: 5px;
-    padding: 5px;
-    color: black;
-}
-
 #map { 
     display: none;
     position: absolute;
@@ -201,4 +172,7 @@ main {
     width: 140px;
     border-radius: 500px;
     border: 3px solid white;
+}
+.hidden {
+    display: none;
 }
