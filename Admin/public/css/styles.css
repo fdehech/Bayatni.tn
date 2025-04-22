@@ -48,6 +48,11 @@ button {
     background: none;
 }
 
+select.goog-te-combo {
+    padding: 5px;
+    border-radius: 10px;
+    width: 140px;
+}
 
 .dashboard {
     display: flex;
@@ -2023,7 +2028,7 @@ button {
 }
 .status-select{
     padding: 10px 20px;
-    border-radius: 10px;<
+    border-radius: 10px;
     border: 0 ;
     outline: 0;
 }

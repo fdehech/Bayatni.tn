@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once __DIR__.'/../../config/config.php';
+require_once __DIR__.'/../../../config/config.php';
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: signin.php");
@@ -204,16 +204,16 @@ function translateStatus($status) {
                 extend: {
                     colors: {
                         primary: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            200: '#bae6fd',
-                            300: '#7dd3fc',
-                            400: '#38bdf8',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                            800: '#075985',
-                            900: '#0c4a6e',
+                            50: '#e0926e',
+                            100: '#bf704d',
+                            200: '#c76d44',
+                            300: '#c46133',
+                            400: '#cc5e2b',
+                            500: '#b85325',
+                            600: '#c4541f',
+                            700: '#d45215',
+                            800: '#cf4a0c',
+                            900: '#d64806',
                         },
                     },
                     fontFamily: {
@@ -235,7 +235,7 @@ function translateStatus($status) {
 
 <body class="min-h-screen text-gray-800">
 
-    <?php include __DIR__."/../../includes/header.php"; ?>
+    <?php include __DIR__."/../../../includes/header.php"; ?>
 
 
     <div id="background-container">
@@ -563,7 +563,7 @@ function translateStatus($status) {
         </div>
     </div>  
 
-    <?php include __DIR__."/../includes/footer.php"; ?>
+    <?php include __DIR__."/../../../includes/footer.php"; ?>
 
     <script>
 

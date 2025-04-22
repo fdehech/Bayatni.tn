@@ -47,10 +47,13 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     <?= htmlspecialchars(isset($_SESSION['user_name']) ? $_SESSION['user_name'] : 'Mon Compte') ?>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end" style="position: absolute; z-index: 9999;">
-                    <li><a class="dropdown-item" href="/production/app/profile/profile.php">Profile</a></li>
-                    <li><a class="dropdown-item" href="/production/app/booking/booking.php">Réservations</a></li>
+                    <li><a class="dropdown-item" href="/production/app/controllers/users/profile.php">Profile</a></li>
                     <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/production/app/controllers/bookings/booking.php">Réservations</a></li>
                     <li><a class="dropdown-item" href="/production/app/auth/logout.php">Déconnexion</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><div id="google_translate_element"></div></li>
+
                 </ul>
             </div>
         </nav>
@@ -66,5 +69,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
             </nav>
         <?php endif; ?>
     </header>
-    
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    </script>

@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once __DIR__.'/../../config/config.php';
+require_once __DIR__.'/../../../config/config.php';
 $pageTitle = "Réservation d'hôtels";
 $is_logged_in = isset($_SESSION['user_id']);
 $user_id = $is_logged_in ? $_SESSION['user_id'] : null;
@@ -174,7 +174,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['book_hotel'])) {
     }
 }
 
-include __DIR__.'/../../includes/header.php';
+include __DIR__.'/../../../includes/header.php';
 ?>
 
 <main>
@@ -279,7 +279,6 @@ include __DIR__.'/../../includes/header.php';
                 <center><button type="submit" class="px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition shadow-lg hover:shadow-xl"><i class="fas fa-search mr-2"></i>Rechercher</button></center>
             </form>
         
-        <!-- Hotel Listings -->
         <div class="space-y-6">
             <?php
             if ($hotels_count > 0) {
@@ -423,7 +422,7 @@ include __DIR__.'/../../includes/header.php';
 
 <?php
 
-include __DIR__.'/../../includes/footer.php';
+include __DIR__.'/../../../includes/footer.php';
 
 
 $conn->close();

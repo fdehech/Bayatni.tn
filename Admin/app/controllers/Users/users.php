@@ -156,9 +156,6 @@
                         <table class="data-table">
                             <thead>
                                 <tr>
-                                    <th>
-                                        <input type="checkbox" id="select-all">
-                                    </th>
                                     <th>User ID</th>
                                     <th>Name</th>
                                     <th>Email</th>
@@ -171,7 +168,6 @@
                                 <?php 
                                 ?>
                                 <tr>
-                                    <td><input type="checkbox" class="user-select"></td>
                                     <td>#User-<?php echo $user['id']; ?></td>
                                     <td>
                                         <div class="user-info-cell">

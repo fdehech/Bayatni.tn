@@ -70,15 +70,12 @@
         <a href="/production/app/booking/booking.php"><button class="main-btn">Réserver Maintenant</button></a>
     <?php elseif ($isLoggedIn):
             $userName = $_SESSION['user_name'];
-            echo "<h1 class='mt-20 mb-10' style='color: white; font-size: 5rem; font-weight: 700; margin-left:10%;'>Bienvenue, $userName</h1>";
+            echo "<h1 class='mt-10 mb-10' style='color: white; font-size: 5rem; font-weight: 700; justify-self:center;'>Bienvenue, $userName</h1>";
             
-            echo '<div class="search-container" style="justify-self:center; width:80%;">
-                <form action="booking.php" method="GET" class="flex">
-                    <input type="text" name="search" placeholder="Rechercher un hôtel ou une destination..." 
-                           class="flex-grow p-3 rounded-l-lg bg-white/20 backdrop-blur-sm border border-white/30 focus:outline-none text-white placeholder-white/70">
-                    <button type="submit" class="p-3 bg-primary-600 hover:bg-primary-700 text-white rounded-r-lg transition">
-                        <i class="fas fa-search"></i>
-                    </button>
+            echo '<div class="search-container" style="justify-self:left; width:60%; justify-self:center;">
+                <form action="/production/app/controllers/bookings/booking.php" method="GET" class="flex">
+                    <input type="text" name="search" style="text-align:center; font-size:1.5rem;" placeholder="Rechercher un hôtel ou une destination..." 
+                           class="flex-grow p-3 rounded bg-white/20 backdrop-blur-sm border border-white/30 focus:outline-none text-white placeholder-white/70">
                 </form>
             </div>';
         ?>

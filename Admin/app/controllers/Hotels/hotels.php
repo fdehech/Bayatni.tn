@@ -307,6 +307,6 @@ if ($locationsResult) {
         });
     });
     </script>
-    <script src="Assets/js/hotels.js"></script>
+    <script src="/production/admin/public/js/hotels.js"></script>
 </body>
 </html>

@@ -283,12 +283,22 @@ $totalRevenue = $result->fetch_assoc()['total'] ?? 0;
                                 <?php endif; ?>
                             </tbody>
                         </table>
+                        <div class="bulk-actions">
+                            <select id="bulk-action">
+                                <option value="">Bulk Actions</option>
+                                <option value="confirm">Confirm Selected</option>
+                                <option value="cancel">Cancel Selected</option>
+                                <option value="delete">Delete Selected</option>
+                                <option value="export">Export Selected</option>
+                            </select>
+                        <button class="apply-btn">Apply</button>
+                </div>
                     </div>
                 </div>
             </div>
         </main>
     </div>
 
-    <script src="Assets/js/bookings.js"></script>
+    <script src="/production/admin/public/js/bookings.js"></script>
 </body>
 </html>
