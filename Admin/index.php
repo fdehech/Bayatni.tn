@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ .'/Assets/php/config.php';
+require_once __DIR__ .'/config/config.php';
 requireLogin();
 
 $stats = [
@@ -87,17 +87,17 @@ if ($result) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Booking Admin Dashboard</title>
-    <link rel="stylesheet" href="Assets/css/styles.css">
+    <link rel="stylesheet" href="public/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="dashboard">
 
-        <?php include __DIR__ .'/Assets/php/sidebar.php'; ?>
+        <?php include __DIR__ .'/includes/sidebar.php'; ?>
 
         <main class="main-content"> 
 
-            <?php include __DIR__ .'/Assets/php/header.php'; ?>
+            <?php include __DIR__ .'/includes/header.php'; ?>
 
             <div class="dashboard-content" id="dashboard">
                 <div class="page-header">
