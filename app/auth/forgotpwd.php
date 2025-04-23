@@ -5,8 +5,6 @@ require_once __DIR__.'/../../config/config.php';
 include __DIR__.'/../../includes/header.php';
 
 
-
-
 if (isset($_POST['email'])) {
   
   $email = $_POST['email'];
@@ -29,9 +27,13 @@ if (isset($_POST['email'])) {
       $lien = "forgotpwd.php?token=$token";
       mail($email, "Réinitialisation du mot de passe", "Clique ici : $lien");
 
-      echo "<p style='color:green;'>Un lien a été envoyé à votre adresse email.</p>";
+      echo "<div class='p-4 mt-10 text-sm text-green-700 bg-green-100 rounded-lg' style='position:absolute; left:37.5%' role='alert'>
+            Un lien a été envoyé à votre adresse email.
+      </div>";
   } else {
-      echo "<p style='color:red;'>Email non reconnu.</p>";
+      echo "<div class='p-4 mt-10 text-sm text-red-700 bg-red-100 rounded-lg' style='position:absolute; left:37.5%' role='alert'>
+            Cette adresse mail n'existe pas dans nos archives.
+      </div>";
   }
 }
 
@@ -113,7 +115,7 @@ $conn->close();
   <main>
     <section class="auth-card">
       <form class="form" method="POST" action="">
-        <h1 class="fma" style="margin-bottom:25px;">Find my account</h1>
+        <h1 class="fma" style=" position: absolute; top:40px;">Recover Account</h1>
           <div class="inputForm" style="padding-left:15px;"> 
             <svg height="20" viewBox="0 0 32 32" width="20" xmlns="http://www.w3.org/2000/svg"><g id="Layer_3"><path d="m30.853 13.87a15 15 0 0 0 -29.729 4.082 15.1 15.1 0 0 0 12.876 12.918 15.6 15.6 0 0 0 2.016.13 14.85 14.85 0 0 0 7.715-2.145 1 1 0 1 0 -1.031-1.711 13.007 13.007 0 1 1 5.458-6.529 2.149 2.149 0 0 1 -4.158-.759v-10.856a1 1 0 0 0 -2 0v1.726a8 8 0 1 0 .2 10.325 4.135 4.135 0 0 0 7.83.274 15.2 15.2 0 0 0 .823-7.455zm-14.853 8.13a6 6 0 1 1 6-6 6.006 6.006 0 0 1 -6 6z"></path></g></svg>
             <input type="text" class="input" name="email"  placeholder="Enter your Email">

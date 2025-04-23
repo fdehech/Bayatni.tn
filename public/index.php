@@ -59,7 +59,7 @@
 
     <?php if (isset($_GET['signup']) && $_GET['signup'] === 'success'): ?>
         <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg" style="max-width:500px; display:flex; justify-self:center;" role="alert">
-        You have signed up successfully! Please log in to continue.
+        <?php echo $_SESSION['success_message'] ; ?>
         </div>
     <?php endif; ?>
 
@@ -67,12 +67,12 @@
         <h1 class="title">Bayatni</h1>
         <p class="bio">Bayatni.tn est une plateforme tunisienne dédiée à la réservation d'hôtels.</br> Nous facilitons vos démarches en ligne pour vous offrir </br>une expérience simple, rapide et adaptée à vos besoins,</br> où que vous soyez en Tunisie ou en dehors !</br></p>
         
-        <a href="/production/app/booking/booking.php"><button class="main-btn">Réserver Maintenant</button></a>
+        <a href="/production/app/controllers/bookings/booking.php"><button class="main-btn">Réserver Maintenant</button></a>
     <?php elseif ($isLoggedIn):
             $userName = $_SESSION['user_name'];
             echo "<h1 class='mt-10 mb-10' style='color: white; font-size: 5rem; font-weight: 700; justify-self:center;'>Bienvenue, $userName</h1>";
             
-            echo '<div class="search-container" style="justify-self:left; width:60%; justify-self:center;">
+            echo '<div class="search-container" style="width:60%; justify-self:center;">
                 <form action="/production/app/controllers/bookings/booking.php" method="GET" class="flex">
                     <input type="text" name="search" style="text-align:center; font-size:1.5rem;" placeholder="Rechercher un hôtel ou une destination..." 
                            class="flex-grow p-3 rounded bg-white/20 backdrop-blur-sm border border-white/30 focus:outline-none text-white placeholder-white/70">

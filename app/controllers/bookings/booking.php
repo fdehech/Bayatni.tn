@@ -183,7 +183,7 @@ include __DIR__.'/../../../includes/header.php';
 
         <div class="glass-card rounded-2xl mb-10 text-white">
             
-            <form method="GET" action="booking.php" class="mt-8">
+            <form method="GET" action="booking.php" class="mt-20">
                     <div class="flex flex-col md:flex-row gap-4 mb-6">
                         <div class="flex-1">
                             <label for="search" class="block mb-2 font-medium">Recherche</label>
@@ -277,9 +277,8 @@ include __DIR__.'/../../../includes/header.php';
                 <?php endif; ?>
                 
                 <center><button type="submit" class="px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition shadow-lg hover:shadow-xl"><i class="fas fa-search mr-2"></i>Rechercher</button></center>
-            </form>
-        
-        <div class="space-y-6">
+        </form>  
+        <div class="space-y-10">
             <?php
             if ($hotels_count > 0) {
                 $delay = 1;

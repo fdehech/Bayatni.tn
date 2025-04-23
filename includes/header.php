@@ -13,10 +13,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title><?php echo isset($pageTitle) ? $pageTitle . ' - Bayatni.tn' : 'Bayatni.tn'; ?></title>
-
+    
+    <link rel="stylesheet" href="/production/public/css/header.css">
     <link rel="stylesheet" href="/production/public/css/<?= $isLoggedIn ? 'home_user.css' : 'index.css' ?>">
     <link rel="stylesheet" href="/production/public/css/booking.css">
-    <link rel="stylesheet" href="/production/public/css/header.css">
+
     
     <!-- TAILWIND CDN -->
     <script src="https://cdn.tailwindcss.com"></script> 

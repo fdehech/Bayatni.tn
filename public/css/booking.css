@@ -3,14 +3,19 @@ body {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  overflow:auto !important;
+  overflow: auto !important;
 }
 
 .glass-card {
-  background-color:transparent;
+  background-color: transparent;
   border: 0;
   justify-self: center;
-  width: max-content !important;
+  width: 80% !important;
+}
+
+/* Add this rule to make hotel cards take full width */
+.hotel-card.glass-card {
+  width: 100% !important;
 }
 
 .hotel-card {
