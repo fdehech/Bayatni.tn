@@ -9,6 +9,7 @@ $pageTitle = "Réservation d'hôtels";
 $is_logged_in = isset($_SESSION['user_id']);
 $user_id = $is_logged_in ? $_SESSION['user_id'] : null;
 
+
 $region_filter = isset($_GET['region']) ? $_GET['region'] : '';
 $price_filter = isset($_GET['price']) ? $_GET['price'] : 500;
 $search_term = isset($_GET['search']) ? $_GET['search'] : '';
@@ -142,7 +143,6 @@ function displayFeatures($features) {
     return $html;
 }
 
-$booking_message = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['book_hotel'])) {
     if (!$is_logged_in) {
         $booking_message = '<div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg">Veuillez vous connecter pour effectuer une réservation.</div>';
@@ -151,25 +151,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['book_hotel'])) {
         $check_in = $_POST['check_in'];
         $check_out = $_POST['check_out'];
         $guests = $_POST['guests'];
-        
-        $hotel_price_query = "SELECT price FROM hotels WHERE id = $hotel_id";
-        $price_result = $conn->query($hotel_price_query);
-        $price_row = $price_result->fetch_assoc();
-        $price_per_night = $price_row['price'];
-        
-        $check_in_date = new DateTime($check_in);
-        $check_out_date = new DateTime($check_out);
-        $days = $check_in_date->diff($check_out_date)->days;
-        $total_price = $price_per_night * $days;
+        $room_type = $_POST['room_type'];
+        $total_price = $_POST['total_price'];
 
-        $booking_sql = "INSERT INTO bookings (user_id, hotel_id, check_in, check_out, guests, total_price, status) 
-                       VALUES ($user_id, $hotel_id, '$check_in', '$check_out', $guests, $total_price, 'confirmed')";
-        
-        if ($conn->query($booking_sql) === TRUE) {
-            $booking_id = $conn->insert_id;
-            $booking_message = '<div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg">Réservation confirmée! Numéro de réservation: ' . $booking_id . '</div>';
+        $payment_status = isset($_POST['payment_status']) ? $_POST['payment_status'] : 'pending';
+        $booking_status = ($payment_status === 'confirmed') ? 'confirmed' : 'pending';
+
+        $stmt = $conn->prepare("INSERT INTO bookings (user_id, hotel_id, check_in, check_out, guests, room_type, total_price, status) 
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("iissisds", $user_id, $hotel_id, $check_in, $check_out, $guests, $room_type, $total_price, $booking_status);
+
+
+        if ($stmt->execute()) {
+            $booking_id = $stmt->insert_id;
+        if ($booking_status === 'confirmed') {
+            $booking_message = '<div style="width:40%; justify-self:center; text-align:center;" class="p-4 mt-5 text-sm text-green-700 bg-green-100 rounded-lg">Réservation confirmée et payée! Numéro de réservation: ' . $booking_id . '</div>';
         } else {
-            $booking_message = '<div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg">Erreur: ' . $conn->error . '</div>';
+            $booking_message = '<div style="width:40%; justify-self:center; text-align:center;" class="p-4 mt-5 text-sm text-yellow-700 bg-yellow-100 rounded-lg">Réservation en attente de paiement! Numéro de réservation: ' . $booking_id . '</div>';
+        }
+        } else {
+            $booking_message = '<div style="width:40%; justify-self:center; text-align:center;" class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg">Erreur: ' . $stmt->error . '</div>';
         }
     }
 }
@@ -179,7 +180,11 @@ include __DIR__.'/../../../includes/header.php';
 
 <main>
 
-        <?php echo $booking_message; ?>
+    <?php
+        if (isset($booking_message)) {
+            echo $booking_message;
+        } 
+    ?>
 
         <div class="glass-card rounded-2xl mb-10 text-white">
             
@@ -277,7 +282,7 @@ include __DIR__.'/../../../includes/header.php';
                 <?php endif; ?>
                 
                 <center><button type="submit" class="px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition shadow-lg hover:shadow-xl"><i class="fas fa-search mr-2"></i>Rechercher</button></center>
-        </form>  
+            </form>  
         <div class="space-y-10">
             <?php
             if ($hotels_count > 0) {
@@ -340,7 +345,7 @@ include __DIR__.'/../../../includes/header.php';
 <div id="bookingModal" class="fixed inset-0 z-50 hidden overflow-y-auto">
     <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
         <div class="fixed inset-0 transition-opacity" aria-hidden="true">
-            <div class="absolute inset-0 bg-gray-900 opacity-75"></div>
+            <div class="absolute inset-0 bg-gray-900 opacity-90"></div>
         </div>
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
         <div class="inline-block align-bottom glass-card rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
@@ -353,51 +358,81 @@ include __DIR__.'/../../../includes/header.php';
                         <form method="POST" action="booking.php" id="booking-form">
                             <input type="hidden" name="hotel_id" id="modal-hotel-id">
                             <input type="hidden" name="book_hotel" value="1">
+                            <input type="hidden" name="total_price" id="total-price">
+                            <input type="hidden" name="payment_status" id="payment-status" value="pending">
                             
                             <div class="mb-4">
                                 <h4 id="modal-hotel-title" class="text-lg font-semibold text-white"></h4>
-                                <p class="text-white/80">Prix par nuit: <span id="modal-hotel-price"></span> DT</p>
+                                <p class="text-white/80">Prix de base par nuit: <span id="modal-hotel-price"></span> DT</p>
                             </div>
                             
-                            <div class="mb-4">
-                                <label for="modal-check-in" class="block text-sm font-medium text-white mb-1">Date d'arrivée</label>
-                                <input type="date" class="w-full p-2 rounded-lg bg-white/20 backdrop-blur-sm border border-white/30 focus:outline-none focus:ring-2 focus:ring-primary-500 text-white" 
-                                       id="modal-check-in" name="check_in" required 
-                                       min="<?php echo date('Y-m-d'); ?>">
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label for="modal-check-out" class="block text-sm font-medium text-white mb-1">Date de départ</label>
-                                <input type="date" class="w-full p-2 rounded-lg bg-white/20 backdrop-blur-sm border border-white/30 focus:outline-none focus:ring-2 focus:ring-primary-500 text-white" 
-                                       id="modal-check-out" name="check_out" required 
-                                       min="<?php echo date('Y-m-d', strtotime('+1 day')); ?>">
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label for="modal-guests" class="block text-sm font-medium text-white mb-1">Nombre de voyageurs</label>
-                                <select class="w-full p-2 rounded-lg bg-white/20 backdrop-blur-sm border border-white/30 focus:outline-none focus:ring-2 focus:ring-primary-500 text-white" 
-                                       id="modal-guests" name="guests" required>
-                                    <option value="1">1 personne</option>
-                                    <option value="2" selected>2 personnes</option>
-                                    <option value="3">3 personnes</option>
-                                    <option value="4">4 personnes</option>
-                                    <option value="5">5 personnes</option>
-                                </select>
-                            </div>
-                            
-                            <div class="mb-4">
-                                <div class="flex items-center">
-                                    <input class="mr-2 accent-primary-500" type="checkbox" id="terms-check" required>
-                                    <label class="text-sm text-white" for="terms-check">
-                                        J'accepte les conditions générales de vente
-                                    </label>
+                            <div id="booking-details-form">
+                                <div class="mb-4">
+                                    <label for="modal-room-type" class="block text-sm font-medium text-white mb-1">Type de chambre</label>
+                                    <select class="w-full p-2 rounded-lg bg-white/20 backdrop-blur-sm border border-white/30 focus:outline-none focus:ring-2 focus:ring-primary-500 text-white" 
+                                           id="modal-room-type" name="room_type" required>
+                                        <option value="standard">Standard</option>
+                                        <option value="deluxe">Deluxe (+50%)</option>
+                                        <option value="suite">Suite (+100%)</option>
+                                        <option value="family">Familiale (+80%)</option>
+                                    </select>
                                 </div>
+                                
+                                <div class="mb-4">
+                                    <label for="modal-check-in" class="block text-sm font-medium text-white mb-1">Date d'arrivée</label>
+                                    <input type="date" class="w-full p-2 rounded-lg bg-white/20 backdrop-blur-sm border border-white/30 focus:outline-none focus:ring-2 focus:ring-primary-500 text-white" 
+                                           id="modal-check-in" name="check_in" required 
+                                           min="<?php echo date('Y-m-d'); ?>">
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="modal-check-out" class="block text-sm font-medium text-white mb-1">Date de départ</label>
+                                    <input type="date" class="w-full p-2 rounded-lg bg-white/20 backdrop-blur-sm border border-white/30 focus:outline-none focus:ring-2 focus:ring-primary-500 text-white" 
+                                           id="modal-check-out" name="check_out" required 
+                                           min="<?php echo date('Y-m-d', strtotime('+1 day')); ?>">
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="modal-guests" class="block text-sm font-medium text-white mb-1">Nombre de voyageurs</label>
+                                    <select class="w-full p-2 rounded-lg bg-white/20 backdrop-blur-sm border border-white/30 focus:outline-none focus:ring-2 focus:ring-primary-500 text-white" 
+                                           id="modal-guests" name="guests" required>
+                                        <option value="1" selected>1 personne</option>
+                                        <option value="2">2 personnes</option>
+                                        <option value="3">3 personnes</option>
+                                        <option value="4">4 personnes</option>
+                                        <option value="5">5 personnes</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <div class="flex items-center">
+                                        <input class="mr-2 accent-primary-500" type="checkbox" id="terms-check" required>
+                                        <label class="text-sm text-white" for="terms-check">
+                                            J'accepte les conditions générales de vente
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div id="payment-form" class="hidden">
+                                <div class="mb-4">
+                                    <label for="payment-method" class="block text-sm font-medium text-white mb-1">Méthode de paiement</label>
+                                    <select class="w-full p-2 rounded-lg bg-white/20 backdrop-blur-sm border border-white/30 focus:outline-none focus:ring-2 focus:ring-primary-500 text-white" 
+                                           id="payment-method" name="payment_method" required>
+                                        <option value="credit-card">Carte de crédit</option>
+                                    </select>
+                                </div>
+                                
                             </div>
                             
                             <div class="mb-4 p-4 bg-white/10 backdrop-blur-sm rounded-lg">
                                 <h5 class="font-semibold text-white mb-2">Résumé de la réservation</h5>
                                 <div id="booking-dates" class="text-white/80"></div>
                                 <div id="booking-nights" class="text-white/80"></div>
+                                <div id="booking-room-type" class="text-white/80"></div>
+                                <div id="booking-price-per-night" class="text-white/80"></div>
+                                <div id="booking-subtotal" class="text-white/80"></div>
+                                <div id="booking-tax" class="text-white/80"></div>
                                 <div id="booking-total" class="font-bold text-white mt-2"></div>
                             </div>
                             
@@ -406,9 +441,17 @@ include __DIR__.'/../../../includes/header.php';
                                         class="px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-lg hover:bg-white/30 transition">
                                     Annuler
                                 </button>
-                                <button type="submit" 
+                                <button type="button" id="confirm-btn" onclick="proceedToPayment()" 
                                         class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition shadow-lg hover:shadow-xl">
-                                    Confirmer la réservation
+                                    Réserver maintenant
+                                </button>
+                                <button type="button" id="pay-now-btn" onclick="processPayment()" 
+                                        class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition shadow-lg hover:shadow-xl hidden">
+                                    Payer maintenant
+                                </button>
+                                <button type="button" id="pay-later-btn" onclick="payLater()" 
+                                        class="px-4 py-2 bg-yellow-600 hover:bg-yellow-700 text-white rounded-lg transition shadow-lg hover:shadow-xl hidden">
+                                    Payer plus tard
                                 </button>
                             </div>
                         </form>
@@ -427,64 +470,5 @@ include __DIR__.'/../../../includes/footer.php';
 $conn->close();
 ?>
 
-<script>
-document.getElementById('price').addEventListener('input', function() {
-    document.getElementById('price-value').textContent = this.value + ' DT';
-});
-
-function showBookingForm(hotelId, hotelTitle, hotelPrice) {
-    document.getElementById('modal-hotel-id').value = hotelId;
-    document.getElementById('modal-hotel-title').textContent = hotelTitle;
-    document.getElementById('modal-hotel-price').textContent = hotelPrice;
-    
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    
-    const checkoutDate = new Date(today);
-    checkoutDate.setDate(checkoutDate.getDate() + 3);
-    
-    document.getElementById('modal-check-in').value = formatDate(tomorrow);
-    document.getElementById('modal-check-out').value = formatDate(checkoutDate);
-
-    updateBookingSummary();
-
-    document.getElementById('bookingModal').classList.remove('hidden');
-}
-
-function closeBookingModal() {
-    document.getElementById('bookingModal').classList.add('hidden');
-}
-
-function formatDate(date) {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-}
-
-function updateBookingSummary() {
-    const checkIn = new Date(document.getElementById('modal-check-in').value);
-    const checkOut = new Date(document.getElementById('modal-check-out').value);
-    const pricePerNight = parseInt(document.getElementById('modal-hotel-price').textContent);
-    const guests = document.getElementById('modal-guests').value;
-    
-
-    const timeDiff = checkOut.getTime() - checkIn.getTime();
-    const nights = Math.ceil(timeDiff / (1000 * 3600 * 24));
-
-    const options = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' };
-    const checkInFormatted = checkIn.toLocaleDateString('fr-FR', options);
-    const checkOutFormatted = checkOut.toLocaleDateString('fr-FR', options);
-    
-    document.getElementById('booking-dates').textContent = `${checkInFormatted} → ${checkOutFormatted}`;
-    document.getElementById('booking-nights').textContent = `${nights} nuit${nights > 1 ? 's' : ''}, ${guests} personne${guests > 1 ? 's' : ''}`;
-    document.getElementById('booking-total').textContent = `Total: ${pricePerNight * nights} DT`;
-}
-
-document.getElementById('modal-check-in').addEventListener('change', updateBookingSummary);
-document.getElementById('modal-check-out').addEventListener('change', updateBookingSummary);
-document.getElementById('modal-guests').addEventListener('change', updateBookingSummary);
-</script>
-
+<script src="/production/public/js/book.js"></script>
 <script src="/production/public/js/bg.js"></script>
