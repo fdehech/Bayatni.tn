@@ -50,8 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $mail->Subject = 'Réinitialisation du mot de passe';
                 $mail->Body = "
                     Bonjour,<br><br>
-                    Pour réinitialiser votre mot de passe, cliquez sur le lien suivant :<br>
-                    <a href=\"$resetLink\">Réinitialiser mon mot de passe</a><br><br>
+                    Pour reinitialiser votre mot de passe, cliquez sur le lien suivant :<br>
+                    <a href=\"$resetLink\">Reinitialiser mon mot de passe</a><br><br>
                     Ce lien expirera dans une heure.
                 ";
 
@@ -86,14 +86,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="bg-layer" id="bg1"></div>
     <div class="bg-layer" id="bg2"></div>
   </div>
-
+  <?php include __DIR__.'/../../includes/header.php'; ?>
   <main>
     <section class="auth-card">
       <form class="form" method="POST" action="">
-        <h1 class="fma" style="position: absolute; top: 40px;">Réinitialisation du mot de passe</h1>
+        <h1 class="fma" style="">Réinitialisation du </br> Mot de Passe</h1>
         
-        <div class="inputForm" style="padding-left:15px;"> 
-          <svg height="20" viewBox="0 0 32 32" width="20" xmlns="http://www.w3.org/2000/svg"><path d="..."/></svg>
+        <div class="inputForm" style=""> 
+          <svg height="20" viewBox="-64 0 512 512" width="20" xmlns="http://www.w3.org/2000/svg"><path d="m336 512h-288c-26.453125 0-48-21.523438-48-48v-224c0-26.476562 21.546875-48 48-48h288c26.453125 0 48 21.523438 48 48v224c0 26.476562-21.546875 48-48 48zm-288-288c-8.8125 0-16 7.167969-16 16v224c0 8.832031 7.1875 16 16 16h288c8.8125 0 16-7.167969 16-16v-224c0-8.832031-7.1875-16-16-16zm0 0"></path><path d="m304 224c-8.832031 0-16-7.167969-16-16v-80c0-52.929688-43.070312-96-96-96s-96 43.070312-96 96v80c0 8.832031-7.167969 16-16 16s-16-7.167969-16-16v-80c0-70.59375 57.40625-128 128-128s128 57.40625 128 128v80c0 8.832031-7.167969 16-16 16zm0 0"></path></svg>
           <input type="email" class="input" name="email" placeholder="Entrez votre adresse e-mail" required>
         </div>
 
@@ -101,27 +101,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php if (!empty($errors)): ?>
           <div id="errors">
             <?php foreach ($errors as $error): ?>
-              <p style="color: red; font-size: 0.9rem; font-family: 'Poppins', sans-serif;">
-                <?= htmlspecialchars($error) ?>
-              </p>
+              <div style="justify-self:center; text-align:center;" class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg"> Erreur <?= htmlspecialchars($error) ?></div>
             <?php endforeach; ?>
           </div>
         <?php endif; ?>
 
         <!-- Message de succès -->
         <?php if (!empty($_SESSION['success'])): ?>
-          <p style="color: green; font-size: 0.9rem; font-family: 'Poppins', sans-serif;">
-            <?= $_SESSION['success']; unset($_SESSION['success']); ?>
-          </p>
+          <div style="justify-self:center; text-align:center;" class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg"> Succes <?= $_SESSION['success']; unset($_SESSION['success']); ?></div>
         <?php endif; ?>
 
         <div class="inputSubmit">
-          <button class="button-submit" type="submit" name="recover">Envoyer le lien de réinitialisation</button>
+          <button class="button-submit" type="submit" name="recover">Envoyer le lien</button>
         </div>
 
-        <p class="p" style="margin-top:20px;">
-          Vous n'avez pas encore de compte ? 
-          <a href="signup.php"><span class="span">Inscrivez-vous</span></a>
         </p>
       </form>
     </section>

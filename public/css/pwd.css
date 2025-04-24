@@ -33,9 +33,9 @@ main{
   display: flex;
   flex-direction: column;
   padding-top: 100px;
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-bottom: 60px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 30px;
 }
 
 .auth-card input {
@@ -58,25 +58,6 @@ label{
   color: white !important;
 }
 
-.signinForm { 
-  align-items: center;
-  padding-top: 50px;
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-bottom: 30px;
-  border-radius: 20px;
-}
-
-.signupForm{
-  align-items: center;
-  padding-top: 35px;
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-bottom: 20px;
-  border-radius: 20px;
-}
-
-
 
 .form #countries, .form #gender{
   margin-bottom: 1rem;
@@ -98,7 +79,6 @@ label{
   font-weight: 400;
   font-style: normal;
   color: white;
-  width: 300px;
   gap: 10px;
   margin-bottom: 15px;
 }
@@ -252,6 +232,10 @@ select , select option {
 
 }
 .fma{
+  position: fixed;
+  top: 0;
+  margin-top: 40px;
+  margin-bottom: 30px;
   font-family: "Poppins", sans-serif;
   align-self: center;
   text-align: center;

@@ -76,21 +76,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
+
+  <div id="background-container">
+    <div class="bg-layer" id="bg1"></div>
+    <div class="bg-layer" id="bg2"></div>
+  </div>
+
+  <?php include __DIR__.'/../../includes/header.php'; ?>
+  
   <main>
-    <div id="background-container">
-      <div class="bg-layer" id="bg1"></div>
-      <div class="bg-layer" id="bg2"></div>
-    </div>
     <section class="auth-card">
       <form class="form" method="POST">
-        <h1 class="fma">Réinitialiser le mot de passe</h1>
+        <h1 class="fma">Réinitialiser le Mot de Passe</h1>
 
         <?php if (!empty($errors)): ?>
           <div style="margin-top: 10px;">
             <?php foreach ($errors as $error): ?>
-              <p style="color:red; font-family: Poppins, sans-serif; font-size: 0.9rem;">
-                <?= htmlspecialchars($error) ?>
-              </p>
+              <div style="justify-self:center; text-align:center;" class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg"> Erreur <?= htmlspecialchars($error) ?></div>
             <?php endforeach; ?>
           </div>
         <?php endif; ?>
