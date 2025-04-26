@@ -86,11 +86,12 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function validateCardName() {
-    const isValid = cardName.value.trim().length > 0;
+    const name = cardName.value.trim();
+    const isValid = /^[A-Za-zÀ-ÿ' -]{2,}$/.test(name);
     styleInput(cardName, isValid);
     return isValid;
   }
-
+  
   function validateCardNumber() {
     const isValid = /^\d{16}$/.test(cardNumber.value.replace(/\s+/g, ''));
     styleInput(cardNumber, isValid);

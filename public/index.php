@@ -46,6 +46,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
@@ -73,9 +75,10 @@
             echo "<h1 class='mt-10 mb-10' style='color: white; font-size: 5rem; font-weight: 700; justify-self:center;'>Bienvenue, $userName</h1>";
             
             echo '<div class="search-container" style="width:60%; justify-self:center;">
-                <form action="/production/app/controllers/bookings/booking.php" method="GET" class="flex">
-                    <input type="text" name="search" style="text-align:center; font-size:1.5rem;" placeholder="Rechercher un hôtel ou une destination..." 
+                <form action="/production/app/controllers/views/search-results.php" method="GET" class="flex">
+                    <input type="text" name="q" style="text-align:center; font-size:1.5rem;" placeholder="Recherche Rapide Intelligent" 
                            class="flex-grow p-3 rounded bg-white/20 backdrop-blur-sm border border-white/30 focus:outline-none text-white placeholder-white/70">
+                    </button>
                 </form>
             </div>';
         ?>

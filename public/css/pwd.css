@@ -53,11 +53,9 @@ main{
   font-style: normal;
 }
 
-
 label{
   color: white !important;
 }
-
 
 .form #countries, .form #gender{
   margin-bottom: 1rem;

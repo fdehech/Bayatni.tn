@@ -143,38 +143,6 @@ function displayFeatures($features) {
     return $html;
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['book_hotel'])) {
-    if (!$is_logged_in) {
-        $booking_message = '<div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg">Veuillez vous connecter pour effectuer une réservation.</div>';
-    } else {
-        $hotel_id = $_POST['hotel_id'];
-        $check_in = $_POST['check_in'];
-        $check_out = $_POST['check_out'];
-        $guests = $_POST['guests'];
-        $room_type = $_POST['room_type'];
-        $total_price = $_POST['total_price'];
-
-        $payment_status = isset($_POST['payment_status']) ? $_POST['payment_status'] : 'pending';
-        $booking_status = ($payment_status === 'confirmed') ? 'confirmed' : 'pending';
-
-        $stmt = $conn->prepare("INSERT INTO bookings (user_id, hotel_id, check_in, check_out, guests, room_type, total_price, status) 
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("iissisds", $user_id, $hotel_id, $check_in, $check_out, $guests, $room_type, $total_price, $booking_status);
-
-
-        if ($stmt->execute()) {
-            $booking_id = $stmt->insert_id;
-        if ($booking_status === 'confirmed') {
-            $booking_message = '<div style="width:40%; justify-self:center; text-align:center;" class="p-4 mt-5 text-sm text-green-700 bg-green-100 rounded-lg">Réservation confirmée et payée! Numéro de réservation: ' . $booking_id . '</div>';
-        } else {
-            $booking_message = '<div style="width:40%; justify-self:center; text-align:center;" class="p-4 mt-5 text-sm text-yellow-700 bg-yellow-100 rounded-lg">Réservation en attente de paiement! Numéro de réservation: ' . $booking_id . '</div>';
-        }
-        } else {
-            $booking_message = '<div style="width:40%; justify-self:center; text-align:center;" class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg">Erreur: ' . $stmt->error . '</div>';
-        }
-    }
-}
-
 include __DIR__.'/../../../includes/header.php';
 ?>
 
@@ -316,7 +284,7 @@ include __DIR__.'/../../../includes/header.php';
                                     <?php echo displayFeatures($row['features']); ?>
                                 </div>
                                 <div class="mt-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
-                                    <a href="hotel.php?id=<?php echo $row['id']; ?>" class="px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-lg hover:bg-white/30 transition text-center">
+                                    <a href="/production/app/controllers/views/hotel-details.php?id=<?php echo $row['id']; ?>" class="px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-lg hover:bg-white/30 transition text-center">
                                         <i class="fas fa-info-circle mr-2"></i>Détails
                                     </a>
                                     <button onclick="showBookingForm(<?php echo $row['id']; ?>, '<?php echo htmlspecialchars(addslashes($row['title'])); ?>', <?php echo $row['price']; ?>)" 
@@ -355,7 +323,7 @@ include __DIR__.'/../../../includes/header.php';
                         <h3 class="text-2xl leading-6 font-bold text-white mb-4" id="modal-title">
                             Réserver votre séjour
                         </h3>
-                        <form method="POST" action="booking.php" id="booking-form">
+                        <form method="POST" action="process_booking.php" id="booking-form">
                             <input type="hidden" name="hotel_id" id="modal-hotel-id">
                             <input type="hidden" name="book_hotel" value="1">
                             <input type="hidden" name="total_price" id="total-price">
@@ -472,3 +440,14 @@ $conn->close();
 
 <script src="/production/public/js/book.js"></script>
 <script src="/production/public/js/bg.js"></script>
+<script>
+function processPayment() {
+    document.getElementById('payment-status').value = 'confirmed';
+    document.getElementById('booking-form').submit();
+}
+
+function payLater() {
+    document.getElementById('payment-status').value = 'pending';
+    document.getElementById('booking-form').submit();
+}
+</script>

@@ -2,6 +2,10 @@
 session_start();
 require_once __DIR__.'/../../config/config.php';
 
+
+
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "<script>console.log('DEBUGGING')</script>";
     $prenom = htmlspecialchars(trim($_POST['prenom']));
@@ -136,13 +140,16 @@ $conn->close();
     <div class="bg-layer" id="bg1"></div>
     <div class="bg-layer" id="bg2"></div>
   </div>
+      <?php
+      if (isset($_GET['error']) && $_GET['error'] == 'true' && isset($_SESSION['errors'])) : ?>
+        <div class="p-2.5 mt-10 text-sm text-red-700 bg-red-100 rounded-lg" style="max-width:500px; display:flex; justify-self:center;" role="alert">
+          <?php echo $_SESSION['errors'][0]; ?>
+        </div>
+      <?php unset($_SESSION['errors']);
+      endif; ?>
   <main class="flex-grow flex items-center justify-center">
+
     <div class="auth-card">
-    <?php if (isset($_GET['signup']) && $_GET['signup'] === 'error'): ?>
-      <div class="p-2.5 mt-10 text-sm text-red-700 bg-red-100 rounded-lg" style="max-width:500px; display:flex; justify-self:center;" role="alert">
-      Sign up Error !
-      </div>
-    <?php endif; ?>
       <form class="signupForm" method="POST" action="">
         <div class="form">
           <div class="inputForm" id="nom-box">
