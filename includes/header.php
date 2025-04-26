@@ -3,6 +3,8 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+require __DIR__.'/../config/checkrole.php';
+
 $isLoggedIn = isset($_SESSION['user_id']) || isset($_SESSION['user_name']);
 $current_page = basename($_SERVER['PHP_SELF']);
 

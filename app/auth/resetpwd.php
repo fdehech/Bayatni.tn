@@ -17,6 +17,11 @@ if (empty($token)) {
     exit();
 }
 
+if (isset($_SESSION['user_id'])) {
+  header('Location: ../controllers/views/profile.php');
+  exit();
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $new_password = $_POST['new_password'] ?? '';
     $confirm_password = $_POST['confirm_password'] ?? '';

@@ -14,7 +14,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 function isLoggedIn() {
-    return isset($_SESSION['user_id']);
+    return isset($_SESSION['user_role']);
 }
 
 function requireLogin() {

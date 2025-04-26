@@ -7,6 +7,7 @@ if (isset($_SESSION['user_id'])) {
   exit();
 }
 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "<script>console.log('DEBUGGING')</script>";
     $prenom = htmlspecialchars(trim($_POST['prenom']));

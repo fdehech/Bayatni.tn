@@ -1,7 +1,6 @@
-<?php
+<?php   
     session_start();
     require_once __DIR__ .'/../config/config.php';
-    $isLoggedIn = isset($_SESSION['user_name']);
     
     $query = "
     SELECT hotels.id, hotels.title, hotels_coordinates.x, hotels_coordinates.y
