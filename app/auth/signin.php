@@ -4,6 +4,11 @@ require_once __DIR__.'/../../config/config.php';
 $errors = $_SESSION['login_errors'] ?? [];
 unset($_SESSION['login_errors']);
 
+if (isset($_SESSION['user_id'])) {
+  header('Location: ../controllers/views/profile.php');
+  exit();
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
     $password = $_POST['password'];
