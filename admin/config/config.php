@@ -19,7 +19,7 @@ function isLoggedIn() {
 
 function requireLogin() {
     if (!isLoggedIn()) {
-        header("Location: /production/admin/app/auth/login.php");
+        header("Location: /development/admin/app/auth/login.php");
         exit();
     }
 }

@@ -284,7 +284,7 @@ include __DIR__.'/../../../includes/header.php';
                                     <?php echo displayFeatures($row['features']); ?>
                                 </div>
                                 <div class="mt-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
-                                    <a href="/production/app/controllers/views/hotel-details.php?id=<?php echo $row['id']; ?>" class="px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-lg hover:bg-white/30 transition text-center">
+                                    <a href="/development/app/controllers/views/hotel-details.php?id=<?php echo $row['id']; ?>" class="px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-lg hover:bg-white/30 transition text-center">
                                         <i class="fas fa-info-circle mr-2"></i>Détails
                                     </a>
                                     <button onclick="showBookingForm(<?php echo $row['id']; ?>, '<?php echo htmlspecialchars(addslashes($row['title'])); ?>', <?php echo $row['price']; ?>)" 
@@ -438,8 +438,8 @@ include __DIR__.'/../../../includes/footer.php';
 $conn->close();
 ?>
 
-<script src="/production/public/js/book.js"></script>
-<script src="/production/public/js/bg.js"></script>
+<script src="/development/public/js/book.js"></script>
+<script src="/development/public/js/bg.js"></script>
 <script>
 function processPayment() {
     document.getElementById('payment-status').value = 'confirmed';

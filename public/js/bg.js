@@ -1,13 +1,13 @@
 const images = [
-    '/production/public/images/Bg1.jpg',
-    '/production/public/images/Bg2.jpg',
-    '/production/public/images/Bg3.jpg',
-    '/production/public/images/Bg4.jpg',
-    '/production/public/images/Bg5.jpg',
-    '/production/public/images/Bg6.jpg',
-    '/production/public/images/Bg7.jpg',
-    '/production/public/images/Bg8.jpg',
-    '/production/public/images/Bg9.jpg'
+    '/development/public/images/Bg1.jpg',
+    '/development/public/images/Bg2.jpg',
+    '/development/public/images/Bg3.jpg',
+    '/development/public/images/Bg4.jpg',
+    '/development/public/images/Bg5.jpg',
+    '/development/public/images/Bg6.jpg',
+    '/development/public/images/Bg7.jpg',
+    '/development/public/images/Bg8.jpg',
+    '/development/public/images/Bg9.jpg'
   ];
   
   let current = 0;

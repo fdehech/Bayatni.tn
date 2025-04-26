@@ -138,7 +138,7 @@ if ($result) {
                 <div class="table-card">
                     <div class="table-header">
                         <h3>Recent Bookings</h3>
-                        <a href="/production/admin/app/controllers/bookings/bookings.php" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                        <a href="/development/admin/app/controllers/bookings/bookings.php" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="table-responsive">
                         <table class="data-table">
@@ -170,9 +170,9 @@ if ($result) {
                                     <td><?php echo number_format($booking['total_price'], 2); ?> TND</td>
                                     <td>
                                         <div class="action-buttons">
-                                            <a href="/production/admin/app/controllers/bookings/booking_view.php?id=<?php echo $booking['id']; ?>" class="action-btn view-btn"><i class="fas fa-eye"></i></a>
-                                            <a href="/production/admin/app/controllers//bookings/booking_edit.php?id=<?php echo $booking['id']; ?>" class="action-btn edit-btn"><i class="fas fa-edit"></i></a>
-                                            <a href="/production/admin/app/controllers/bookings/booking_delete.php?id=<?php echo $booking['id']; ?>" class="action-btn delete-btn" onclick="return confirm('Are you sure you want to delete this booking?');"><i class="fas fa-trash"></i></a>
+                                            <a href="/development/admin/app/controllers/bookings/booking_view.php?id=<?php echo $booking['id']; ?>" class="action-btn view-btn"><i class="fas fa-eye"></i></a>
+                                            <a href="/development/admin/app/controllers//bookings/booking_edit.php?id=<?php echo $booking['id']; ?>" class="action-btn edit-btn"><i class="fas fa-edit"></i></a>
+                                            <a href="/development/admin/app/controllers/bookings/booking_delete.php?id=<?php echo $booking['id']; ?>" class="action-btn delete-btn" onclick="return confirm('Are you sure you want to delete this booking?');"><i class="fas fa-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>
@@ -190,7 +190,7 @@ if ($result) {
                 <div class="recent-reviews">
                     <div class="section-header">
                         <h3>Recent Reviews</h3>
-                        <a href="/production/admin/app/controllers/reviews/reviews.php" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                        <a href="/development/admin/app/controllers/reviews/reviews.php" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="reviews-container">
                         <?php foreach ($recentReviews as $review): ?>

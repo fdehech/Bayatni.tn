@@ -14,9 +14,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title><?php echo isset($pageTitle) ? $pageTitle . ' - Bayatni.tn' : 'Bayatni.tn'; ?></title>
     
-    <link rel="stylesheet" href="/production/public/css/header.css">
-    <link rel="stylesheet" href="/production/public/css/<?= $isLoggedIn ? 'home_user.css' : 'index.css' ?>">
-    <link rel="stylesheet" href="/production/public/css/booking.css">
+    <link rel="stylesheet" href="/development/public/css/header.css">
+    <link rel="stylesheet" href="/development/public/css/<?= $isLoggedIn ? 'home_user.css' : 'index.css' ?>">
+    <link rel="stylesheet" href="/development/public/css/booking.css">
 
     
     <!-- TAILWIND CDN -->
@@ -38,7 +38,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
     </div>
 
     <header class="flex justify-between items-center relative z-50">
-        <a href="/production/public/index.php" class="domain">Bayatni.tn</a>
+        <a href="/development/public/index.php" class="domain">Bayatni.tn</a>
         
         <?php if ($isLoggedIn): ?>
         <nav class="nav">
@@ -48,10 +48,10 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     <?= htmlspecialchars(isset($_SESSION['user_name']) ? $_SESSION['user_name'] : 'Mon Compte') ?>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end" style="position: absolute; z-index: 9999;">
-                    <li><a class="dropdown-item" href="/production/app/controllers/views/profile.php">Profile</a></li>
+                    <li><a class="dropdown-item" href="/development/app/controllers/views/profile.php">Profile</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/production/app/controllers/bookings/booking.php">Réservations</a></li>
-                    <li><a class="dropdown-item" href="/production/app/auth/logout.php">Déconnexion</a></li>
+                    <li><a class="dropdown-item" href="/development/app/controllers/bookings/booking.php">Réservations</a></li>
+                    <li><a class="dropdown-item" href="/development/app/auth/logout.php">Déconnexion</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><div id="google_translate_element"></div></li>
 
@@ -61,11 +61,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <?php else: ?>
             <nav class="space-x-2">
                 <?php if ($current_page !== 'signup.php'): ?>
-                    <a href="/production/app/auth/signup.php"><button type="button" class="nav-btn-inverse">S'inscrire</button></a>
+                    <a href="/development/app/auth/signup.php"><button type="button" class="nav-btn-inverse">S'inscrire</button></a>
                 <?php endif; ?>
                 
                 <?php if ($current_page !== 'signin.php'): ?>
-                    <a href="/production/app/auth/signin.php"><button type="button" class="nav-btn">S'identifier</button></a>
+                    <a href="/development/app/auth/signin.php"><button type="button" class="nav-btn">S'identifier</button></a>
                 <?php endif; ?>
             </nav>
         <?php endif; ?>

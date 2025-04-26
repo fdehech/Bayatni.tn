@@ -299,6 +299,6 @@ $totalRevenue = $result->fetch_assoc()['total'] ?? 0;
         </main>
     </div>
 
-    <script src="/production/admin/public/js/bookings.js"></script>
+    <script src="/development/admin/public/js/bookings.js"></script>
 </body>
 </html>

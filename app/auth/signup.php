@@ -122,8 +122,8 @@ $conn->close();
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>Bayatni.tn</title>
-  <link rel="stylesheet" href="/production/public/css/index.css">
-  <link rel="stylesheet" href="/production/public/css/signup.css"> 
+  <link rel="stylesheet" href="/development/public/css/index.css">
+  <link rel="stylesheet" href="/development/public/css/signup.css"> 
     <!-- TAILWIND CDN -->
   <script src="https://cdn.tailwindcss.com"></script> 
     <!-- Bootstrap CDN -->
@@ -459,7 +459,7 @@ $conn->close();
       </form>
     </div>
   </main>
-  <script src="/production/public/js/bg.js"></script>  
-  <script src="/production/public/js/signup.js"></script>
+  <script src="/development/public/js/bg.js"></script>  
+  <script src="/development/public/js/signup.js"></script>
 </body>
 </html>

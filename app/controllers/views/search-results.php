@@ -6,7 +6,7 @@ $isLoggedIn = isset($_SESSION['user_name']);
 $userId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
 if (!$isLoggedIn) {
-    header("Location: /production/app/views/index.php");
+    header("Location: /development/app/views/index.php");
     exit();
 }
 
@@ -74,8 +74,8 @@ function displayFeatures($features) {
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Recherche - Bayatni.tn</title>
 
-    <link rel="stylesheet" href="/production/public/css/home_user.css">
-    <link rel="stylesheet" href="/production/public/css/booking.css">
+    <link rel="stylesheet" href="/development/public/css/home_user.css">
+    <link rel="stylesheet" href="/development/public/css/booking.css">
 
     <!-- TAILWIND CDN -->
     <script src="https://cdn.tailwindcss.com"></script> 
@@ -143,7 +143,7 @@ function displayFeatures($features) {
                             <h3 class="text-2xl leading-6 font-bold text-white mb-4" id="modal-title">
                                 Réserver votre séjour
                             </h3>
-                            <form method="POST" action="/production/app/controllers/bookings/process_booking.php" id="booking-form">
+                            <form method="POST" action="/development/app/controllers/bookings/process_booking.php" id="booking-form">
                                 <input type="hidden" name="hotel_id" id="modal-hotel-id">
                                 <input type="hidden" name="book_hotel" value="1">
                                 <input type="hidden" name="total_price" id="total-price">
@@ -371,7 +371,7 @@ function displayFeatures($features) {
                                             ${features}
                                         </div>
                                         <div class="mt-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
-                                            <a href="/production/app/controllers/views/hotel-details.php?id=${hotel.id}" class="px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-lg hover:bg-white/30 transition text-center">
+                                            <a href="/development/app/controllers/views/hotel-details.php?id=${hotel.id}" class="px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-lg hover:bg-white/30 transition text-center">
                                                 <i class="fas fa-info-circle mr-2"></i>Détails
                                             </a>
                                             <button onclick="showBookingForm(${hotel.id}, '${hotel.title.replace(/'/g, "\\'")}', ${hotel.price})" 
@@ -596,6 +596,6 @@ function displayFeatures($features) {
             }
         });
     </script>
-    <script src="/production/public/js/bg.js"></script>
+    <script src="/development/public/js/bg.js"></script>
 </body>
 </html>

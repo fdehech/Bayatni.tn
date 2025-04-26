@@ -9,7 +9,7 @@
         </div>
     </div>
     <div id="google_translate_element"></div>
-    <a href="/production/admin/app/auth/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    <a href="/development/admin/app/auth/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
 </header>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script type="text/javascript">

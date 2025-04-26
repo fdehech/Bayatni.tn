@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['user_id'] = $user['id'];
                     $_SESSION['user_name'] = $user['firstname'];
                     $_SESSION['loggedin'] = true;
-                    header("Location: /production/public/index.php");
+                    header("Location: /development/public/index.php");
                     exit();
                 } else {
                     $errors[] = "Mot de passe incorrect.";
@@ -65,8 +65,8 @@ $conn->close();
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Bayatni.tn</title>
-    <link rel="stylesheet" href="/production/public/css/index.css">
-    <link rel="stylesheet" href="/production/public/css/signin.css"> 
+    <link rel="stylesheet" href="/development/public/css/index.css">
+    <link rel="stylesheet" href="/development/public/css/signin.css"> 
     <!-- TAILWIND CDN -->
     <script src="https://cdn.tailwindcss.com"></script> 
     <!-- Bootstrap CDN -->
@@ -116,6 +116,6 @@ $conn->close();
             </form>
           </section>
         </main>
-  <script src="/production/public/js/bg.js"></script>
+  <script src="/development/public/js/bg.js"></script>
 </body>
 </html>

@@ -71,8 +71,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
   <meta charset="UTF-8">
   <title>Réinitialisation du mot de passe</title>
-  <link rel="stylesheet" href="/production/public/css/index.css">
-  <link rel="stylesheet" href="/production/public/css/pwd.css">
+  <link rel="stylesheet" href="/development/public/css/index.css">
+  <link rel="stylesheet" href="/development/public/css/pwd.css">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
@@ -113,6 +113,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </form>
     </section>
   </main>
-  <script src="/production/public/js/bg.js"></script>
+  <script src="/development/public/js/bg.js"></script>
 </body>
 </html>
