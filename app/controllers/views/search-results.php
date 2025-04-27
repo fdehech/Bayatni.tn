@@ -121,11 +121,9 @@ function displayFeatures($features) {
             <div id="results" style="width:80%; justify-self:center;" class="space-y-10">
 
                 <div class="glass-card rounded-xl p-8 text-center text-white">
-                    <div class="loader mx-auto">
-                        <span></span>
-                    </div>
                     <p class="mt-4">Recherche en cours...</p>
                 </div>
+                
             </div>
         </div>
     </main>
@@ -314,14 +312,7 @@ function displayFeatures($features) {
             // Function to fetch search results from Flask API
             async function fetchSearchResults(query) {
                 try {
-                    resultsContainer.innerHTML = `
-                        <div class="glass-card rounded-xl p-8 text-center text-white">
-                            <div class="loader mx-auto">
-                                <span></span>
-                            </div>
-                            <p class="mt-4">Recherche en cours...</p>
-                        </div>
-                    `;
+                    resultsContainer.innerHTML = ``;
                     
                     const response = await fetch(`http://localhost:5000/search?q=${encodeURIComponent(query)}`);
                     const data = await response.json();
