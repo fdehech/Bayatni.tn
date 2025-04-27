@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2025 at 12:03 AM
+-- Generation Time: Apr 27, 2025 at 04:42 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -38,7 +38,6 @@ CREATE TABLE `bookings` (
   `total_price` decimal(10,2) NOT NULL,
   `booking_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `status` enum('confirmed','pending','cancelled','completed','no_show') NOT NULL DEFAULT 'confirmed',
-  `payment_method` varchar(25) NOT NULL,
   `completed_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -46,10 +45,26 @@ CREATE TABLE `bookings` (
 -- Dumping data for table `bookings`
 --
 
-INSERT INTO `bookings` (`id`, `user_id`, `hotel_id`, `check_in`, `check_out`, `guests`, `room_type`, `total_price`, `booking_date`, `status`, `payment_method`, `completed_at`) VALUES
-(2, 3, 1, '2025-04-21', '2025-04-23', 2, '', 700.00, '2025-04-20 22:42:43', 'cancelled', '', NULL),
-(3, 3, 1, '2025-04-22', '2025-04-24', 2, '', 700.00, '2025-04-21 23:50:39', 'cancelled', '', NULL),
-(4, 3, 1, '2025-04-22', '2025-04-24', 2, '', 700.00, '2025-04-21 23:50:46', 'pending', '', NULL);
+INSERT INTO `bookings` (`id`, `user_id`, `hotel_id`, `check_in`, `check_out`, `guests`, `room_type`, `total_price`, `booking_date`, `status`, `completed_at`) VALUES
+(41, 3, 1, '2025-04-25', '2025-04-27', 1, 'standard', 770.00, '2025-04-24 01:51:45', 'confirmed', NULL),
+(42, 3, 1, '2025-04-25', '2025-04-27', 1, 'standard', 770.00, '2025-04-24 01:51:54', 'confirmed', NULL),
+(43, 3, 3, '2025-04-27', '2025-04-28', 2, 'standard', 192.60, '2025-04-26 17:33:08', 'confirmed', NULL),
+(44, 3, 3, '2025-04-27', '2025-04-28', 2, 'standard', 192.60, '2025-04-26 17:33:17', 'pending', NULL),
+(45, 3, 3, '2025-04-27', '2025-04-28', 2, 'standard', 192.60, '2025-04-26 17:34:19', 'pending', NULL),
+(46, 3, 3, '2025-04-27', '2025-04-28', 2, 'standard', 192.60, '2025-04-26 17:34:39', 'pending', NULL),
+(47, 3, 1, '2025-04-27', '2025-04-29', 1, 'standard', 770.00, '2025-04-26 17:38:35', 'confirmed', NULL),
+(48, 3, 3, '2025-04-27', '2025-04-28', 2, 'standard', 192.60, '2025-04-26 17:44:33', 'confirmed', NULL),
+(49, 3, 3, '2025-04-27', '2025-04-28', 2, 'standard', 192.60, '2025-04-26 17:44:45', 'confirmed', NULL),
+(50, 3, 1, '2025-04-27', '2025-04-29', 1, 'standard', 770.00, '2025-04-26 17:44:59', 'confirmed', NULL),
+(51, 3, 1, '2025-04-27', '2025-04-29', 1, 'standard', 770.00, '2025-04-26 17:56:30', 'confirmed', NULL),
+(52, 3, 3, '2025-04-27', '2025-04-28', 2, 'standard', 192.60, '2025-04-26 18:00:28', 'confirmed', NULL),
+(53, 3, 16, '2025-04-27', '2025-04-28', 2, 'standard', 128.40, '2025-04-26 18:29:57', 'confirmed', NULL),
+(54, 3, 16, '2025-04-27', '2025-04-28', 2, 'standard', 128.40, '2025-04-26 18:30:27', 'confirmed', NULL),
+(55, 3, 16, '2025-04-27', '2025-04-28', 2, 'standard', 120.00, '2025-04-26 18:46:44', 'confirmed', NULL),
+(56, 3, 16, '2025-04-27', '2025-04-28', 1, 'standard', 120.00, '2025-04-26 19:03:57', 'confirmed', NULL),
+(57, 3, 16, '2025-04-27', '2025-04-28', 1, 'standard', 120.00, '2025-04-26 19:11:40', 'confirmed', NULL),
+(58, 3, 1, '2025-04-27', '2025-04-29', 1, 'standard', 770.00, '2025-04-26 19:19:06', 'confirmed', NULL),
+(59, 3, 3, '2025-04-27', '2025-04-28', 2, 'deluxe', 180.00, '2025-04-26 19:34:00', 'confirmed', NULL);
 
 -- --------------------------------------------------------
 
@@ -75,7 +90,7 @@ CREATE TABLE `hotels` (
 --
 
 INSERT INTO `hotels` (`id`, `title`, `location`, `price`, `rating`, `reviews_count`, `region`, `image_url`, `features`, `created_at`) VALUES
-(1, 'Hôtel La Marsa Resort & Spa', 'La Marsa, Tunis', 350.00, 5, 325, 'tunis', 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80', 'piscine,restaurant,spa', '2025-04-20 16:15:53'),
+(1, 'Hôtel La Marsa Resort & Spa', 'La Marsa, Tunis', 350.00, 5, 331, 'tunis', 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80', 'piscine, restaurant, spa', '2025-04-20 16:15:53'),
 (3, 'Sousse Marhaba Beach', 'Sousse', 180.00, 3, 215, 'sousse', 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80', 'piscine,plage', '2025-04-20 16:15:53'),
 (6, 'Sidi Bou Said Maison Bleue', 'Sidi Bou Said, Tunis', 320.00, 4, 95, 'tunis', 'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=800&q=80', 'restaurant,vue mer', '2025-04-20 16:15:53'),
 (10, 'Riadh Palms Resort & Spa', 'RJRH+8M Sousse', 186.00, 3, 0, 'sousse', 'https://lh3.googleusercontent.com/p/AF1QipNKMh8br5zDd4RQk52dQgBxQXRmWTePYY2nbo0w=s1360-w1360-h1020', 'piscine,plage,restaurant,spa', '2025-04-22 20:45:45'),
@@ -137,7 +152,9 @@ CREATE TABLE `reviews` (
 --
 
 INSERT INTO `reviews` (`id`, `user_id`, `hotel_id`, `booking_id`, `rating`, `comment`, `review_date`) VALUES
-(2, 4, 1, NULL, 5, 'ss', '2025-04-22 02:53:08');
+(2, 4, 1, NULL, 5, 'ss', '2025-04-22 02:53:08'),
+(4, 4, 1, NULL, 2, 'AKEKA W BARA', '2025-04-22 23:04:19'),
+(8, 3, 1, 58, 5, 'cool', '2025-04-26 21:18:55');
 
 -- --------------------------------------------------------
 
@@ -158,17 +175,21 @@ CREATE TABLE `users` (
   `card_name` varchar(100) NOT NULL,
   `card_expire` varchar(5) NOT NULL,
   `card_cvc` varchar(4) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `reset_token` varchar(64) NOT NULL,
+  `token_expire` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `firstname`, `lastname`, `fullname`, `birthday`, `email`, `status`, `password`, `card_number`, `card_name`, `card_expire`, `card_cvc`, `created_at`) VALUES
-(3, 'Furat', 'Dehech', 'Furat Dehech', '2005-01-04', 'fdehech@outlook.com', 'active', '$2y$10$TShLClXBKU01Pql4psXrxuIerBuM.rA4rKqeFdQZT3sh1HEV3f7nG', '0000000000000000', 'Furat', '12/25', '123', '2025-04-20 22:42:07'),
-(4, 'Dahesh', 'Furat', 'Dahesh Furat', '2005-05-05', '123@gmail.com', 'active', '$2y$10$ni0oBD1n2wdsyfWqZHdHWu1DOQPcz7AkZW4tRxycgbnbmfuJW2xwG', '0000000000000000', 'Furat', '11/22', '123', '2025-04-20 23:17:53'),
-(5, 'Furat', 'Dehech', 'Furat Dehech', '2006-01-01', '1234@gmail.com', 'active', '$2y$10$sJGaztlDCQ4zVSLQK5NeYeTNYT45DOD1GD4t0HOsratMQG50a26o2', '0000000000000000', 'dd', '11/22', '123', '2025-04-20 23:25:07');
+INSERT INTO `users` (`id`, `firstname`, `lastname`, `fullname`, `birthday`, `email`, `status`, `password`, `card_number`, `card_name`, `card_expire`, `card_cvc`, `created_at`, `reset_token`, `token_expire`) VALUES
+(3, 'Dehech', 'Furat Dehech', 'Furat', '2005-01-04', 'fdehech@outlook.com', 'suspended', '$2y$10$VaCs7ZLbVfexP4ad2iilhuaLzQmpua6ADPdgOrZNUamQt3v9Js8l6', '0000000000000000', 'Furat', '12/25', '123', '2025-04-20 22:42:07', 'f7599b2aab566d70e2a9dadff371a3ad80895bad82ced845688c79500ad9a270', '2025-04-27 17:31:30'),
+(4, 'Dahesh', 'Furat', 'Dahesh Furat', '2005-05-05', '123@gmail.com', 'active', '$2y$10$ni0oBD1n2wdsyfWqZHdHWu1DOQPcz7AkZW4tRxycgbnbmfuJW2xwG', '0000000000000000', 'Furat', '11/22', '123', '2025-04-20 23:17:53', '', '2025-04-23 00:15:17'),
+(5, 'Furat', 'Dehech', 'Furat Dehech', '2006-01-01', '1234@gmail.com', 'active', '$2y$10$sJGaztlDCQ4zVSLQK5NeYeTNYT45DOD1GD4t0HOsratMQG50a26o2', '0000000000000000', 'dd', '11/22', '123', '2025-04-20 23:25:07', '', '2025-04-23 00:15:17'),
+(8, 'Achref', 'Achour Achref', 'Achour', '2000-01-01', 'achref@achour.tn', 'suspended', '$2y$10$WWkPTq3g95rKYEmJZawTnuDV0cxCn1h/si106D7dTOK1vt8g2V9wC', '0000000000000000', 'Achref', '11/22', '123', '2025-04-22 22:59:17', '', '2025-04-23 00:15:17'),
+(9, 'Larguech', 'Arije', 'Larguech Arije', '2000-01-01', 'arije@gmail.com', 'active', '$2y$10$BWdBTOUkTeFyShFCbKSqpODfFiH2gQIEs0tlOH8lZ7RwvSPUxAEIq', '0000000000000000', 'arije', '11/22', '123', '2025-04-26 19:12:58', '', '2025-04-26 20:12:58');
 
 --
 -- Indexes for dumped tables
@@ -218,7 +239,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `hotels`
@@ -230,13 +251,13 @@ ALTER TABLE `hotels`
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables

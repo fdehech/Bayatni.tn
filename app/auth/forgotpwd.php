@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $mail->setFrom('contact.bayatni@gmail.com', 'Bayatni');
                 $mail->addAddress($email);
 
-                $resetLink = 'http://localhost/developmentt/app/auth/resetpwd.php?token=' . urlencode($token);
+                $resetLink = 'http://localhost/development/app/auth/resetpwd.php?token=' . urlencode($token);
 
                 $mail->isHTML(true);
                 $mail->Subject = 'Réinitialisation du mot de passe';
@@ -80,8 +80,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Réinitialisation - Bayatni</title>
-  <link rel="stylesheet" href="/developmentt/public/css/index.css">
-  <link rel="stylesheet" href="/developmentt/public/css/pwd.css"> 
+  <link rel="stylesheet" href="/development/public/css/index.css">
+  <link rel="stylesheet" href="/development/public/css/pwd.css"> 
   <script src="https://cdn.tailwindcss.com"></script> 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
@@ -127,6 +127,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </section>
   </main>
 
-  <script src="/developmentt/public/js/bg.js"></script>
+  <script src="/development/public/js/bg.js"></script>
 </body>
 </html>
