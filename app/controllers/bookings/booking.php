@@ -283,15 +283,19 @@ include __DIR__.'/../../../includes/header.php';
                                     </p>
                                     <?php echo displayFeatures($row['features']); ?>
                                 </div>
-                                <div class="mt-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
-                                    <a href="/development/app/controllers/views/hotel-details.php?id=<?php echo $row['id']; ?>" class="px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-lg hover:bg-white/30 transition text-center">
-                                        <i class="fas fa-info-circle mr-2"></i>Détails
-                                    </a>
-                                    <button onclick="showBookingForm(<?php echo $row['id']; ?>, '<?php echo htmlspecialchars(addslashes($row['title'])); ?>', <?php echo $row['price']; ?>)" 
-                                            class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition shadow-lg hover:shadow-xl text-center">
-                                        <i class="fas fa-calendar-check mr-2"></i>Réserver maintenant
-                                    </button>
-                                </div>
+                                <?php if ($is_logged_in): ?>
+                                    <div class="mt-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
+                                        <a href="/development/app/views/hotel-details.php?id=<?php echo $row['id']; ?>" class="px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-lg hover:bg-white/30 transition text-center">
+                                            <i class="fas fa-info-circle mr-2"></i>Détails
+                                        </a>
+                                        <button onclick="showBookingForm(<?php echo $row['id']; ?>, '<?php echo htmlspecialchars(addslashes($row['title'])); ?>', <?php echo $row['price']; ?>)" 
+                                                class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition shadow-lg hover:shadow-xl text-center">
+                                            <i class="fas fa-calendar-check mr-2"></i>Réserver maintenant
+                                        </button>
+                                    </div>
+                                <?php else: ?>
+                                    <p>Veuillez vous connectez ou s'inscrire !</p>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

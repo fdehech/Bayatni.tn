@@ -5,7 +5,7 @@ $errors = $_SESSION['login_errors'] ?? [];
 unset($_SESSION['login_errors']);
 
 if (isset($_SESSION['user_id'])) {
-  header('Location: ../controllers/views/profile.php');
+  header('Location: ../views/profile.php');
   exit();
 }
 

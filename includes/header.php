@@ -50,9 +50,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     <?= htmlspecialchars(isset($_SESSION['user_name']) ? $_SESSION['user_name'] : 'Mon Compte') ?>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end" style="position: absolute; z-index: 9999;">
-                    <li><a class="dropdown-item" href="/development/app/controllers/views/profile.php">Profile</a></li>
+                    <li><a class="dropdown-item" href="/development/app/views/profile.php">Profile</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/development/app/controllers/bookings/booking.php">Réservations</a></li>
+                    <li><a class="dropdown-item" href="/development/app/controllers/bookings/booking.php">Recherche Profond</a></li>
                     <li><a class="dropdown-item" href="/development/app/auth/logout.php">Déconnexion</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><div id="google_translate_element"></div></li>

@@ -130,10 +130,10 @@ main {
     position: absolute;
     top: 60%;
     left: 15%;
-    border: 1px solid black;
+    border: 1px solid #4088bd;
     color: white;
     border-radius: 25px;
-    background-color: black;
+    background-color: #4088bd;
     padding: 20px 35px;
     transition-duration: 0.5s;
     font-family: "Poppins", sans-serif;

@@ -4,8 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
   
-        console.log("Latitude:", lat, "Longitude:", lon);
-  
         var map = L.map('map').setView([lat, lon], 6);
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
           maxZoom: 19,

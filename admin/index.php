@@ -172,7 +172,7 @@ if ($result) {
                                         <div class="action-buttons">
                                             <a href="/development/admin/app/controllers/bookings/booking_view.php?id=<?php echo $booking['id']; ?>" class="action-btn view-btn"><i class="fas fa-eye"></i></a>
                                             <a href="/development/admin/app/controllers//bookings/booking_edit.php?id=<?php echo $booking['id']; ?>" class="action-btn edit-btn"><i class="fas fa-edit"></i></a>
-                                            <a href="/development/admin/app/controllers/bookings/booking_delete.php?id=<?php echo $booking['id']; ?>" class="action-btn delete-btn" onclick="return confirm('Are you sure you want to delete this booking?');"><i class="fas fa-trash"></i></a>
+                                            <a href="/development/admin/app/controllers/bookings/bookings.php?action=delete&id=<?php echo $booking['id']; ?>" class="action-btn delete-btn" onclick="return confirm('Are you sure you want to delete this booking?');"><i class="fas fa-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>

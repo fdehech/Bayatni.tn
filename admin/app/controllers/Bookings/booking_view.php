@@ -41,14 +41,6 @@ $roomTypes = [
 ];
 $roomTypeName = $roomTypes[$booking['room_type']] ?? ucfirst($booking['room_type']);
 
-$paymentMethods = [
-    'credit_card' => 'Credit Card',
-    'paypal' => 'PayPal',
-    'bank_transfer' => 'Bank Transfer',
-    'cash' => 'Cash'
-];
-$paymentMethodName = $paymentMethods[$booking['payment_method']] ?? ucfirst(str_replace('_', ' ', $booking['payment_method']));
-
 if (isset($_POST['action']) && isset($_POST['new_status'])) {
     $newStatus = $_POST['new_status'];
     $validStatuses = ['pending', 'confirmed', 'cancelled', 'completed'];
@@ -142,12 +134,6 @@ if (isset($_POST['action']) && isset($_POST['new_status'])) {
                             <div class="payment-info">
                                 <h4>Payment Information</h4>
                                 <div class="detail-item">
-                                    <span class="detail-label">Method:</span>
-                                    <span class="detail-value"><?php echo $paymentMethodName?></span>
-                                </div>
-
-                                <?php if ($booking['payment_method'] == 'credit_card'): ?>
-                                <div class="detail-item">
                                     <span class="detail-label">Card Number:</span>
                                     <span class="detail-value">**** **** **** <?php echo substr($booking['card_number'], -4); ?></span>
                                 </div>
@@ -159,7 +145,6 @@ if (isset($_POST['action']) && isset($_POST['new_status'])) {
                                     <span class="detail-label">Expiration:</span>
                                     <span class="detail-value"><?php echo htmlspecialchars($booking['card_expire']); ?></span>
                                 </div>
-                                <?php endif; ?>
                                 <div class="detail-item">
                                     <span class="detail-label">Amount:</span>
                                     <span class="detail-value price"><?php echo number_format($booking['total_price'], 2); ?></span>

@@ -74,7 +74,7 @@
             echo "<h1 class='mt-10 mb-10' style='color: white; font-size: 5rem; font-weight: 700; justify-self:center;'>Bienvenue, $userName</h1>";
             
             echo '<div class="search-container" style="width:60%; justify-self:center;">
-                <form action="/development/app/controllers/views/search-results.php" method="GET" class="flex">
+                <form action="/development/app/views/search-results.php" method="GET" class="flex">
                     <input type="text" name="q" style="text-align:center; font-size:1.5rem;" placeholder="Recherche Rapide Intelligent" 
                            class="flex-grow p-3 rounded bg-white/20 backdrop-blur-sm border border-white/30 focus:outline-none text-white placeholder-white/70">
                     </button>
