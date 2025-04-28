@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2025 at 04:42 PM
+-- Generation Time: Apr 28, 2025 at 03:46 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -64,7 +64,7 @@ INSERT INTO `bookings` (`id`, `user_id`, `hotel_id`, `check_in`, `check_out`, `g
 (56, 3, 16, '2025-04-27', '2025-04-28', 1, 'standard', 120.00, '2025-04-26 19:03:57', 'confirmed', NULL),
 (57, 3, 16, '2025-04-27', '2025-04-28', 1, 'standard', 120.00, '2025-04-26 19:11:40', 'confirmed', NULL),
 (58, 3, 1, '2025-04-27', '2025-04-29', 1, 'standard', 770.00, '2025-04-26 19:19:06', 'confirmed', NULL),
-(59, 3, 3, '2025-04-27', '2025-04-28', 2, 'deluxe', 180.00, '2025-04-26 19:34:00', 'confirmed', NULL);
+(61, 3, 10, '2025-04-29', '2025-04-30', 1, 'standard', 186.00, '2025-04-28 09:13:29', 'confirmed', NULL);
 
 -- --------------------------------------------------------
 
@@ -90,10 +90,10 @@ CREATE TABLE `hotels` (
 --
 
 INSERT INTO `hotels` (`id`, `title`, `location`, `price`, `rating`, `reviews_count`, `region`, `image_url`, `features`, `created_at`) VALUES
-(1, 'Hôtel La Marsa Resort & Spa', 'La Marsa, Tunis', 350.00, 5, 331, 'tunis', 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80', 'piscine, restaurant, spa', '2025-04-20 16:15:53'),
+(1, 'Hôtel La Marsa Resort & Spa', 'La Marsa, Tunis', 350.00, 5, 332, 'tunis', 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80', 'piscine, restaurant, spa', '2025-04-20 16:15:53'),
 (3, 'Sousse Marhaba Beach', 'Sousse', 180.00, 3, 215, 'sousse', 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80', 'piscine,plage', '2025-04-20 16:15:53'),
 (6, 'Sidi Bou Said Maison Bleue', 'Sidi Bou Said, Tunis', 320.00, 4, 95, 'tunis', 'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=800&q=80', 'restaurant,vue mer', '2025-04-20 16:15:53'),
-(10, 'Riadh Palms Resort & Spa', 'RJRH+8M Sousse', 186.00, 3, 0, 'sousse', 'https://lh3.googleusercontent.com/p/AF1QipNKMh8br5zDd4RQk52dQgBxQXRmWTePYY2nbo0w=s1360-w1360-h1020', 'piscine,plage,restaurant,spa', '2025-04-22 20:45:45'),
+(10, 'Riadh Palms Resort & Spa', 'RJRH+8M Sousse', 186.00, 3, 1, 'sousse', 'https://lh3.googleusercontent.com/p/AF1QipNKMh8br5zDd4RQk52dQgBxQXRmWTePYY2nbo0w=s1360-w1360-h1020', 'piscine,plage,restaurant,spa', '2025-04-22 20:45:45'),
 (11, 'Hôtel Marhaba Palace', 'VHWV+JC Hammam Sousse', 242.00, 4, 0, 'sousse', 'https://lh3.googleusercontent.com/p/AF1QipOvko8sKKUTYL5OoEYpa_DIA-Ts21E3I9ud3397=s1360-w1360-h1020', 'piscine,plage,restaurant,spa,wifi', '2025-04-22 20:50:40'),
 (12, 'Mövenpick Hotel du Lac Tunis', 'R6PX+59 Tunis', 138.00, 4, 0, 'tunis', 'https://lh3.googleusercontent.com/p/AF1QipOb7Sa9X6kYk0EAPxH_NzRep8Kcnm_nEZ-jYNIa=s1360-w1360-h1020', 'piscine,restaurant,wifi', '2025-04-22 20:55:43'),
 (13, 'Cap Bon Kelibia Beach Hotel & Spa', 'V44G+JC Kelibia', 293.00, 4, 0, 'tunis', 'https://lh3.googleusercontent.com/p/AF1QipOdZyei5JMkJhdwd4w-QHLvmad1RvS0Xf24ZbHE=s1360-w1360-h1020', 'piscine,plage,restaurant,wifi', '2025-04-22 20:59:58'),
@@ -152,9 +152,7 @@ CREATE TABLE `reviews` (
 --
 
 INSERT INTO `reviews` (`id`, `user_id`, `hotel_id`, `booking_id`, `rating`, `comment`, `review_date`) VALUES
-(2, 4, 1, NULL, 5, 'ss', '2025-04-22 02:53:08'),
-(4, 4, 1, NULL, 2, 'AKEKA W BARA', '2025-04-22 23:04:19'),
-(8, 3, 1, 58, 5, 'cool', '2025-04-26 21:18:55');
+(10, 3, 10, 61, 5, 'cool', '2025-04-28 09:14:07');
 
 -- --------------------------------------------------------
 
@@ -185,11 +183,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `fullname`, `birthday`, `email`, `status`, `password`, `card_number`, `card_name`, `card_expire`, `card_cvc`, `created_at`, `reset_token`, `token_expire`) VALUES
-(3, 'Dehech', 'Furat Dehech', 'Furat', '2005-01-04', 'fdehech@outlook.com', 'suspended', '$2y$10$VaCs7ZLbVfexP4ad2iilhuaLzQmpua6ADPdgOrZNUamQt3v9Js8l6', '0000000000000000', 'Furat', '12/25', '123', '2025-04-20 22:42:07', 'f7599b2aab566d70e2a9dadff371a3ad80895bad82ced845688c79500ad9a270', '2025-04-27 17:31:30'),
-(4, 'Dahesh', 'Furat', 'Dahesh Furat', '2005-05-05', '123@gmail.com', 'active', '$2y$10$ni0oBD1n2wdsyfWqZHdHWu1DOQPcz7AkZW4tRxycgbnbmfuJW2xwG', '0000000000000000', 'Furat', '11/22', '123', '2025-04-20 23:17:53', '', '2025-04-23 00:15:17'),
-(5, 'Furat', 'Dehech', 'Furat Dehech', '2006-01-01', '1234@gmail.com', 'active', '$2y$10$sJGaztlDCQ4zVSLQK5NeYeTNYT45DOD1GD4t0HOsratMQG50a26o2', '0000000000000000', 'dd', '11/22', '123', '2025-04-20 23:25:07', '', '2025-04-23 00:15:17'),
+(3, 'Dehech', 'Furat Dehech', 'Furat', '2005-01-04', 'fdehech@outlook.com', 'suspended', '$2y$10$VaCs7ZLbVfexP4ad2iilhuaLzQmpua6ADPdgOrZNUamQt3v9Js8l6', '0000000000000000', 'Furat', '12/25', '123', '2025-04-20 22:42:07', 'bd1e2d9603bceda35b7fa8787a2524485e797b8375927bc3a6692ce34e14b2cc', '2025-04-27 21:36:21'),
 (8, 'Achref', 'Achour Achref', 'Achour', '2000-01-01', 'achref@achour.tn', 'suspended', '$2y$10$WWkPTq3g95rKYEmJZawTnuDV0cxCn1h/si106D7dTOK1vt8g2V9wC', '0000000000000000', 'Achref', '11/22', '123', '2025-04-22 22:59:17', '', '2025-04-23 00:15:17'),
-(9, 'Larguech', 'Arije', 'Larguech Arije', '2000-01-01', 'arije@gmail.com', 'active', '$2y$10$BWdBTOUkTeFyShFCbKSqpODfFiH2gQIEs0tlOH8lZ7RwvSPUxAEIq', '0000000000000000', 'arije', '11/22', '123', '2025-04-26 19:12:58', '', '2025-04-26 20:12:58');
+(9, 'Larguech', 'Arije', 'Larguech Arije', '2000-01-01', 'arije@gmail.com', 'active', '$2y$10$BWdBTOUkTeFyShFCbKSqpODfFiH2gQIEs0tlOH8lZ7RwvSPUxAEIq', '0000000000000000', 'arije', '11/22', '123', '2025-04-26 19:12:58', '', '2025-04-26 20:12:58'),
+(16, 'admin', 'admin', 'admin admin', '2000-01-02', 'admin@admin.tn', 'active', '$2y$10$Z4f7QgIP4o7HdI7j82PyNOJcw/2oS6GC746agiRhyGV7MLaVIJu.W', '0000000000000000', 'Furat', '11/22', '123', '2025-04-27 18:25:07', '', '0000-00-00 00:00:00'),
+(17, 'Furat', 'Dahesh', 'Furat Dahesh', '2000-01-01', 'fdehech@gmail.com', 'active', '$2y$10$JdY5sGlsNrdcrcgBebZxyupW8sUWLbPUC7OvwN4VeoXjbYMo5l9/O', '0000000000000000', 'Furat', '11/22', '113', '2025-04-27 18:35:21', '64fb67249310cb190bf160aee212d8bc75be998c22ba40ebe6087912937ecae1', '2025-04-27 21:35:47');
 
 --
 -- Indexes for dumped tables
@@ -200,8 +198,8 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `fullname`, `birthday`, `ema
 --
 ALTER TABLE `bookings`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `hotel_id` (`hotel_id`);
+  ADD KEY `bookings_ibfk_1` (`user_id`),
+  ADD KEY `bookings_ibfk_2` (`hotel_id`);
 
 --
 -- Indexes for table `hotels`
@@ -239,25 +237,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `hotels`
 --
 ALTER TABLE `hotels`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- Constraints for dumped tables
@@ -267,8 +265,8 @@ ALTER TABLE `users`
 -- Constraints for table `bookings`
 --
 ALTER TABLE `bookings`
-  ADD CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `bookings_ibfk_2` FOREIGN KEY (`hotel_id`) REFERENCES `hotels` (`id`);
+  ADD CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `bookings_ibfk_2` FOREIGN KEY (`hotel_id`) REFERENCES `hotels` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `hotels_coordinates`
@@ -280,9 +278,9 @@ ALTER TABLE `hotels_coordinates`
 -- Constraints for table `reviews`
 --
 ALTER TABLE `reviews`
-  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`hotel_id`) REFERENCES `hotels` (`id`),
-  ADD CONSTRAINT `reviews_ibfk_3` FOREIGN KEY (`booking_id`) REFERENCES `bookings` (`id`);
+  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`hotel_id`) REFERENCES `hotels` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `reviews_ibfk_3` FOREIGN KEY (`booking_id`) REFERENCES `bookings` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
