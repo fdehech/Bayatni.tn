@@ -1,14 +1,14 @@
 <?php
 session_start();
-require_once __DIR__ .'/../../../config/config.php';
+require_once __DIR__ .'/../../config/config.php';
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: /development/app/views/index.php");
+    header("Location: /bayatni/app/views/index.php");
     exit();
 }
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header("Location: /development/app/views/index.php");
+    header("Location: /bayatni/app/views/index.php");
     exit();
 }
 
@@ -27,7 +27,7 @@ $bookingStatus = ($paymentStatus === 'confirmed') ? 'confirmed' : 'pending';
 
 if (!$hotelId || !$checkIn || !$checkOut || !$guests || !$roomType || !$totalPrice) {
     $_SESSION['error_message'] = "Tous les champs sont obligatoires.";
-    header("Location: /development/app/views/search-results.php?error=missing_fields");
+    header("Location: /bayatni/app/views/search-results.php?error=missing_fields");
     exit();
 }
 
@@ -48,10 +48,10 @@ if ($stmt->execute()) {
         $_SESSION['payment_status'] = 'pending';
     }
     
-    header("Location: /development/app/controllers/bookings/booking-confirmation.php?id=$bookingId");
+    header("Location: /bayatni/app/controllers/bookings/booking-confirmation.php?id=$bookingId");
     exit();
 } else {
     $_SESSION['error_message'] = "Une erreur s'est produite lors de la réservation. Veuillez réessayer.";
-    header("Location: /development/app/views/search-results.php?error=db_error");
+    header("Location: /bayatni/app/views/search-results.php?error=db_error");
     exit();
 }

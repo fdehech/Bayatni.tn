@@ -1,16 +1,16 @@
 <?php
 session_start();
-require_once __DIR__ .'/../../../config/config.php';
+require_once __DIR__ .'/../../config/config.php';
 
 $isLoggedIn = isset($_SESSION['user_name']);
 
 if (!$isLoggedIn) {
-    header("Location: /development/app/views/index.php");
+    header("Location: /bayatni/app/views/index.php");
     exit();
 }
 
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-    header("Location: /development/app/views/index.php");
+    header("Location: /bayatni/app/views/index.php");
     exit();
 }
 
@@ -29,7 +29,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows === 0) {
-    header("Location: /development/app/views/index.php");
+    header("Location: /bayatni/app/views/index.php");
     exit();
 }
 
@@ -81,8 +81,8 @@ include __DIR__."/../../../includes/header.php";
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Confirmation de réservation - Bayatni.tn</title>
 
-    <link rel="stylesheet" href="/development/public/css/home_user.css">
-    <link rel="stylesheet" href="/development/public/css/booking.css">
+    <link rel="stylesheet" href="/bayatni/public/css/home_user.css">
+    <link rel="stylesheet" href="/bayatni/public/css/booking.css">
 
     <!-- TAILWIND CDN -->
     <script src="https://cdn.tailwindcss.com"></script> 
@@ -191,7 +191,7 @@ include __DIR__."/../../../includes/header.php";
                     </div>
                     
                     <div class="text-center space-x-4">
-                        <a href="/development/public/index.php" class="inline-block px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition shadow-lg hover:shadow-xl">
+                        <a href="/bayatni/public/index.php" class="inline-block px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition shadow-lg hover:shadow-xl">
                             <i class="fas fa-home mr-2"></i>Retour à l'accueil
                         </a>
                         <button onclick="window.print()" class="inline-block px-6 py-3 bg-white/20 hover:bg-white/30 text-white font-medium rounded-lg transition">
@@ -204,6 +204,6 @@ include __DIR__."/../../../includes/header.php";
         </div>
     </main>
 
-    <script src="/development/public/js/bg.js"></script>
+    <script src="/bayatni/public/js/bg.js"></script>
 </body>
 </html>

@@ -1,14 +1,10 @@
 <?php   
     session_start();
-    require_once __DIR__ .'/../config/config.php';
+    require_once __DIR__ .'/../app/config/config.php';
+    include __DIR__. '/../includes/header.php' ;
     
-    $query = "
-    SELECT hotels.id, hotels.title, hotels_coordinates.x, hotels_coordinates.y
-    FROM hotels
-    JOIN hotels_coordinates ON hotels.id = hotels_coordinates.id";
-
+    $query = "SELECT hotels.id, hotels.title, hotels_coordinates.x, hotels_coordinates.y FROM hotels JOIN hotels_coordinates ON hotels.id = hotels_coordinates.id";
     $result = $conn->query($query);
-
     $hotels = [];
 
     if ($result && $result->num_rows > 0) {
@@ -24,7 +20,7 @@
 
         file_put_contents('hotels_data.json', $jsonData);
     }
-    include __DIR__. '/../includes/header.php' ;
+
 ?>
 
 <html lang="en">
@@ -68,13 +64,13 @@
         <h1 class="title">Bayatni</h1>
         <p class="bio">Bayatni.tn est une plateforme tunisienne dédiée à la réservation d'hôtels.</br> Nous facilitons vos démarches en ligne pour vous offrir </br>une expérience simple, rapide et adaptée à vos besoins,</br> où que vous soyez en Tunisie ou en dehors !</br></p>
         
-        <a href="/development/app/controllers/bookings/booking.php"><button class="main-btn">Réserver Maintenant</button></a>
+        <a href="/bayatni/app/controllers/bookings/booking.php"><button class="main-btn">Réserver Maintenant</button></a>
     <?php elseif ($isLoggedIn):
             $userName = $_SESSION['user_name'];
             echo "<h1 class='mt-10 mb-10' style='color: white; font-size: 5rem; font-weight: 700; justify-self:center;'>Bienvenue, $userName</h1>";
             
             echo '<div class="search-container" style="width:60%; justify-self:center;">
-                <form action="/development/app/views/search-results.php" method="GET" class="flex">
+                <form action="/bayatni/app/views/search-results.php" method="GET" class="flex">
                     <input type="text" name="q" style="text-align:center; font-size:1.5rem;" placeholder="Recherche Rapide Intelligent" 
                            class="flex-grow p-3 rounded bg-white/20 backdrop-blur-sm border border-white/30 focus:outline-none text-white placeholder-white/70">
                     </button>
@@ -89,7 +85,7 @@
         </div>
     </div>
 
-    <script src="/development/public/js/bg.js"></script>
-    <script src="/development/public/js/map.js"></script>
+    <script src="/bayatni/public/js/bg.js"></script>
+    <script src="/bayatni/public/js/map.js"></script>
 </body>
 </html>

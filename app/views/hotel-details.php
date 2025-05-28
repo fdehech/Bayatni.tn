@@ -1,17 +1,17 @@
 <?php
 session_start();
-require_once __DIR__.'/../../config/config.php';
+require_once __DIR__.'/../config/config.php';
 
 $isLoggedIn = isset($_SESSION['user_name']);
 
 if (!$isLoggedIn) {
-    header("Location: /development/app/views/index.php");
+    header("Location: /bayatni/app/views/index.php");
     exit();
 }
 
 // Check if hotel ID is provided
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-    header("Location: /development/app/views/index.php");
+    header("Location: /bayatni/app/views/index.php");
     exit();
 }
 
@@ -30,7 +30,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows === 0) {
-    header("Location: /development/app/views/index.php");
+    header("Location: /bayatni/app/views/index.php");
     exit();
 }
 
@@ -63,8 +63,8 @@ include __DIR__."/../../includes/header.php";
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title><?php echo htmlspecialchars($hotel['title']); ?> - Bayatni.tn</title>
 
-    <link rel="stylesheet" href="/development/public/css/home_user.css">
-    <link rel="stylesheet" href="/development/public/css/booking.css">
+    <link rel="stylesheet" href="/bayatni/public/css/home_user.css">
+    <link rel="stylesheet" href="/bayatni/public/css/booking.css">
 
     <!-- TAILWIND CDN -->
     <script src="https://cdn.tailwindcss.com"></script> 
@@ -205,7 +205,7 @@ include __DIR__."/../../includes/header.php";
             
             <div id="reservation-form" class="bg-white/10 backdrop-blur-md rounded-lg shadow-lg p-6 h-fit hidden">
     <h2 class="text-2xl font-bold text-white mb-4">Réservation</h2>
-    <form id="booking-form" action="/development/app/controllers/bookings/process_booking.php" method="POST">
+    <form id="booking-form" action="/bayatni/app/controllers/bookings/process_booking.php" method="POST">
         <input type="hidden" name="hotel_id" value="<?php echo $hotel['id']; ?>">
         <input type="hidden" name="price_per_night" value="<?php echo $hotel['price']; ?>">
         <input type="hidden" name="total_price" id="hidden-total-price" value="0">
@@ -287,9 +287,9 @@ include __DIR__."/../../includes/header.php";
         const bg2 = document.getElementById('bg2');
         
         const images = [
-            '/development/public/images/bg1.jpg',
-            '/development/public/images/bg2.jpg',
-            '/development/public/images/bg3.jpg'
+            '/bayatni/public/images/bg1.jpg',
+            '/bayatni/public/images/bg2.jpg',
+            '/bayatni/public/images/bg3.jpg'
         ];
         
         let currentIndex = 0;

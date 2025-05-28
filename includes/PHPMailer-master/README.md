@@ -194,7 +194,7 @@ git remote set-url upstream https://github.com/PHPMailer/PHPMailer.git
 Please *don't* use the SourceForge or Google Code projects any more; they are obsolete and no longer maintained.
 
 ## Sponsorship
-Development time and resources for PHPMailer are provided by [Smartmessages.net](https://info.smartmessages.net/), the world's only privacy-first email marketing system.
+bayatni time and resources for PHPMailer are provided by [Smartmessages.net](https://info.smartmessages.net/), the world's only privacy-first email marketing system.
 
 <a href="https://info.smartmessages.net/"><img src="https://www.smartmessages.net/img/smartmessages-logo.svg" width="550" alt="Smartmessages.net privacy-first email marketing logo"></a>
 
@@ -225,7 +225,7 @@ See [changelog](changelog.md).
 - Test suite.
 - Continuous integration with GitHub Actions.
 - Composer support.
-- Public development.
+- Public bayatni.
 - Additional languages and language strings.
 - CRAM-MD5 authentication support.
 - Preserves full repo history of authors, commits, and branches from the original SourceForge project.

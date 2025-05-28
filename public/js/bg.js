@@ -1,13 +1,13 @@
 const images = [
-    '/development/public/images/Bg1.jpg',
-    '/development/public/images/Bg2.jpg',
-    '/development/public/images/Bg3.jpg',
-    '/development/public/images/Bg4.jpg',
-    '/development/public/images/Bg5.jpg',
-    '/development/public/images/Bg6.jpg',
-    '/development/public/images/Bg7.jpg',
-    '/development/public/images/Bg8.jpg',
-    '/development/public/images/Bg9.jpg'
+    '/bayatni/public/images/Bg1.jpg',
+    '/bayatni/public/images/Bg2.jpg',
+    '/bayatni/public/images/Bg3.jpg',
+    '/bayatni/public/images/Bg4.jpg',
+    '/bayatni/public/images/Bg5.jpg',
+    '/bayatni/public/images/Bg6.jpg',
+    '/bayatni/public/images/Bg7.jpg',
+    '/bayatni/public/images/Bg8.jpg',
+    '/bayatni/public/images/Bg9.jpg'
   ];
   
   let current = 0;

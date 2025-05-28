@@ -19,7 +19,7 @@ function isLoggedIn() {
 
 function requireLogin() {
     if (!isLoggedIn()) {
-        header("Location: /development/admin/app/auth/login.php");
+        header("Location: /bayatni/admin/app/auth/login.php");
         exit();
     }
 }

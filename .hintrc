@@ -1,6 +1,6 @@
 {
   "extends": [
-    "development"
+    "bayatni"
   ],
   "hints": {
     "compat-api/css": [

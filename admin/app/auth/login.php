@@ -3,7 +3,7 @@ require_once __DIR__ .'/../../config/config.php';
 
 
 if (isLoggedIn()) {
-    header("Location: /development/admin/index.php");
+    header("Location: /bayatni/admin/index.php");
     exit();
 }
 
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_name'] = 'Bayatni Admin';
             $_SESSION['user_role'] = 'admin';
             
-            header("Location: /development/admin/index.php");
+            header("Location: /bayatni/admin/index.php");
             exit();
         } else {
             $error = "Invalid email or password";
