@@ -26,7 +26,7 @@ public/           Public assets (CSS, JS, images)
 .htaccess         Server configuration
 README.md         Project documentation
 
-###Getting Started
+### Getting Started
 
 1. Clone the repository
 ```bash
